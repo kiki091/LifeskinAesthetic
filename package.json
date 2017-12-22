@@ -16,6 +16,30 @@
         "jquery": "^3.2",
         "laravel-mix": "^1.0",
         "lodash": "^4.17.4",
-        "vue": "^2.5.7"
+        "sass-loader": "^6.0.0",
+        "vue": "^2.5.7",
+        "gulp": "^3.9.1",
+        "jquery": "^3.1.1",
+        "laravel-elixir-vue-2": "^0.3.0",
+        "laravel-elixir-vueify": "^1.0.6",
+        "laravel-elixir": "^6.0.0-15",
+        "laravel-elixir-browsersync-official": "^1.0.0",
+        "vue-resource": "^1.0.3",
+        "vue-router": "^2.5.3",
+        "vueify": "^9.4.1",
+        "vue-loader": "10.1.0",
+        "webpack": "^2.2.1"
+    },
+    "dependencies": {
+        "laravel-echo": "^1.2.4",
+        "pusher-js": "^4.0.0",
+        "gulp-shell": "^0.6.3",
+        "gulp-util": "^3.0.8",
+        "sortablejs": "^1.6.0",
+        "through": "^2.3.8",
+        "vue-ckeditor2": "^1.0.5",
+        "bower": "^1.8.0",
+        "minify": "^2.0.13",
+        "scrollmagic": "^2.0.5"
     }
 }
