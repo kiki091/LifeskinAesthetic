@@ -63,7 +63,6 @@
    1. Theme Default CSS
 =======================*/
 
-@import url('../../../css.css');
 
 img{max-width: 100%}
 
@@ -85,7 +84,7 @@ img{max-width: 100%}
   margin: 70px 0;
 }
 .pattern-fixed.pattern {
-  background: url("images/bg/pattern.png") repeat fixed 0 0;
+  background: url("../../themes/front/images/bg/pattern.png") repeat fixed 0 0;
 }
 .boxed-layout.fixed {
   margin: 50px 0;
@@ -97,7 +96,7 @@ img{max-width: 100%}
     display: inline-block;
 }
 .call-center p, .mail-address p {
-    color: #757575;
+    color: #363636;
     line-height: 17px;
     margin-bottom: 0;
 }
@@ -111,7 +110,7 @@ img{max-width: 100%}
     text-align: right;
 }
 .social-icons > a {
-    color: #666;
+    color: #363636;
     font-size: 16px;
     margin-right: 20px;
 }
@@ -120,6 +119,7 @@ img{max-width: 100%}
 }
 .header-top {
   padding: 17px 0;
+  background: #ebebeb;
 }
 .menu ul li {
     display: inline-block;
@@ -383,7 +383,7 @@ img{max-width: 100%}
     04. Welcome about css here
 --------------------*/
 .welcome-about {
-  padding-bottom: 100px;
+  padding-bottom: 5px;
   padding-top: 90px;
 }
 .about-desc h6 {
@@ -420,7 +420,7 @@ img{max-width: 100%}
     05. fun fact css here
 --------------------*/
 .fun-fact {
-    background: url(images/bg/1.jpg)no-repeat scroll center center;
+    background: url(../../themes/front/images/bg/1.jpg)no-repeat scroll center center;
     background-size: cover;
 }
 .fun-icon a {
@@ -537,7 +537,7 @@ img{max-width: 100%}
   width: 100%;
 }
 .gallery-img a {
-  background: #6bc513 none repeat scroll 0 0;
+  background: #363636 none repeat scroll 0 0;
   border-radius: 50%;
   color: #fff;
   display: inline-block;
@@ -597,7 +597,7 @@ img{max-width: 100%}
             transition-duration: 0.3s;
 }
 .owl_pagination.owl-theme .owl-controls .owl-page span,.home-slider-list.owl-carousel .owl-controls .owl-page span {
-  background: rgba(92, 197, 57, 0.6) none repeat scroll 0 0;
+  background: rgba(54, 54, 54, 0.56) none repeat scroll 0 0;
   height: 14px;
   margin: 0 4px;
   opacity: 1;
@@ -606,7 +606,7 @@ img{max-width: 100%}
 }
 .owl_pagination.owl-theme .owl-controls .owl-page.active span,.home-slider-list.owl-carousel .owl-controls .owl-page.active span {
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-  border: 3px solid #6bc513;
+  border: 3px solid #363636;
   height: 16px;
   width: 16px;
 }
@@ -640,7 +640,7 @@ img{max-width: 100%}
     07. Sepecial offer css here
 -----------*/
 .special-offer {
-  background: rgba(0, 0, 0, 0) url("images/common/offer-bg.jpg") no-repeat scroll center center / cover ;
+  /*background: rgba(0, 0, 0, 0) url("../../themes/front/images/common/offer-bg.jpg") no-repeat scroll center center / cover ;*/
   padding: 139px 0 176px;
   position: relative;
 }
@@ -661,7 +661,7 @@ img{max-width: 100%}
 ---------------*/
 .feature-img img {
   border: 1px solid #6bc513;
-  border-radius: 50%;
+  /*border-radius: 50%;*/
   height: 228px;
   -webkit-transition: all 0.5s ease 0s;
   transition: all 0.5s ease 0s;
@@ -710,7 +710,7 @@ img{max-width: 100%}
     09. Video section css here
 ------------------*/
 .video-section{
-  background: url(images/common/video-bg.jpg)no-repeat scroll center center;
+  background: url(../../themes/front/images/common/video-bg.jpg)no-repeat scroll center center;
   background-size: cover;
   padding: 190px 0;
   position: relative;
@@ -841,7 +841,7 @@ img{max-width: 100%}
     width: 100%;
 }
 .pricing-table:before {
-  background: rgba(0, 0, 0, 0) url("images/common/pricing-1.png") no-repeat scroll right bottom;
+  background: rgba(0, 0, 0, 0) url("../../themes/front/images/common/pricing-1.png") no-repeat scroll right bottom;
   bottom: 0;
   content: "";
   height: 100%;
@@ -853,7 +853,7 @@ img{max-width: 100%}
   z-index: -9;
 }
 .pricing-table:hover {
-  background: rgba(0, 0, 0, 0) url("images/common/pricing-2.png") no-repeat scroll -150px 0;
+  background: rgba(0, 0, 0, 0) url("../../themes/front/images/common/pricing-2.png") no-repeat scroll -150px 0;
   -webkit-transition-duration: 0.3s;
           transition-duration: 0.3s;
 }
@@ -873,11 +873,11 @@ img{max-width: 100%}
     11. Testimonial css here
 ------------------------*/
 .testimonial {
-  background: #f1f1f1 url(images/common/test-bg-1.png)no-repeat scroll left bottom;
+  background: #f1f1f1 url(../../themes/front/images/common/test-bg-1.png)no-repeat scroll left bottom;
 }                   
 .testimonial .bg-img {
   padding: 100px 0;
-  background: url(images/common/test-bg-2.png)no-repeat scroll right center;
+  background: url(../../themes/front/images/common/test-bg-2.png)no-repeat scroll right center;
 }
 .single-testimonial p {
     font-style: italic;
@@ -1010,13 +1010,14 @@ img{max-width: 100%}
   width: 33.33%;
 }
 .footer-top {
-    background: #f1f1f1 url(images/common/f-bg-1.png)no-repeat scroll left center;
+    background: #f1f1f1 url(../../themes/front/images/common/f-bg-1.png)no-repeat scroll left center;
+    opacity: 0.9;
 }
 .footer {
    position: relative;
 }
 .footer:before {
-    background: url(images/common/f-bg-2.png)no-repeat scroll right bottom;
+    background: url(../../themes/front/images/common/f-bg-2.png)no-repeat scroll right bottom;
     width: 100%;
     height: 100%;
     content: "";
@@ -1026,6 +1027,7 @@ img{max-width: 100%}
 }
 .footer-bottom {
     background: #e1e1e1 none repeat scroll 0 0;
+    opacity: 0.9;
 }
 .footer-title > h3 {
     color: #535353;
@@ -1094,7 +1096,7 @@ img{max-width: 100%}
     margin-bottom: 0;
 }
 .single-footer.open-hours li span.close {
-    color: #6bc513;
+    color: #363636;
     font-size: 14px;
     opacity: 1;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
@@ -1165,7 +1167,7 @@ img{max-width: 100%}
     15. scrollpu css here
 ----------------------*/
 #scrollUp {
-    background: #6bc513;
+    background: #363636;
     bottom: 45px;
     color: #ffffff;
     cursor: pointer;
@@ -1195,7 +1197,7 @@ img{max-width: 100%}
     16.1 Breadcrumbs css here
 ---------------*/
 .breadcrumbs {
-  background: rgba(0, 0, 0, 0) url("images/common/breadcrumbs.jpg") no-repeat scroll center center / cover ;
+  background: rgba(0, 0, 0, 0) url("../../themes/front/images/common/breadcrumbs.jpg") no-repeat scroll center center / cover ;
   padding: 100px 0 200px;
   position: relative;
 }
@@ -1653,7 +1655,7 @@ img{max-width: 100%}
   padding: 0;
 }
 .widget-search button {
-    background: #6bc513 none repeat scroll 0 0;
+    background: #363636 none repeat scroll 0 0;
     border: medium none;
     color: #fff;
     font-size: 16px;
@@ -1663,7 +1665,7 @@ img{max-width: 100%}
     width: 50px;
 }
 .widget-title > h3 {
-    background: #6bc513 none repeat scroll 0 0;
+    background: #363636 none repeat scroll 0 0;
     color: #fff;
     font-size: 18px;
     height: 50px;
@@ -1806,7 +1808,7 @@ img{max-width: 100%}
     padding: 20px 5px 5px 20px;
 }
 .widget-filcker li a:before {
-    background: rgba(107, 197, 19, 0.7) none repeat scroll 0 0;
+    background: rgba(54, 54, 54, 0.57) none repeat scroll 0 0;
     content: "";
     height: 100%;
     opacity: 0;
@@ -3220,7 +3222,7 @@ a.continue-shopping:hover, .discount-code > input[type="submit"]:hover, .total.t
 }
 .mean-container a.meanmenu-reveal {
   float: left;
-  left: 50% !important;
+  /*left: 50% !important;*/
   position: absolute;
   top: -79px;
 }
@@ -3484,7 +3486,7 @@ a.button.btn-gray:hover,a.button.btn-border:hover{color:#6bc513}
     29. Home Animated text css
 -----------------*/
 .slider-content {
-  background: url("images/slider/1.jpg") no-repeat scroll center center / cover ;
+  background: url("../../themes/front/images/slider/1.jpg") no-repeat scroll center center / cover ;
   padding: 290px 0;
   z-index: 9;
 }
@@ -3495,17 +3497,17 @@ a.button.btn-gray:hover,a.button.btn-border:hover{color:#6bc513}
   color: #6bc513;
 }
 .slider-content.parallax{
-  background: url("images/slider/1.jpg") no-repeat fixed center center / cover ;
+  background: url("../../themes/front/images/slider/1.jpg") no-repeat fixed center center / cover ;
 }
 /*-------------------
     30. Home video css
 -----------------*/
 .slider-content.youtube-bg {
-  background: url("images/bg/youtube.png") no-repeat scroll center center / cover ;
+  background: url("../../themes/front/images/bg/youtube.png") no-repeat scroll center center / cover ;
   padding: 220px 0;
 }
 .dotted-overlay:after {
-  background: url("images/bg/grid.png") repeat scroll 0 0;
+  background: url("../../themes/front/images/bg/grid.png") repeat scroll 0 0;
   content: "";
   height: 100%;
   left: 0;

@@ -60,14 +60,14 @@ a:focus,
 }
 a:focus,
 a:hover {
-    color: #6bc513;
+    color: #363636;
     text-decoration: none;
 }
 a,
 button,
 input {
     outline: medium none;
-    color: #6bc513;
+    color: #363636;
 }
 .uppercase { 
     text-transform: uppercase
