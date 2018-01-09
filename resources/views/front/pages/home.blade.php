@@ -119,14 +119,30 @@
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane" id="all" style="display: block;">
                                 <div class="single-gallery-list owl_pagination">
-                                    @if(isset($product))
-                                        @foreach($product as $key_product=> $val_product)
-                                            <div class="single-gallery">
-                                                <div class="gallery-img">
-                                                    <img class="border" src="{{ $val_product['thumbnail_url'] or '' }}" alt="{{ $val_product['title'] or '' }}">
-                                                    <a href="{{ $val_product['thumbnail_url'] or '' }}">
-                                                        <p class="readmore">More</p>
-                                                    </a>
+                                    @if(isset($package))
+                                        @foreach($package as $key_package=> $val_package)
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <div class="pricing-table text-center">
+                                                    <div class="pricing-title">
+                                                        <h3>{{ $val_package['title'] }}</h3>
+                                                    </div>
+                                                    <div class="pricing-desc">
+                                                        <h2><span class="currency">IDR</span>{{ $val_package['price'] }}</h2>
+                                                        <ul>
+                                                            @if(isset($val_package['product']))
+                                                                @foreach($val_package['product'] as $key_product=> $val_product)
+                                                                    <li>{{ $val_product['title'] }}</li>
+                                                                @endforeach
+                                                            @endif
+                                                        </ul>
+                                                        <div class="book-now">
+                                                            @if (Auth::guard('member')->check())
+                                                                <a href="#">Book now</a>
+                                                            @else
+                                                                <a href="{{ route('LoginPages') }}">Book now</a>
+                                                            @endif
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         @endforeach
@@ -135,7 +151,7 @@
                                 <div class="col-md-8 col-md-offset-2 margin-top20">
                                     <div class="section-title bg_grey text-center">
 
-                                        <a href="" class="btn--main">VIEW ALL PROMOTIONS</a>
+                                        <a href="{{ route('PackagePage') }}" class="btn--main">VIEW ALL PROMOTIONS</a>
                                     </div>
                                 </div>
                             </div>

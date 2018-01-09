@@ -15,14 +15,17 @@
                                     <a href="{{ route('HomePage') }}">Home</a>
                                 </li>
                                 <li>
-                                    <a href="#">Our Product</a>
+                                    <a href="{{ route('PackagePage') }}">Our Product</a>
                                 </li>
                                 <li>
-                                    <a href="#">News</a>
+                                    <a href="{{ route('NewsPage') }}">News</a>
                                 </li>
+                                @if (!Auth::guard('member')->check())
                                 <li>
-                                    <a href="#">About</a>
+                                    <a href="{{ route('LoginPages') }}">Login</a>
+                                    
                                 </li>
+                                @endif
                                 <li>
                                     <a href="#">Contact</a>
                                 </li>

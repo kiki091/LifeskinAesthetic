@@ -46,12 +46,44 @@ return [
             'database' => env('DB_DATABASE', 'forge'),
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
-            'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
             'strict' => true,
             'engine' => null,
+            'options'   => [PDO::ATTR_EMULATE_PREPARES => true, PDO::ATTR_STRINGIFY_FETCHES => true],
+        ],
+
+        'auth' => [
+            'driver'    => 'mysql',
+            'host'      => env('DB_HOST_AUTH', '127.0.0.1'),
+            'database'  => env('DB_DATABASE_AUTH', 'forge'),
+            'username'  => env('DB_USERNAME_AUTH', 'forge'),
+            'password'  => env('DB_PASSWORD_AUTH', ''),
+            'port'      => env('DB_PORT_AUTH', '3306'),
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+            'strict'    => false,
+            'engine'    => null,
+            'options'   => [PDO::ATTR_EMULATE_PREPARES => true, PDO::ATTR_STRINGIFY_FETCHES => true],
+
+        ],
+
+        'sipeda' => [
+            'driver'    => 'mysql',
+            'host'      => env('DB_HOST_SIPEDA', '127.0.0.1'),
+            'database'  => env('DB_DATABASE_SIPEDA', 'forge'),
+            'username'  => env('DB_USERNAME_SIPEDA', 'forge'),
+            'password'  => env('DB_PASSWORD_SIPEDA', ''),
+            'port'      => env('DB_PORT_SIPEDA', '3306'),
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+            'strict'    => false,
+            'engine'    => null,
+            'options'   => [PDO::ATTR_EMULATE_PREPARES => true, PDO::ATTR_STRINGIFY_FETCHES => true],
+
         ],
 
         'pgsql' => [
@@ -67,29 +99,6 @@ return [
             'sslmode' => 'prefer',
         ],
 
-        'sqlsrv' => [
-            'driver' => 'sqlsrv',
-            'host' => env('DB_HOST', 'localhost'),
-            'port' => env('DB_PORT', '1433'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
-            'charset' => 'utf8',
-            'prefix' => '',
-        ],
-
-        'redis' => [
-
-            'client' => 'predis',
-
-            'default' => [
-                'host' => env('REDIS_HOST', 'localhost'),
-                'password' => env('REDIS_PASSWORD', null),
-                'port' => env('REDIS_PORT', 6379),
-                'database' => 0,
-            ],
-
-        ],
     ],
 
     /*

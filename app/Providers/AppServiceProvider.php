@@ -25,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
     {
         // FRONT
 
+        $this->app->bind('App\Repositories\Contracts\Auth\Member', 'App\Repositories\Implementation\Auth\Member');
         $this->app->bind('App\Repositories\Contracts\Front\General', 'App\Repositories\Implementation\Front\General');
         $this->app->bind('App\Repositories\Contracts\Front\Seo', 'App\Repositories\Implementation\Front\Seo');
         $this->app->bind('App\Repositories\Contracts\Front\MainBanner', 'App\Repositories\Implementation\Front\MainBanner');
@@ -34,6 +35,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind('App\Repositories\Contracts\Front\SubCategory', 'App\Repositories\Implementation\Front\SubCategory');
         $this->app->bind('App\Repositories\Contracts\Front\Product', 'App\Repositories\Implementation\Front\Product');
         $this->app->bind('App\Repositories\Contracts\Front\Gallery', 'App\Repositories\Implementation\Front\Gallery');
+        $this->app->bind('App\Repositories\Contracts\Front\Package', 'App\Repositories\Implementation\Front\Package');
+        $this->app->bind('App\Repositories\Contracts\Front\News', 'App\Repositories\Implementation\Front\News');
     }
 
     /**
@@ -56,6 +59,8 @@ class AppServiceProvider extends ServiceProvider
             'App\Repositories\Contracts\Front\SubCategory',
             'App\Repositories\Contracts\Front\Product',
             'App\Repositories\Contracts\Front\Gallery',
+            'App\Repositories\Contracts\Front\Package',
+            'App\Repositories\Contracts\Front\News',
         );
     }
 }

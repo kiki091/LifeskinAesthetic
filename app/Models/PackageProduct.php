@@ -12,10 +12,17 @@ class PackageProduct extends BaseModel
     protected $fillable = [
 	    'product_id', 
 	    'package_id',
-        'package_product_id',
     ];
 
     protected $guarded = [];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function product()
+    {
+        return $this->belongsTo('App\Models\Product', 'product_id', 'id');
+    }
 
     /**
      * @param $query
