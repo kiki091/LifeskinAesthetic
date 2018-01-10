@@ -21,6 +21,14 @@ class News extends BaseModel
     protected $guarded = [];
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function sub_category()
+    {
+        return $this->belongsTo('App\Models\SubCategory', 'sub_category_id', 'id')->with('category');
+    }
+
+    /**
      * @param $query
      */
     public function scopeSlug($query, $params)

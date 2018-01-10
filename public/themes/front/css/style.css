@@ -138,7 +138,7 @@ img{max-width: 100%}
     text-align: center;
 }
 .logo {
-  padding: 40px 0;
+  padding: 10px 0;
 }
 .header-action-box {
     text-align: right;
@@ -781,21 +781,20 @@ img{max-width: 100%}
     position: absolute;
 }
 .pricing-desc > h2 {
-  color: #666666;
-  display: inline-block;
-  font-family: "Montserrat",sans-serif;
-  font-size: 55px;
-  font-weight: 400;
-  line-height: 27px;
-  margin-bottom: 5px;
-  margin-left: -50px;
-  position: relative;
+    color: #666666;
+    display: inline-block;
+    font-family: "Montserrat",sans-serif;
+    font-size: 23px;
+    font-weight: 400;
+    line-height: 27px;
+    margin-bottom: 5px;
+    position: relative;
 }
 .pricing-desc > h2 span.currency {
   font-size: 22px;
-  left: -19px;
+  left: -30px;
   position: absolute;
-  top: -10px;
+  top: -25px;
   font-weight: bold;
 }
 .pricing-desc > h2 span.date {
@@ -1751,6 +1750,7 @@ img{max-width: 100%}
     font-size: 12px;
     line-height: 15px;
     margin-bottom: 0;
+    padding-top: 10px;
 }
 .recent-post {
   padding: 20px;
@@ -2024,14 +2024,13 @@ ul.product-action li {
     line-height: 24px;
 }
 ul.product-action li a.add-to-cart {
-  background: #6bc513 none repeat scroll 0 0;
-  border-radius: 20px;
+  background: #363636 none repeat scroll 0 0;
   color: #fff;
   display: block;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 2px;
-  padding: 8px 25px;
+  padding: 5px 9px;
   text-transform: uppercase;
   -webkit-transition: all 0.5s ease 0s;
   transition: all 0.5s ease 0s;
@@ -2049,7 +2048,8 @@ ul.product-action li i {
   width: 39px;
 }
 ul.product-action li a.add-to-cart:hover,.add-cart > a:hover {
-  color: #303030;
+  color: #FFFFFF;
+  opacity: 0.7;
 }
 ul.product-action li:hover i {
   background: #6bc513 none repeat scroll 0 0;
@@ -2061,7 +2061,7 @@ ul.product-action li:hover i {
 }
 .shop-product-list .single-product-img {
   float: left;
-  margin-top: 45px;
+  margin-top: 0px;
   width: 35%;
 }
 .shop-product-list .single-product {
@@ -3202,7 +3202,7 @@ a.continue-shopping:hover, .discount-code > input[type="submit"]:hover, .total.t
   padding: 36px 0;
 }
 .sticky .logo {
-  padding: 25px 0;
+  padding: 10px 0;
 }
 .sticky .menu ul li a {
   padding: 36px 0;

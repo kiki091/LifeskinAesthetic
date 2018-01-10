@@ -8,6 +8,7 @@ use App\Services\Bridge\Front\Seo as SeoServices;
 use App\Services\Bridge\Front\About as AboutServices;
 use App\Services\Bridge\Front\Gallery as GalleryServices;
 use App\Services\Bridge\Front\Product as ProductServices;
+use App\Services\Bridge\Front\Package as PackageServices;
 use App\Services\Bridge\Front\General as GeneralServices;
 use App\Services\Bridge\Front\MainBanner as MainBannerServices;
 use App\Services\Bridge\Front\Information as InformationServices;
@@ -19,18 +20,20 @@ class HomeController extends FrontController
 	protected $about;
 	protected $gallery;
 	protected $product;
+	protected $package;
 	protected $general;
 	protected $mainBanner;
 	protected $information;
 
 	const SEO_HOME_PAGES = 'home::pages';
 
-	public function __construct(GeneralServices $general, SeoServices $seo, MainBannerServices $mainBanner, AboutServices $about, InformationServices $information, ProductServices $product, GalleryServices $gallery) 
+	public function __construct(GeneralServices $general, SeoServices $seo, MainBannerServices $mainBanner, AboutServices $about, InformationServices $information, ProductServices $product, GalleryServices $gallery, PackageServices $package) 
 	{
 		$this->seo = $seo;
 		$this->about = $about;
 		$this->gallery = $gallery;
 		$this->product = $product;
+		$this->package = $package;
 		$this->general = $general;
 		$this->mainBanner = $mainBanner;
 		$this->information = $information;
@@ -51,6 +54,7 @@ class HomeController extends FrontController
 		$data['information_data'] = $this->information->getData();
 		$data['product'] = $this->product->getData();
 		$data['gallery'] = $this->gallery->getData();
+		$data['package'] = $this->package->getData();
 
 		$blade = self::URL_BLADE_FRONT_SITE. '.home';
         

@@ -177,7 +177,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
-        Lord\Laroute\LarouteServiceProvider::class,
+        App\Providers\DataHelperServiceProvider::class,
 
     ],
 
@@ -228,6 +228,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'JavaScript'=> Laracasts\Utilities\JavaScript\JavaScriptFacade::class,
+        'DataHelper'=> App\Custom\Facades\DataHelper::class,
     ],
 
 ];

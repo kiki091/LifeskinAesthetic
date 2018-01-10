@@ -12,7 +12,7 @@ elixir(function(mix) {
     // From Plugin
     mix.styles([
         'chosen/css/chosen.css',
-        'datetimepicker/jquery.datetimepicker.css',
+        'air-datepicker-master/dist/css/datepicker.css',
         'hold-on/HoldOn.min.css',
         'pnotify/dist/pnotify.css',
         'sweetalert/dist/sweetalert.css',
@@ -45,7 +45,7 @@ elixir(function(mix) {
     mix.scripts([
         //'chosen/js/chosen.js',
         'ckeditor/ckeditor.js',
-        'datetimepicker/jquery.datetimepicker.js',
+        'air-datepicker-master/dist/js/datepicker.js',
         'hold-on/HoldOn.min.js',
         'masonry/dist/masonry.pkgd.js',
         'moment/moment.js',

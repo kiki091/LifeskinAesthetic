@@ -1,7 +1,7 @@
 $(function() {
 
 	// Get the form.
-	var form = $('#contact-form');
+	var form = $('#form');
 
 	// Get the messages div.
 	var formMessages = $('.form-messege');
@@ -26,7 +26,7 @@ $(function() {
 			$(formMessages).addClass('success');
 
 			// Set the message text.
-			$(formMessages).text(response);
+			$(formMessages).text(response.messages);
 
 			// Clear the form.
 			$('#contact-form input,#contact-form textarea').val('');

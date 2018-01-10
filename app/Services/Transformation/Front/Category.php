@@ -32,10 +32,25 @@ class Category
 
                 'title' => isset($data['title']) ? $data['title'] : '',
                 'slug'  => isset($data['slug']) ? $data['slug'] : '',
+                'sub_category'  => isset($data['sub_category']) ? $this->getDataSubCategory($data['sub_category']) : '',
             ];
             
         }, $data);
 
         return $dataTransform;
+    }
+
+    protected function getDataSubCategory($data)
+    {
+        return array_map(function($data) {
+
+            return [
+
+                'title' => isset($data['title']) ? $data['title'] : '',
+                'slug'  => isset($data['slug']) ? $data['slug'] : '',
+            ];
+            
+        }, $data);
+
     }
 }
