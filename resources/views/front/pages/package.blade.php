@@ -151,11 +151,15 @@
                 })
                 
             } else {
+                $('.dp-5').val()
+                book_date = ''
                 toastr.success(response.message, {timeOut: 5000})
             }
             
         })
         .fail(function(response) {
+            $('.dp-5').val()
+            book_date = ''
             toastr.error('server not responding...', {timeOut: 5000})
         })
     }
