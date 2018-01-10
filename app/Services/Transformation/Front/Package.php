@@ -17,6 +17,7 @@ class Package
         return $this->setDataTransform($data);
     }
 
+
     public function getDataBookingTransform($data, $userData)
     {
         if(empty($data) || empty($userData))
@@ -62,7 +63,6 @@ class Package
         return array_map(function($data) {
 
             return [
-
                 'id'          => isset($data['product']['id']) ? $data['product']['id'] : '',
                 'title'          => isset($data['product']['title']) ? $data['product']['title'] : '',
                 'slug'           => isset($data['product']['slug']) ? $data['product']['slug'] : '',

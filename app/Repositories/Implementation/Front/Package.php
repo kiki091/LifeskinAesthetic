@@ -12,6 +12,8 @@ use App\Models\CartDetail as CartDetailModels;
 use Cache;
 use DB;
 use App\Custom\DataHelper;
+use Cache;
+use DB;
 
 class Package extends BaseImplementation implements PackageInterface
 {
@@ -146,12 +148,10 @@ class Package extends BaseImplementation implements PackageInterface
             $package->slug($params['slug']);
         }
 
-
         if(isset($params['package_id'])) {
             $package->where('id', $params['package_id']);
         }
-
-
+        
         if(isset($params['limit_data'])) {
             $package->take($params['limit_data']);
         }

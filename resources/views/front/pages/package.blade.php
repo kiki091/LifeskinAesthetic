@@ -85,6 +85,7 @@
                                             {!! $package_data['description'] !!}
                                         </div>
                                         <ul class="product-action">
+
                                             <li>
                                                 <input id="dp-5" data-idx="{{$key_package+1}}" id="book_date_{{$key_package+1}}" name="book_date" class="datepicker-here dp-5" data-timepicker="true" />
                                                 {{ csrf_field() }}
@@ -96,6 +97,7 @@
                                             @else
                                                 <li><a href="{{ route('LoginPages') }}" class="add-to-cart">Book now</a></li>
                                             @endif
+
                                         </ul>
                                     </div>
                                 </div>
@@ -157,10 +159,5 @@
             toastr.error('server not responding...', {timeOut: 5000})
         })
     }
-
-    
-    
-
-    
 </script>
 @endsection

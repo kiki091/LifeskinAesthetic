@@ -19,5 +19,4 @@ interface Package
      * @return mixed
      */
     public function booking($params);
-
 }

@@ -33,7 +33,7 @@
                 </div>
             @endforeach
         @endif
-    </div>});
+    </div>
 </div>
 <!--slider section end-->
 
@@ -137,6 +137,7 @@
                                                         </ul>
                                                         <div class="book-now">
                                                             @if (Auth::guard('member')->check())
+
                                                                 <a href="{{ route('PackagePage') }}">Book now</a>
                                                             @else
                                                                 <a href="{{ route('LoginPages') }}">Book now</a>
