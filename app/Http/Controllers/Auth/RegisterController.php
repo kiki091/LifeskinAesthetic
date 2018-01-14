@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use App\Http\Controllers\FrontController;
+use App\Services\Api\Response as ResponseService;
+use App\Services\Bridge\Auth\Member as MemberServices;
+use Validator;
 
-class RegisterController extends Controller
+class RegisterController extends FrontController
 {
     /*
     |--------------------------------------------------------------------------
-    | Register Controller
+    | Register FrontController
     |--------------------------------------------------------------------------
     |
     | This controller handles the registration of new users as well as their
@@ -20,23 +21,34 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
-
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
+    protected $member;
+    protected $response;
+    protected $validationMessage = '';
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(MemberServices $member, ResponseService $response)
     {
-        $this->middleware('guest');
+        $this->member = $member;
+        $this->response = $response;
+    }
+
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), $this->validateStore($request));
+
+        if ($validator->fails()) {
+            //TODO: case fail
+            return $this->response->setResponseErrorFormValidation($validator->messages(), false);
+
+        } else {
+            //TODO: case pass
+            return $this->member->store($request->except(['_token']));
+            
+        }
     }
 
     /**
@@ -45,27 +57,17 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function validateStore($request = array())
     {
-        return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
-    }
-
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\User
-     */
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        $rules = [
+            'first_name'        => 'required|string|max:25',
+            'last_name'         => 'required|string|max:25',
+            'phone_number'      => 'required|numeric|unique:members',
+            'email'             => 'required|string|email|max:35|unique:members',
+            'password'          => 'required|string|min:8|max:20',
+            'confirm_password'  => 'required|same:password|min:8|max:20',
+        ];
+        
+        return $rules;
     }
 }

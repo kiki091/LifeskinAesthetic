@@ -65,7 +65,9 @@
 
 
 img{max-width: 100%}
-
+.form--homesubscribe {
+    padding-top: 28px;
+}
 /*************************************
          Custom-content all   
  **************************************/
@@ -823,6 +825,7 @@ img{max-width: 100%}
   padding: 56px 0 59px;
   position: relative;
   z-index: 99;
+  height: 400px;
 }
 .book-now > a {
     background: #fff none repeat scroll 0 0;
@@ -1452,7 +1455,7 @@ img{max-width: 100%}
     resize: none;
 }
 #contact-form > button {
-    background: #6bc513 none repeat scroll 0 0;
+    background: #363636 none repeat scroll 0 0;
     border: medium none;
     color: #fff;
     font-family: "Lato",sans-serif;

@@ -23,6 +23,10 @@ Route::group(['middleware' => ['web']], function ()
 			Route::post('/authenticate', 'Auth\LoginController@authenticate')->name('LoginAuthenticate');
 		});
 
+		Route::group(array('prefix' => 'register'), function () {
+			Route::post('/store', 'Auth\RegisterController@store')->name('RegisterAuthenticate');
+		});
+
 		Route::get('/logout', 'Auth\LoginController@logout')->name('LogoutMember');
 		
 		Route::group(array('prefix' => 'news'), function () {
@@ -39,6 +43,12 @@ Route::group(['middleware' => ['web']], function ()
 			Route::get('/', 'Front\PackageController@index')->name('PackagePage');
 			Route::get('/{slug}', 'Front\PackageController@detail')->name('PackagePageDetail');
 			Route::post('/booking', 'Front\PackageController@booking')->name('PackageBooking');
+		});
+
+		Route::group(array('prefix' => 'about'), function () {
+			Route::get('/', 'Front\AboutController@index')->name('AboutPage');
+			Route::post('/subscribe', 'Front\AboutController@subscribe')->name('SubscribeMail');
+			Route::post('/contact-us', 'Front\AboutController@contactUs')->name('ContactUs');
 		});
 	});
 

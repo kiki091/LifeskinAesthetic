@@ -15,9 +15,9 @@
 			
 			@yield('content')
 			@include('front.partials.footer')
-			
 		</div>
-			
+		
+		@include('front.partials.pop-up-login')
 		@include('slots.vars')
 		@include('front.partials.js_footer')
 		@yield('scripts')

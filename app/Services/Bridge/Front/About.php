@@ -23,4 +23,24 @@ class About
     {
         return $this->about->getData($params);
     }
+
+    /**
+     * Subscribe Mail
+     * @param $params
+     * @return mixed
+     */
+    public function subscribe($params = [])
+    {
+        return $this->about->subscribe($params);
+    }
+
+    /**
+     * Contact Us 
+     * @param $params
+     * @return mixed
+     */
+    public function contactUs($params = [])
+    {
+        return $this->about->contactUs($params);
+    }
 }

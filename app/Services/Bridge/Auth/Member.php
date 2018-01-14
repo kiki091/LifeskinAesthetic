@@ -24,7 +24,6 @@ class Member
         return $this->member->getData($params);
     }
 
-
     /**
      * Get Auth Session 
      * @param $params
@@ -33,5 +32,15 @@ class Member
     public function setAuthSession($params = [])
     {
         return $this->member->setAuthSession($params);
+    }
+
+    /**
+     * Store User Data
+     * @param $params
+     * @return mixed
+     */
+    public function store($params = [])
+    {
+        return $this->member->store($params);
     }
 }

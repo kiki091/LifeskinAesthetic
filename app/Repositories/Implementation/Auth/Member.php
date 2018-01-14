@@ -11,6 +11,7 @@ use Session;
 use DB;
 use Auth;
 use Hash;
+use Carbon\Carbon;
 
 class Member extends BaseImplementation implements MemberInterface
 {
@@ -70,6 +71,55 @@ class Member extends BaseImplementation implements MemberInterface
 
         
         return $data;
+    }
+
+    /**
+     * Store user data registration
+     * @param $data
+     * @return array
+     */
+
+    public function store($data)
+    {
+        try {
+
+            DB::beginTransaction();
+
+            if(!$this->storeMember($data))
+            {
+                DB::rollBack();
+                return $this->setResponse($this->message, false);
+            }
+
+            DB::commit();
+            return $this->setResponse('Success signup data', true);
+
+        } catch (\Exception $e) {
+            return $this->setResponse($e->getMessage(), false);
+        }
+    }
+
+    protected function storeMember($data)
+    {
+        try {
+
+            $storeObj               = $this->member;
+            $storeObj->first_name   = isset($data['first_name']) ? $data['first_name'] : '';
+            $storeObj->last_name    = isset($data['last_name']) ? $data['last_name'] : '';
+            $storeObj->phone_number = isset($data['phone_number']) ? $data['phone_number'] : '';
+            $storeObj->email        = isset($data['email']) ? $data['email'] : '';
+            $storeObj->is_active    = true;
+            $storeObj->password     = Hash::make($data['confirm_password']);
+            $storeObj->created_at   = Carbon::now();
+            $storeObj->updated_at   = Carbon::now();
+
+            $save                   = $storeObj->save();
+        
+            return $save;
+
+        } catch (\Exception $e) {
+            return $this->setResponse($e->getMessage(), false);
+        }
     }
 
     /**

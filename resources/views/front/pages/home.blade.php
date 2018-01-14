@@ -44,11 +44,12 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="section home__subscribe">
                     <h2 class="margin0 spacing0 light">Subscribe &amp; <b>Get 10% OFF</b> On Your First Purchase</h2>
-                    <form class="form--homesubscribe" method="post" action="" id="homesubscribe">
+                    <form class="form--homesubscribe" method="post" action="{{ route('SubscribeMail') }}" id="homesubscribe">
                         <div class="input__wrapper email_mid">
                             <input type="text" name="email" class="small" id="email_mid" placeholder="Enter your email address">
+                            {{ csrf_field() }}
                             <button class="btn--main__small float-left margin0" id="button_subcribe_mid" type="submit">GO</button>
-                            <small class="info--error clear left" id="error_info_mid_subscribe"></small>
+                            <small class="info--error error-message clear left" id="info--error-email"></small>
                         </div>
                     </form>
                 </div>
@@ -166,4 +167,9 @@
     </div>
 </div>
 <!--Offer section end-->
+@endsection
+
+
+@section('scripts')
+<script src="{{ asset('themes/front/pages/js/subscribe.js') }}"></script>
 @endsection

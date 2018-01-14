@@ -8,3 +8,4 @@
 -->
 <script src="{{ elixir('js/core.js') }}"></script>
 <script src="{{ elixir('js/plugins.js') }}"></script>
+<script type="text/javascript" src="{{ asset('themes/front/js/popup-login.js') }}"></script>

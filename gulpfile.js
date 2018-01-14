@@ -58,19 +58,19 @@ elixir(function(mix) {
     ], 'public/js/plugins.js', bowerDir);
 
     mix.scripts([
-        'js/modernizr-2.8.3.min.js',
         'js/jquery-1.12.0.min.js',
+        'js/modernizr-2.8.3.min.js',
         'js/bootstrap.min.js',
         'js/jquery.nivo.slider.pack.js',
         'js/owl.carousel.min.js',
-        'js/ajax-mail.js',
         'js/jquery.magnific-popup.js',
         'js/jquery.counterup.min.js',
         'js/waypoints.min.js',
         'js/style-customizer.js',
         'js/plugins.js',
+        'js/jquery.leanModal.min.js',
         'js/main.js',
-        //'js/map.js'
+        'js/map.js'
     ], 'public/js/core.js', themesFrontDir);
 
 

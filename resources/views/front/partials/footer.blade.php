@@ -34,11 +34,13 @@
                                 <p>
                                     Be the first to know about Our exclusive perks, events and promotions !
                                 </p>
-                                <form action="" id="desktop-footer-mailing-list-form" method="post">
+                                <form action="{{ route('SubscribeMail') }}" id="desktop-footer-mailing-list-form" method="post">
                                     <div class="form-group">
-                                        <input name="email" type="text" class="required only-email" placeholder="Enter your email address">
-                                        <div class="form--error--message"></div>
+                                        <input name="email" id="footer-subscribe" type="text" class="required only-email" placeholder="Enter your email address">
+                                        <br/>
+                                        <span class="error-message" id="error-message-email"></span>
                                     </div>
+                                    {{ csrf_field() }}
                                     <input type="submit" value=">">
                                 </form>
                             </div>
@@ -82,7 +84,7 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="copyright">
                         <p>
-                            Copyright© Beautyhouse 2017.All right reserved.
+                            Copyright© Beautyhouse 2018.All right reserved.
                         </p>
                     </div>
                 </div>
@@ -91,3 +93,7 @@
     </div>
 </div>
 <!--footer end-->
+
+@section('scripts')
+<script src="{{ asset('themes/front/pages/js/subscribe.js') }}"></script>
+@endsection

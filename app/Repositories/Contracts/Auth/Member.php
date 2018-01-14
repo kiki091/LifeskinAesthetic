@@ -20,4 +20,11 @@ interface Member
      */
     public function setAuthSession($params);
 
+    /**
+     * Store Data
+     * @param $params
+     * @return mixed
+     */
+    public function store($params);
+
 }

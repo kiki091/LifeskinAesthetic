@@ -2,12 +2,12 @@ function initialize() {
     var mapOptions = {
         zoom: 8,
         scrollwheel: false,
-        center: new google.maps.LatLng(23.810332, 90.412518)
+        center: new google.maps.LatLng(window.latitude, window.longitude)
     };
     var map = new google.maps.Map(document.getElementById('googleMap'),
           mapOptions);
     var marker = new google.maps.Marker({
-        icon: 'images/map-marker.png',
+        icon: '../../../themes/front/images/maps/map-marker-icon.png',
         animation:google.maps.Animation.BOUNCE,
         position: map.getCenter(),
         map: map

@@ -71,7 +71,8 @@ class LoginController extends FrontController
     public function authenticate(Request $request)
     {
         if (!$this->validationAuth($request->input())) {
-            return redirect(route('LoginPages'))->withInput($request->only($this->username(), 'remember'))->withErrors($this->validationMessage);
+            
+            return $this->response->setResponseErrorFormValidation($this->validationMessage, false);
         }
 
         $credentials = $request->only($this->username(), 'password');
@@ -92,7 +93,7 @@ class LoginController extends FrontController
             if ($this->member->setAuthSession()) {
                 //TODO : redirect to dashboard
                 //return redirect()->back();
-                return redirect(route('HomePage'));
+                return redirect()->back();
             }
         }
 
