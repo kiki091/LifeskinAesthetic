@@ -95,7 +95,7 @@
                                                     <a href="javascript:void();" onclick="bookData('{{$package_data['id']}}')" class="add-to-cart">Book now</a>
                                                 </li>
                                             @else
-                                                <li><a href="{{ route('LoginPages') }}" class="add-to-cart">Book now</a></li>
+                                                <li class="nav-menu"><a href="#top" class="cd-signin add-to-cart">Book now</a></li>
                                             @endif
 
                                         </ul>

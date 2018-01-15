@@ -12,7 +12,7 @@
                     <p style="text-align: center;  color: red" class="form-messege">{{ $error }}</p>
                 @endforeach
             @endif
-            <form action="{{ route('LoginAuthenticate') }}" method="post" class="cd-form">
+            <form id="form-login" action="{{ route('LoginAuthenticate') }}" method="post" class="cd-form">
                 <p class="fieldset">
                     <label class="image-replace cd-email" for="signin-email">E-mail</label>
                     <input name="email" type="email" id="signin-email" class="full-width has-padding has-border" placeholder="Email" value="{{ old('email') }}">

@@ -101,11 +101,13 @@ jQuery(document).ready(function($){
 	}
 
 	//REMOVE THIS - it's just to show error messages 
-	formLogin.submit(function(event) {
+	formLogin.find('input[type="submit"]').on('click', function(event){
 		event.preventDefault();
-		var urlLogin = $('.cd-form').attr('action')
+		var urlLogin = $('#form-login').attr('action')
 		console.log(urlLogin)
-		var formData = $('.cd-form').serialize();
+		var formData = $('#form-login').serialize();
+
+		console.log(formData)
 		$.ajax({
 			type: 'POST',
 			url: urlLogin,

@@ -9,6 +9,7 @@ use App\Models\Package as PackageModels;
 use App\Models\Product as ProductModels;
 use App\Models\Cart as CartModels;
 use App\Models\CartDetail as CartDetailModels;
+use App\Services\Mail\MailSender as MailService;
 use Cache;
 use DB;
 use App\Custom\DataHelper;
@@ -17,15 +18,20 @@ class Package extends BaseImplementation implements PackageInterface
 {
     protected $package;
     protected $product;
+    protected $mailService;
+    protected $adminEmail;
+    const ADMIN_EMAIL = 'no-reply@thelifskynclinic.com';
     protected $packageTransformation;
     protected $lastInsertId;
 
 
-    function __construct(ProductModels $product, PackageModels $package, PackageTransformation $packageTransformation)
+    function __construct(ProductModels $product, PackageModels $package, PackageTransformation $packageTransformation, MailService $mailService)
     {
     	$this->package = $package;
         $this->product = $product;
         $this->packageTransformation = $packageTransformation;
+        $this->adminEmail = (null !== config('mail.admin')) ? config('mail.admin') : self::ADMIN_EMAIL;
+        $this->mailService  = $mailService;
     }
 
     public function getData($params)
@@ -60,7 +66,7 @@ class Package extends BaseImplementation implements PackageInterface
 
             DB::beginTransaction();
 
-            if(!$this->storeCart())
+            if(!$this->storeCart($objData))
             {
 
                 DB::rollBack();
@@ -85,7 +91,7 @@ class Package extends BaseImplementation implements PackageInterface
 
     }
 
-    protected function storeCart()
+    protected function storeCart($objData)
     {
         try {
 
@@ -97,12 +103,42 @@ class Package extends BaseImplementation implements PackageInterface
             if($save = $storeObj->save())
             {
                 $this->lastInsertId = $storeObj->id;
+
+                $this->sendMail($objData);
             }
 
             return $save;
 
         } catch (\Exception $e) {
             $this->message = $e->getMessage();
+            return false;
+        }
+    }
+
+    protected function sendMail($data)
+    {
+        if(empty($data) && $data == null)
+            return false;
+
+        try{
+            $package_title      = $params['package_title'];
+            $package_price      = $params['package_price'];
+            $package_product    = $params['package_product'];
+            $member_email       = $params['member_email'];
+            $member_name        = $params['member_name'];
+            $dateNow            = date("DD, MM YYYY H:i:s");
+            
+            $data               = ['package_title' => $package_title, 'package_price' => $package_price, 'member_email' => $member_email, 'member_name' => $member_name, 'package_product' => $package_product, 'date' => $dateNow];
+
+            if($emailSender =  $this->mailService->sendQueueMailWithLog($this->adminEmail, 'default', 'Booking Information', 'inquiry', $data))
+            {
+                $this->mailService->sendQueueMailWithLog($member_email, 'default', 'Booking Information', 'inquiry', $data);
+                return true;
+            }
+            
+            return false;
+
+        }catch (\Exception $e) {
             return false;
         }
     }

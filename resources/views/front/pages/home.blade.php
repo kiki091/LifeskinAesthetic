@@ -136,12 +136,12 @@
                                                                 @endforeach
                                                             @endif
                                                         </ul>
-                                                        <div class="book-now">
+                                                        <div class="nav-menu book-now">
                                                             @if (Auth::guard('member')->check())
 
                                                                 <a href="{{ route('PackagePage') }}">Book now</a>
                                                             @else
-                                                                <a href="{{ route('LoginPages') }}">Book now</a>
+                                                                <a class="cd-signin" href="#top">Book now</a>
                                                             @endif
                                                         </div>
                                                     </div>

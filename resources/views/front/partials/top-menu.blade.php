@@ -13,7 +13,7 @@
             </div>
             <div class="col-md-6 col-sm-6 col-xs-12">
                 @if (Auth::guard('member')->check())
-                    <p style="float: right;" class="right">Welcome {{ DataHelper::userName() }} </p>
+                    <span style="float: right;" class="right">Welcome {{ DataHelper::userName() }} </span>
                 @else
                     <div class="social-icons">
                         <a target="__blank" href="{{ $web_information['facebook_link'] or '' }}"><i class="zmdi zmdi-facebook"></i></a>
