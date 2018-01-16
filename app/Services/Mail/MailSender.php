@@ -6,71 +6,32 @@ use Illuminate\Support\Facades\Mail;
 use App\Models\Mail\MailJobs as MailModel;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use App\Jobs\SendEmail;
-use Log;
 
+use Log;
 use DB;
 
 class MailSender
 {
     use DispatchesJobs;
-    /*
-    TO USE:
-        use App\Services\Mail\QDHMail as MailService;
-        use App\Jobs\SendEmail;
 
-        $data['to'] = 'richard.william@qeon.co.id';
-        $data['subject'] = 'Subject';
-        $data['body'][] = array();
-        // add attachment 
-        $data['attachment'] = 'path/to/file';
-        // or for multiple attachments
-        $data['attachment'][] = 'path/to/file1';
-        $data['attachment'][] = 'path/to/file2';
-
-        $view = 'ayana.pages.view';
-        // to add to queue
-        $mail = MailService::queue($blade, $data);
-        if($mail !== false)
-            $this->dispatch(new SendEmail($mail));
-
-        // just send it anyway
-        $mail = MailService::send($blade, $data);
-
-        
-    */
     protected $mail_job_count = 50;
 
     protected $default_sender;
-    const DEFAULT_SENDER = ['from'=> 'default@email.com', 'name' => 'default'];
+    const DEFAULT_SENDER = ['from'=> 'no-reply@thelifskynclinic.com', 'name' => 'Admin'];
 
 
     public function __construct()
     {
-        $this->default_sender =  !is_null(config('mail.from')['address']) &&  !is_null(config('mail.from')['name']) ? config('mail.from') : self::DEFAULT_SENDER;
-        //$this->mail_job_count = Config::has('mail_job.count') ? config('mail_job.count') : 50;
+        $this->default_sender = self::DEFAULT_SENDER;
     }
 
-    /** 
-    SEND MAIL
-    params : 
-
-    $view : string - view attached to
-    $data : array
-        from    => email's from ( not mandatory, will set to default from email if not set)
-        to      => email's to
-        subject => email's title
-
-
-    return : json
-        status : bool 
-        message : string
-    **/
     public static function send($view, $data)
     {
-        Mail::send(['html' => 'mail/' . $view], ['data' => $data['body']], function ($message) use ($data) {
+        Mail::send(['front' => 'mail/' . $view], ['data' => $data['body']], function ($message) use ($data) {
             try {
                 if(!array_key_exists('from', $data))
                     $data['from'] = $this->default_sender;
+
                 $message->subject($data['subject'])
                     ->to($data['to'])
                     ->from($data['from']->address , $data['from']->name)
@@ -80,26 +41,26 @@ class MailSender
                     $message->bcc($data['bcc']);
                 }
 
-                if(array_key_exists('attachment', $data))
-                {
-                    if(is_array($data['attachment']) &&  count($data['attachment']))
-                    {
-                        foreach($data['attachment'] as $obj_data)
-                        {
-                            $file = public_path().$obj_data;
-                            $mimetypes = \GuzzleHttp\Psr7\mimetype_from_filename($file);
+                // if(array_key_exists('attachment', $data))
+                // {
+                //     if(is_array($data['attachment']) &&  count($data['attachment']))
+                //     {
+                //         foreach($data['attachment'] as $obj_data)
+                //         {
+                //             $file = public_path().$obj_data;
+                //             $mimetypes = \GuzzleHttp\Psr7\mimetype_from_filename($file);
 
-                            $message->attach($file, ['as' => basename($file), 'mime' => $mimetypes ]);
-                        }
-                    }
-                    else
-                    {
+                //             $message->attach($file, ['as' => basename($file), 'mime' => $mimetypes ]);
+                //         }
+                //     }
+                //     else
+                //     {
                         
-                        $file = public_path().$data['attachment'];
-                        $mimetypes = \GuzzleHttp\Psr7\mimetype_from_filename($file);
-                        $message->attach($file, ['as' => basename($file), 'mime' => $mimetypes ]);
-                    }
-                }
+                //         $file = public_path().$data['attachment'];
+                //         $mimetypes = \GuzzleHttp\Psr7\mimetype_from_filename($file);
+                //         $message->attach($file, ['as' => basename($file), 'mime' => $mimetypes ]);
+                //     }
+                // }
             } catch (\Exception $e) {
                 Log::info('[MAIL] '. $e->getMessage());
                 return false;
@@ -113,17 +74,11 @@ class MailSender
                     'status'    => false,
                     'message'   => 'Sent Failed',
                     ));
-           /*
-           foreach(Mail::failures as $email_address) {
-               echo " - $email_address <br />";
-           }*/
         } else {
             return json_encode(array(
                     'status'    => true,
                     'message'   => 'Sent Success',
                     ));
-            /*return back()
-            ->withSuccess("Thank you for your message. It has been sent.");*/
         }
 
 
@@ -135,17 +90,21 @@ class MailSender
         $flag_keys = true;
         foreach($keys as $key)
         {
-            if(!in_array($key, array_keys($data)))
+            if(!in_array($key, array_keys($data))) {
                 $flag_keys = false;
+            }
         }
 
         if(!is_array($data) || !$flag_keys || !$view)
-            return false;
 
+            return false;
+        
         $mail = new MailModel();
         $mail->view = $view;
         $mail->data = json_encode($data);
+
         $mail->save();
+
         return $mail;
     }
 
@@ -161,14 +120,14 @@ class MailSender
     public function sendQueueMailWithLog($to = "", $from = 'default', $subject = "", $blade = "welcome", $data = array(), $bcc = "")
     {
         try{
-            $data['to'] = $to;
-            $data['from'] = $from == 'default' ? $this->default_sender : $from;
-            $data['subject'] = $subject;
-            $data['body']   = $data;
-            $data['bcc']     = $bcc;
+            $dataObj['to'] = $to;
+            $dataObj['from'] = $from == 'default' ? $this->default_sender : $from;
+            $dataObj['subject'] = $subject;
+            $dataObj['body']   = $data;
+            $dataObj['bcc']     = $bcc;
 
             // to add to queue
-            $mail = $this->queue($blade, $data);
+            $mail = $this->queue($blade, $dataObj);
 
             if($mail !== false) {
                 $this->dispatch(new SendEmail($mail));
@@ -184,46 +143,4 @@ class MailSender
         }
     }
 
-
-/*
-    public function getlist()
-    {
-        $mailObj = MailModel::where('status',0)->limit($this->mail_job_count)->get()->toArray();
-        if(count($mailObj))
-        {
-            $ids = array();
-            $failed = array();
-            foreach ($mailObj as $obj) 
-            {
-                $data = (array) json_decode($obj['data']);
-                $return = json_decode($this->send($obj['view'], $data));
-                if($return->status)
-                    array_push($ids, $obj['id']);   
-                else {
-                    $temp['id'] = $obj['id'];
-                    $temp['error'] = $return->message;
-                    array_push($failed, $temp);
-                }
-            }
-
-            // Update status of successfull sent mail
-            if(count($ids))
-            {
-                $mailTable = (new MailModel())->getTable();
-                DB::connection('auth')->table($mailTable)->whereIn('id', $ids)->update(array('status' => 1));
-            }
-
-            // Update status of failed sent mail
-            if(count($failed))
-            {
-                foreach ($failed as $obj) {
-                    $mail = MailModel::find($obj['id']);
-                    $mail->error = $obj['error'];
-                    $mail->save();
-                }
-            }
-        }
-        
-    }
- */
 }

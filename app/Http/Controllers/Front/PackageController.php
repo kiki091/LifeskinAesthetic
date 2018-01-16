@@ -15,6 +15,7 @@ use App\Services\Api\Response as ResponseService;
 use Carbon;
 use Validator;
 use Response;
+use Mail;
 
 class PackageController extends FrontController
 {
@@ -88,8 +89,23 @@ class PackageController extends FrontController
             return $this->response->setResponseErrorFormValidation($validator->messages(), false);
 
         } else {
+        	$ttd = "data";
             //TODO: case pass
-            return $this->package->booking($request->except(['_token']));
+           	$mailData = Mail::send('mail.thankyou', ['ttd'=> $ttd], function($message) use($ttd) {
+		        $message->to('kikikurniawan091@gmail.com', 'Tutorials Point')->subject
+		            ('Laravel Basic Testing Mail');
+		        $message->from('sheqbo@gmail.com','Virat Gandhi');
+		     });
+
+           	if (Mail::failures()) {
+            	// return response showing failed emails
+            	dd(Mail::failures());
+	            return Mail::failures();
+	        }else{
+	            dd($mailData);
+
+	        }
+            //return $this->package->booking($request->except(['_token']));
             
         }
 	}

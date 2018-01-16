@@ -13,6 +13,7 @@ use App\Services\Mail\MailSender as MailService;
 use Cache;
 use DB;
 use App\Custom\DataHelper;
+use Mail;
 
 class Package extends BaseImplementation implements PackageInterface
 {
@@ -80,6 +81,8 @@ class Package extends BaseImplementation implements PackageInterface
                 return $this->setResponse($this->message, false);
             }
 
+            //$this->sendMail($objData);
+
             DB::commit();
             return  $this->setResponse('Success booking package', true, $objData);
 
@@ -103,8 +106,6 @@ class Package extends BaseImplementation implements PackageInterface
             if($save = $storeObj->save())
             {
                 $this->lastInsertId = $storeObj->id;
-
-                $this->sendMail($objData);
             }
 
             return $save;
@@ -117,30 +118,34 @@ class Package extends BaseImplementation implements PackageInterface
 
     protected function sendMail($data)
     {
-        if(empty($data) && $data == null)
-            return false;
 
-        try{
-            $package_title      = $params['package_title'];
-            $package_price      = $params['package_price'];
-            $package_product    = $params['package_product'];
-            $member_email       = $params['member_email'];
-            $member_name        = $params['member_name'];
-            $dateNow            = date("DD, MM YYYY H:i:s");
-            
-            $data               = ['package_title' => $package_title, 'package_price' => $package_price, 'member_email' => $member_email, 'member_name' => $member_name, 'package_product' => $package_product, 'date' => $dateNow];
+        $package_title      = $data['package_title'];
+        $package_price      = $data['package_price'];
+        $package_product    = $data['package_product'];
+        $member_email       = $data['member_email'];
+        $member_name        = $data['member_name'];
+        $dateNow            = date("DD, MM YYYY H:i:s");
+        
+        $dataObj            = ['package_title' => $package_title, 'package_price' => $package_price, 'member_email' => $member_email, 'member_name' => $member_name, 'package_product' => $package_product, 'date' => $dateNow];
 
-            if($emailSender =  $this->mailService->sendQueueMailWithLog($this->adminEmail, 'default', 'Booking Information', 'inquiry', $data))
-            {
-                $this->mailService->sendQueueMailWithLog($member_email, 'default', 'Booking Information', 'inquiry', $data);
-                return true;
-            }
-            
-            return false;
+        // $mailData = Mail::to('front.thankyou', $dataObj, function($message) {
+        //                 $message->to($member_email, 'Booking Information')->subject
+        //                     ('Laravel HTML Testing Mail');
+        //                 $message->from($this->adminEmail,'Admin');
+        //             });
+        
+        $mailData = Mail::send('mail.thankyou', ['sbj'=> 'data'], function($message)
+        {
+            $message->to($member_email)->subject('error!');
+        });
 
-        }catch (\Exception $e) {
+        if ($mailData) {
+
+            return true;
+        } else {
             return false;
         }
+        
     }
 
     protected function storeCartDetail($data, $packageData)
