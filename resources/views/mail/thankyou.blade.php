@@ -15,6 +15,7 @@
     </head>
     <body>
         <h2>BOOKING INFORMATION</h2>
+        <p>Registrasi Id : {{ $data['registrasi_id'] }}</p>
         <p>Nama paket : {{ $data['package_title'] }}</p>
         <p>Harga paket : {{ $data['package_price'] }}</p>
         <p>Nama Pemesan : {{ $data['member_name'] }}</p>

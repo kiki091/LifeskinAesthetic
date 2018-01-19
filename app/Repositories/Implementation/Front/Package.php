@@ -26,6 +26,7 @@ class Package extends BaseImplementation implements PackageInterface
     const ADMIN_EMAIL = 'no-reply@thelifskynclinic.com';
     protected $packageTransformation;
     protected $lastInsertId;
+    protected $registrasiId;
 
 
     function __construct(ProductModels $product, PackageModels $package, PackageTransformation $packageTransformation, MailService $mailService)
@@ -110,6 +111,7 @@ class Package extends BaseImplementation implements PackageInterface
             if($save = $storeObj->save())
             {
                 $this->lastInsertId = $storeObj->id;
+                $this->registrasiId = $storeObj->registrasi_id;
             }
 
             return $save;
@@ -127,6 +129,7 @@ class Package extends BaseImplementation implements PackageInterface
 
     protected function sendMail($data)
     {
+        $registrasi_id      = $this->registrasiId
         $package_title      = $data['package_title'];
         $package_price      = $data['package_price'];
         $package_product    = $data['package_product'];
@@ -134,7 +137,7 @@ class Package extends BaseImplementation implements PackageInterface
         $member_name        = $data['member_name'];
         $dateNow            = date("DD, MM YYYY H:i:s");
         
-        $dataObj            = ['package_title' => $package_title, 'package_price' => $package_price, 'member_email' => $member_email, 'member_name' => $member_name, 'package_product' => $package_product, 'date' => $dateNow];
+        $dataObj            = ['registrasi_id' => $registrasi_id,'package_title' => $package_title, 'package_price' => $package_price, 'member_email' => $member_email, 'member_name' => $member_name, 'package_product' => $package_product, 'date' => $dateNow];
 
         if($orderSuccess = $this->mailService->sendQueueMailWithLog($member_email, 'default', 'Booking Information', 'thankyou', $dataObj))
         {
