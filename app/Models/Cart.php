@@ -19,6 +19,14 @@ class Cart extends BaseModel
     protected $guarded = [];
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function detail()
+    {
+        return $this->hasMany('App\Models\CartDetail', 'cart_id', 'id');
+    }
+
+    /**
      * @param $query
      */
     public function scopeMemberId($query, $params)

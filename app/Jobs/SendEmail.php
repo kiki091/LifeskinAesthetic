@@ -3,28 +3,26 @@
 namespace App\Jobs;
 
 use App\Jobs\Job;
+use Illuminate\Bus\Queueable;
+use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Contracts\Bus\SelfHandling;
 use App\Models\Mail\MailJobs as MailModel;
 use App\Services\Mail\MailSender as MailService;
 
-class SendEmail extends Job implements ShouldQueue, SelfHandling
+class SendEmail extends Mailable
 {
-    use InteractsWithQueue, SerializesModels;
+    use Queueable, SerializesModels;
 
-    protected $mail_job_count = 50;
-    protected $mail;
+
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(MailModel $mail)
+    public function __construct($data)
     {
-        $this->mail = $mail;
-        //$this->mail_job_count = Config::has('mail_job.count') ? config('mail_job.count') : 50;
+        $this->data = $data;
     }
 
     /**

@@ -27,7 +27,7 @@ class MailSender
 
     public static function send($view, $data)
     {
-        Mail::send(['front' => 'mail/' . $view], ['data' => $data['body']], function ($message) use ($data) {
+        Mail::send(['mail' =>  $view], ['data' => $data['body']], function ($message) use ($data) {
             try {
                 if(!array_key_exists('from', $data))
                     $data['from'] = $this->default_sender;
@@ -127,10 +127,10 @@ class MailSender
             $dataObj['bcc']     = $bcc;
 
             // to add to queue
-            $mail = $this->queue($blade, $dataObj);
+            $mail = $this->send($blade, $dataObj);
 
             if($mail !== false) {
-                $this->dispatch(new SendEmail($mail));
+                
                 return true;
             } else {
                 Log::info('[MAIL] mail variable = false');

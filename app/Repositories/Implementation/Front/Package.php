@@ -14,6 +14,8 @@ use Cache;
 use DB;
 use App\Custom\DataHelper;
 use Mail;
+use Carbon\Carbon;
+use Log;
 
 class Package extends BaseImplementation implements PackageInterface
 {
@@ -84,7 +86,7 @@ class Package extends BaseImplementation implements PackageInterface
             $this->sendMail($objData);
 
             DB::commit();
-            return  $this->setResponse('Success booking package', true, $objData);
+            return  $this->setResponse('Success booking package', true);
 
             
         } catch (\Exception $e) {
@@ -99,9 +101,11 @@ class Package extends BaseImplementation implements PackageInterface
         try {
 
             $storeObj = new CartModels;
-
+            $storeObj->registrasi_id   = str_shuffle(date('YY-mm-dd'));
             $storeObj->member_id       = DataHelper::memberId();
             $storeObj->status          = false;
+            $storeObj->created_at     = Carbon::now();
+            $storeObj->updated_at     = Carbon::now();
 
             if($save = $storeObj->save())
             {
@@ -116,9 +120,13 @@ class Package extends BaseImplementation implements PackageInterface
         }
     }
 
-    protected function sendMail($data)
+    protected function populateDataForSendMail($data)
     {
 
+    }
+
+    protected function sendMail($data)
+    {
         $package_title      = $data['package_title'];
         $package_price      = $data['package_price'];
         $package_product    = $data['package_product'];
@@ -128,23 +136,44 @@ class Package extends BaseImplementation implements PackageInterface
         
         $dataObj            = ['package_title' => $package_title, 'package_price' => $package_price, 'member_email' => $member_email, 'member_name' => $member_name, 'package_product' => $package_product, 'date' => $dateNow];
 
-        $ttd = "data";
-        $mailData = Mail::send('mail.thankyou', ['data'=> $ttd], function($message) use($ttd) {
-            $message->to('sheqbo@gmail.com', 'Tutorials Point')->subject
-                ('Laravel Basic Testing Mail');
-            $message->from('kikikurniawan091@gmail.com','Virat Gandhi');
-         });
+        if($orderSuccess = $this->mailService->sendQueueMailWithLog($member_email, 'default', 'Booking Information', 'thankyou', $dataObj))
+        {
+            $this->mailService->sendQueueMailWithLog($this->adminEmail, 'default', 'Booking Information', 'thankyou', $dataObj);
 
-        if (Mail::failures()) {
-            // return response showing failed emails
-            dd(Mail::failures());
-            return Mail::failures();
-        }else{
-            dd($mailData);
-
+            return $this->setResponse('', true);
         }
-        
-        
+        return $this->setResponse('', false);
+
+
+        // Mail::send('mail.thankyou', ['data'=> $dataObj], function($message) use($data) {
+        //     try {
+
+        //         $message->subject('Booking Information')
+        //             ->to($member_email)
+        //             ->from($this->adminEmail , 'Admin The LifeSky Clinic')
+        //             ->replyTo($this->adminEmail);
+
+        //             dd("success");
+
+        //     } catch (\Exception $e) {
+        //         Log::info('[MAIL] '. $e->getMessage());
+        //         return false;
+        //     }
+        //  });
+
+
+        // if(count(Mail::failures()) > 0 ) {
+
+        //    return json_encode(array(
+        //             'status'    => false,
+        //             'message'   => 'Sent Failed',
+        //             ));
+        // } else {
+        //     return json_encode(array(
+        //             'status'    => true,
+        //             'message'   => 'Sent Success',
+        //             ));
+        // }
     }
 
     protected function storeCartDetail($data, $packageData)
@@ -153,15 +182,15 @@ class Package extends BaseImplementation implements PackageInterface
 
             $storeObj = new CartDetailModels;
 
+            $storeObj->cart_id        = $this->lastInsertId;
             $storeObj->package_id     = $data['package_id'];
             $storeObj->book_date      = $data['book_date'];
             $storeObj->price          = $packageData['price'];
             $storeObj->discount       = 0;
+            $storeObj->created_at     = Carbon::now();
+            $storeObj->updated_at     = Carbon::now();
 
-            if($save = $storeObj->save())
-            {
-                $this->lastInsertId = $storeObj->id;
-            }
+            $save = $storeObj->save();
 
             return $save;
 
