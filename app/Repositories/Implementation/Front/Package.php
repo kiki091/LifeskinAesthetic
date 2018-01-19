@@ -81,7 +81,7 @@ class Package extends BaseImplementation implements PackageInterface
                 return $this->setResponse($this->message, false);
             }
 
-            //$this->sendMail($objData);
+            $this->sendMail($objData);
 
             DB::commit();
             return  $this->setResponse('Success booking package', true, $objData);
