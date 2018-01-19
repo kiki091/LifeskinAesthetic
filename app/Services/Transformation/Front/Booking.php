@@ -2,45 +2,35 @@
 
 namespace App\Services\Transformation\Front;
 
-class Package
+class Booking
 {
 	/**
      * Get Data Transformation
      * @param $data
      * @return array
      */
-    public function getDataTransform($data)
+
+    public function getDataBookingTransform($data, $userData)
     {
-        if(!is_array($data) || empty($data))
+        if(empty($data) || empty($userData))
             return array();
 
-        return $this->setDataTransform($data);
+        return $this->setDataBookingTransform($data, $userData);
     }
-    
-    /**
-     * Set Data Transformation
-     * @param $data
-     * @return array
-     */
 
-    protected function setDataTransform($data)
+    protected function setDataBookingTransform($data, $userData)
     {
 
-        $dataTransform = array_map(function($data) {
+        $objData['package_title']     = isset($data['title']) ? $data['title'] : '';
+        $objData['package_price']     = isset($data['price']) ? number_format($data['price']) : '';
+        $objData['package_product']   = isset($data['package_product']) ? $this->getProductList($data['package_product']) : '';
+        $objData['member_id']         = isset($userData['member_id']) ? $userData['member_id'] : '';
+        $objData['member_email']      = isset($userData['email']) ? $userData['email'] : '';
+        $objData['member_name']       = isset($userData['first_name']) ? $userData['first_name'] : '';
+        $objData['book_date']         = isset($userData['book_date']) ? $userData['book_date'] : '';
+        $objData['contact_us']        = isset($userData['contact_us']) ? $userData['contact_us'] : '';
 
-            return [
-
-                'id'            => isset($data['id']) ? $data['id'] : '',
-                'title'         => isset($data['title']) ? $data['title'] : '',
-                'slug'          => isset($data['slug']) ? $data['slug'] : '',
-                'price'         => isset($data['price']) ? number_format($data['price']) : '',
-                'description'   => isset($data['description']) ? $data['description'] : '',
-                'thumbnail_url' => isset($data['thumbnail']) ? asset(PACKAGE_IMAGE_DIRECTORY.rawurlencode($data['thumbnail'])) : '',
-                'product'       => !empty($data['package_product']) ? $this->getProductList($data['package_product']) : ''
-            ];
-        }, $data);
-
-        return $dataTransform;
+        return $objData;
     }
 
     /**

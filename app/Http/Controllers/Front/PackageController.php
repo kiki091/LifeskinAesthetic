@@ -74,40 +74,4 @@ class PackageController extends FrontController
         return abort(404);
 	}
 
-	/**
-	 * Package Controller
-	 * @param array
-	 * @return $request
-	 */
-
-	public function booking(Request $request)
-	{
-		$validator = Validator::make($request->all(), $this->validateStore($request));
-
-        if ($validator->fails()) {
-            //TODO: case fail
-            return $this->response->setResponseErrorFormValidation($validator->messages(), false);
-
-        } else {
-        	
-            return $this->package->booking($request->except(['_token']));
-            
-        }
-	}
-
-    /**
-     * Validator
-     * @param $request
-     */
-    
-    protected function validateStore($request = array())
-    {
-        $rules = [
-        	'package_id'  	=> 'required',
-        	'book_date'		=> 'required|date',
-        ];
-        
-        return $rules;
-    }
-
 }

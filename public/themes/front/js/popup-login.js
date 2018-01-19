@@ -102,12 +102,13 @@ jQuery(document).ready(function($){
 
 	//REMOVE THIS - it's just to show error messages 
 	formLogin.find('input[type="submit"]').on('click', function(event){
+		var newURL = window.location.protocol + "://" + window.location.host;
+		var ullCurrent = window.location.pathname
+
 		event.preventDefault();
 		var urlLogin = $('#form-login').attr('action')
-		console.log(urlLogin)
 		var formData = $('#form-login').serialize();
 
-		console.log(formData)
 		$.ajax({
 			type: 'POST',
 			url: urlLogin,
@@ -132,6 +133,11 @@ jQuery(document).ready(function($){
 				clear_error_message()
 				formModal.removeClass('is-visible');
 				toastr.success(response.message, {timeOut: 5000})
+
+				setTimeout(function() {
+					window.location.href = ullCurrent
+				}, 1000);
+				
 			}
 		})
 

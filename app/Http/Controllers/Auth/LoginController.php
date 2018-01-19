@@ -93,7 +93,7 @@ class LoginController extends FrontController
             if ($this->member->setAuthSession()) {
                 //TODO : redirect to dashboard
                 //return redirect()->back();
-                return redirect()->back();
+                return $this->response->setResponse('Login success', true);
             }
         }
 
@@ -101,12 +101,13 @@ class LoginController extends FrontController
             $this->incrementLoginAttempts($request);
         }
 
+        return $this->response->setResponse('Login failed', false);
 
-        return redirect(route('LoginPages'))
-            ->withInput($request->only($this->username(), 'remember'))
-            ->withErrors([
-                $this->username() => $this->getFailedLoginMessage(),
-            ]);
+        // return redirect(route('LoginPages'))
+        //     ->withInput($request->only($this->username(), 'remember'))
+        //     ->withErrors([
+        //         $this->username() => $this->getFailedLoginMessage(),
+        //     ]);
     }
 
     /**

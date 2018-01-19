@@ -13,7 +13,27 @@
             </div>
             <div class="col-md-6 col-sm-6 col-xs-12">
                 @if (Auth::guard('member')->check())
-                    <span style="float: right;" class="right">Welcome {{ DataHelper::userName() }} </span>
+
+                    <div class="mini-cart">
+                        <div class="cart-icon">
+                            <a href="#">
+                                <small>Welcome {{ DataHelper::userName() }} </small>
+                            </a>
+                        </div>
+                        <!-- Mini Cart -->
+                        <div class="mini-cart-box right">
+                            <div class="mini-cart-product fix">
+                                <a href="#" class="image"></a>
+                                <div class="content fix">
+                                    <a href="#" class="title">Change Password</a>
+                                </div>
+                            </div>
+                            <div class="mini-cart-checkout text-center">
+                                <a href="{{ route('LogoutMember') }}">Logout</a>
+                            </div>
+                        </div>
+                        <!--mini cart end-->
+                    </div>
                 @else
                     <div class="social-icons">
                         <a target="__blank" href="{{ $web_information['facebook_link'] or '' }}"><i class="zmdi zmdi-facebook"></i></a>

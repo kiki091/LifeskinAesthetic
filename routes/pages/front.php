@@ -42,13 +42,16 @@ Route::group(['middleware' => ['web']], function ()
 		Route::group(array('prefix' => 'package'), function () {
 			Route::get('/', 'Front\PackageController@index')->name('PackagePage');
 			Route::get('/{slug}', 'Front\PackageController@detail')->name('PackagePageDetail');
-			Route::post('/booking', 'Front\PackageController@booking')->name('PackageBooking');
 		});
 
 		Route::group(array('prefix' => 'about'), function () {
 			Route::get('/', 'Front\AboutController@index')->name('AboutPage');
 			Route::post('/subscribe', 'Front\AboutController@subscribe')->name('SubscribeMail');
 			Route::post('/contact-us', 'Front\AboutController@contactUs')->name('ContactUs');
+		});
+
+		Route::group(array('prefix' => 'booking'), function () {
+			Route::post('/store', 'Front\BookingController@store')->name('PackageBooking');
 		});
 	});
 

@@ -15,7 +15,7 @@
                                     <a href="{{ route('HomePage') }}">Home</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('PackagePage') }}">Our Package</a>
+                                    <a href="{{ route('PackagePage') }}">Package</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('NewsPage') }}">News</a>
@@ -46,7 +46,7 @@
                             <a href="{{ route('HomePage') }}">Home</a>
                         </li>
                         <li>
-                            <a href="{{ route('PackagePage') }}">Our Package</a>
+                            <a href="{{ route('PackagePage') }}">Package</a>
                         </li>
                         <li>
                             <a href="{{ route('NewsPage') }}">News</a>

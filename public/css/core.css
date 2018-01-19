@@ -6469,14 +6469,15 @@ img{max-width: 100%}
 }
 .mini-cart, .search {
   display: inline-block;
-  padding: 47px 0;
+  padding: 0px 0;
+  float: right;
 }
 .cart-icon a, .search > a {
     color: #666;
-    font-size: 22px;
+    font-size: 12px;
 }
 .mini-cart {
-    margin-right: 31px;
+    margin-left: 31px;
 }
 .cart-icon {
     position: relative;
@@ -6561,6 +6562,7 @@ img{max-width: 100%}
   float: left;
   margin-right: 14px;
   width: 55px;
+  background-color: #eee;
 }
 .mini-cart-product .content .title {
   color: #535353;
@@ -6607,7 +6609,7 @@ img{max-width: 100%}
   padding-top: 20px;
 }
 .mini-cart-checkout a {
-  background-color: #6bc513;
+  background-color: #363636;
   color: #fff;
   display: inline-block;
   font-size: 12px;

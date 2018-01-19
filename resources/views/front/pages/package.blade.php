@@ -15,7 +15,7 @@
     <div class="container">
         <div class="row">
             <!--shop sidebar start-->
-            <div class="col-md-3 col-sm-12 col-xs-12">
+            <div class="col-md-3 col-sm-12 col-xs-12 hidden-sm hidden-xs">
                 <div class="shop sidebar">
                     @if(isset($category_data) && !empty($category_data))
                     <aside class="widget categories grey-bg mb-30">
@@ -87,15 +87,15 @@
                                         <ul class="product-action">
 
                                             <li>
-                                                <input id="dp-5" data-idx="{{$key_package+1}}" id="book_date_{{$key_package+1}}" name="book_date" class="datepicker-here dp-5" data-timepicker="true" />
+                                                <input id="dp-5-{{$key_package+1}}" data-idx="{{$key_package+1}}" id="book_date_{{$key_package+1}}" name="book_date" class="datepicker-here dp-5" />
                                                 {{ csrf_field() }}
                                             </li>
                                             @if (Auth::guard('member')->check())
-                                                <li>
-                                                    <a href="javascript:void();" onclick="bookData('{{$package_data['id']}}')" class="add-to-cart">Book now</a>
+                                                <li style="float: right;">
+                                                    <a href="javascript:void();" onclick="bookData('{{$package_data['id']}}')" class="add-to-cart" id="add-to-cart-{{$key_package+1}}" data-idx="{{$key_package+1}}">Book now</a>
                                                 </li>
                                             @else
-                                                <li class="nav-menu"><a href="#top" class="cd-signin add-to-cart">Book now</a></li>
+                                                <li class="nav-menu" style="float: right;"><a href="#top" class="cd-signin add-to-cart">Book now</a></li>
                                             @endif
 
                                         </ul>
@@ -123,10 +123,10 @@
     var url = "{{ route('PackageBooking') }}"
 
     $('.dp-5').datepicker({
+        language: 'en',
         minDate: new Date(),
-        toggleSelected: true,
         dateFormat: 'yyyy-mm-dd',
-        timepicker: true,
+        autoClose: true,
         onSelect: function (fd) {
             book_date = fd
 
@@ -135,6 +135,10 @@
 
     function bookData(param)
     {
+        var button_index = $('.add-to-cart').attr('data-idx')
+        $('#add-to-cart-'+button_index).prop('disabled', true)
+        $('#add-to-cart-'+button_index).text('Please wait ...')
+
         $.ajax({
 
             type: 'POST',
@@ -143,6 +147,8 @@
         })
         .done(function(response) {
             
+            $('#add-to-cart-'+button_index).prop('disabled', false)
+            $('#add-to-cart-'+button_index).text('Book now')
 
             if(response.status == false)
             {
@@ -151,14 +157,20 @@
                 })
                 
             } else {
-                $('.dp-5').val()
+                $('#dp-5-'+button_index).val('')
+                $('#dp-5-'+button_index).text('')
                 book_date = ''
                 toastr.success(response.message, {timeOut: 5000})
             }
             
         })
         .fail(function(response) {
-            $('.dp-5').val()
+            
+            $('#add-to-cart-'+button_index).prop('disabled', false)
+            $('#add-to-cart-'+button_index).text('Book now')
+
+            $('#dp-5-'+button_index).val('')
+            $('#dp-5-'+button_index).text('')
             book_date = ''
             toastr.error('server not responding...', {timeOut: 5000})
         })

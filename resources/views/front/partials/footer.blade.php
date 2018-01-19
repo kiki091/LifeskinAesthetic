@@ -93,7 +93,3 @@
     </div>
 </div>
 <!--footer end-->
-
-@section('scripts')
-<script src="{{ asset('themes/front/pages/js/subscribe.js') }}"></script>
-@endsection

@@ -18,16 +18,10 @@
         <td>
           <table cellpadding="0" cellspacing="0" align="center" class="container" style="background-color:#F0F0F0;width: 768px !important;">
             <tr>
-              <td class="header">
-                <img src="http://preview.ibb.co/e6SHZQ/slice_top.png" alt="" style="display:block;width: 768px !important; height: 70px !important;">
-              </td>
-            </tr>
-            <tr>
               <td class="body">
                 <table cellpadding="0" cellspacing="0" style="width: 100%;">
                   <tr>
                     <td align="left" valign="top" class="bar" style="background-repeat-x:no-repeat !important;background-image: url(http://image.ibb.co/hUjH15/bg_repeat.png);background-position: right;">
-                      <img src="http://image.ibb.co/mQVt8k/slice_top_left.png" alt="" style="display:block;width: 113px;">
                     </td>
 
                     <!-- CONTENT -->
@@ -47,14 +41,12 @@
                     <!-- END CONTENT -->
 
                     <td align="right" valign="top" class="bar" style="background-repeat-x:no-repeat !important;background-image: url(http://image.ibb.co/bAMVM5/bg_repeat_right.png);background-position: left;">
-                      <img src="http://image.ibb.co/dQg88k/slice_top_right.png" alt="" style="display:block;width: 113px;">
                     </td>
                   </tr>
                 </table>
                 <table cellspacing="0" cellpadding="0" style="width: 100%;">
                   <tr>
                     <td align="left" valign="bottom" class="bar" style="background-repeat-x:no-repeat !important;background-image: url(http://image.ibb.co/hUjH15/bg_repeat.png);background-position: right;">
-                      <img src="http://image.ibb.co/b3BSZQ/slice_bottom_left.png" alt="" style="display:block;width: 113px;">
                     </td>
                     <td class="content" align="center" style="background-color:#fff;padding:25px 10px;border:0px;outline:0;width:542px !important;border-top:1px solid #E0E0E0;">
                       <p class="desc" style="font-size:14px;color:#7C8495;letter-spacing:0.8px;line-height:27px;margin:0;">
@@ -63,7 +55,6 @@
                       </p>
                     </td>
                     <td align="right" valign="bottom" class="bar" style="background-repeat-x:no-repeat !important;background-image: url(http://image.ibb.co/bAMVM5/bg_repeat_right.png);background-position: left;">
-                      <img src="http://image.ibb.co/bYH1uQ/slice_bottom_right.png" alt="" style="display:block;width: 113px;">
                     </td>
                   </tr>
                 </table>

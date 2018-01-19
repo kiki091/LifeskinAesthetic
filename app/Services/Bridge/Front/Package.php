@@ -23,14 +23,4 @@ class Package
     {
         return $this->package->getData($params);
     }
-
-    /**
-     * Get Booking 
-     * @param $params
-     * @return mixed
-     */
-    public function booking($params = [])
-    {
-        return $this->package->booking($params);
-    }
 }

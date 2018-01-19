@@ -19,11 +19,27 @@ class Cart extends BaseModel
     protected $guarded = [];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
      */
     public function detail()
     {
-        return $this->hasMany('App\Models\CartDetail', 'cart_id', 'id');
+        return $this->belongsTo('App\Models\CartDetail', 'id', 'cart_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
+     */
+    public function member()
+    {
+        return $this->belongsTo('App\Models\Member', 'member_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function members()
+    {
+        return $this->hasMany('App\Models\Member', 'id', 'member_id');
     }
 
     /**

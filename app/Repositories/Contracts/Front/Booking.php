@@ -3,13 +3,13 @@
 namespace App\Repositories\Contracts\Front;
 
 
-interface Package
+interface Booking
 {
 
     /**
-     * Get Data
+     * Get Booking
      * @param $params
      * @return mixed
      */
-    public function getData($params);
+    public function store($params);
 }
