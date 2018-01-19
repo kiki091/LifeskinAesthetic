@@ -62,6 +62,7 @@ class Package extends BaseImplementation implements PackageInterface
             'member_id' => DataHelper::memberId(),
             'email' => DataHelper::memberEmail(),
             'first_name' => DataHelper::userName(),
+            'book_date' => $data['book_date']
         ];
 
         $objData = $this->packageTransformation->getDataBookingTransform($packageData, $userData);
@@ -135,7 +136,7 @@ class Package extends BaseImplementation implements PackageInterface
         $package_product    = $data['package_product'];
         $member_email       = $data['member_email'];
         $member_name        = $data['member_name'];
-        $dateNow            = date("DD, MM YYYY H:i:s");
+        $dateNow            = $data['book_date'];
         
         $dataObj            = ['registrasi_id' => $registrasi_id,'package_title' => $package_title, 'package_price' => $package_price, 'member_email' => $member_email, 'member_name' => $member_name, 'package_product' => $package_product, 'date' => $dateNow];
 

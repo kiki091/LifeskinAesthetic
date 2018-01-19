@@ -85,6 +85,7 @@ class Package
         $objData['member_id']         = isset($userData['member_id']) ? $userData['member_id'] : '';
         $objData['member_email']      = isset($userData['email']) ? $userData['email'] : '';
         $objData['member_name']       = isset($userData['first_name']) ? $userData['first_name'] : '';
+        $objData['book_date']         = isset($userData['book_date']) ? $userData['book_date'] : '';
 
         return $objData;
     }
