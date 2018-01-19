@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "name": "qdh/facile",
+    "description": "The Facile.",
+    "keywords": ["framework", "facile"],
     "license": "MIT",
     "type": "project",
     "require": {
@@ -10,6 +10,17 @@
         "ignasbernotas/laravel-model-generator": "^1",
         "laracasts/utilities": "~2.0",
         "laravel/framework": "5.4.*",
+        "cartalyst/sentinel": "2.0.*",
+        "facile/account": "1.0.0",
+        "facile/core": "1.0.0",
+        "facile/seo": "1.0.0",
+        "faciletheme/admin": "1.0.0",
+        "axn/laravel-laroute": "^1.1",
+        "nwidart/laravel-modules": "^1.20",
+        "maatwebsite/laravel-sidebar": "~2.0",
+        "mcamara/laravel-localization": "~1.0",
+        "mnsami/composer-custom-directory-installer": "1.1.*",
+        "floatingpoint/stylist": "~0.1",
         "laravel/tinker": "~1.0"
     },
     "require-dev": {
@@ -23,7 +34,8 @@
             "database"
         ],
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Modules\\": "Modules/"
         },
         "files": [
             "app/Services/Assets/path.php"
@@ -43,15 +55,34 @@
         ],
         "post-install-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postInstall",
+            "php artisan clear-compiled",
+            "php artisan stylist:publish",
+            "php artisan module:publish",
             "php artisan optimize"
         ],
         "post-update-cmd": [
-            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "php artisan clear-compiled",
+            "php artisan stylist:publish",
+            "php artisan module:publish",
             "php artisan optimize"
         ]
     },
     "config": {
         "preferred-install": "dist",
         "sort-packages": true
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://qarepofacile.qeon.co.id"
+        }
+    ],
+    "extra": {
+        "installer-paths": {
+            "Modules/Seo": ["facile/seo"],
+            "Modules/Core": ["facile/core"],
+            "Modules/Account": ["facile/account"],
+            "Themes/Admin" : ["faciletheme/admin"]
+        }
     }
 }

@@ -15,8 +15,8 @@ return [
     */
 
     'mailgun' => [
-        'domain' => 'mail.thelifskynclinic.com',
-        'secret' => 'key-5f4e7a6b7b5e561512606ed10810eefb',
+        'domain' => env('MAILGUN_DOMAIN'),
+        'secret' => env('MAILGUN_SECRET'),
     ],
 
     'ses' => [

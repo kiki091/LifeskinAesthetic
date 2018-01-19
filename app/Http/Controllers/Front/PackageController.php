@@ -92,9 +92,9 @@ class PackageController extends FrontController
         	$ttd = "data";
             //TODO: case pass
            	$mailData = Mail::send('mail.thankyou', ['ttd'=> $ttd], function($message) use($ttd) {
-		        $message->to('kikikurniawan091@gmail.com', 'Tutorials Point')->subject
+		        $message->to('sheqbo@gmail.com', 'Tutorials Point')->subject
 		            ('Laravel Basic Testing Mail');
-		        $message->from('sheqbo@gmail.com','Virat Gandhi');
+		        $message->from('kikikurniawan091@gmail.com','Virat Gandhi');
 		     });
 
            	if (Mail::failures()) {
