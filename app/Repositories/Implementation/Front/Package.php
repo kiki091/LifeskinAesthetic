@@ -128,23 +128,22 @@ class Package extends BaseImplementation implements PackageInterface
         
         $dataObj            = ['package_title' => $package_title, 'package_price' => $package_price, 'member_email' => $member_email, 'member_name' => $member_name, 'package_product' => $package_product, 'date' => $dateNow];
 
-        // $mailData = Mail::to('front.thankyou', $dataObj, function($message) {
-        //                 $message->to($member_email, 'Booking Information')->subject
-        //                     ('Laravel HTML Testing Mail');
-        //                 $message->from($this->adminEmail,'Admin');
-        //             });
-        
-        $mailData = Mail::send('mail.thankyou', ['sbj'=> 'data'], function($message)
-        {
-            $message->to($member_email)->subject('error!');
-        });
+        $ttd = "data";
+        $mailData = Mail::send('mail.thankyou', ['data'=> $ttd], function($message) use($ttd) {
+            $message->to('sheqbo@gmail.com', 'Tutorials Point')->subject
+                ('Laravel Basic Testing Mail');
+            $message->from('kikikurniawan091@gmail.com','Virat Gandhi');
+         });
 
-        if ($mailData) {
+        if (Mail::failures()) {
+            // return response showing failed emails
+            dd(Mail::failures());
+            return Mail::failures();
+        }else{
+            dd($mailData);
 
-            return true;
-        } else {
-            return false;
         }
+        
         
     }
 
