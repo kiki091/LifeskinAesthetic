@@ -90,7 +90,7 @@ class PackageController extends FrontController
 
         } else {
         	
-            //return $this->package->booking($request->except(['_token']));
+            return $this->package->booking($request->except(['_token']));
             
         }
 	}
