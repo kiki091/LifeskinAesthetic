@@ -129,7 +129,7 @@ class Package extends BaseImplementation implements PackageInterface
 
     protected function sendMail($data)
     {
-        $registrasi_id      = $this->registrasiId
+        $registrasi_id      = $this->registrasiId;
         $package_title      = $data['package_title'];
         $package_price      = $data['package_price'];
         $package_product    = $data['package_product'];
