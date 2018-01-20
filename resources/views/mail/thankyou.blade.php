@@ -10,7 +10,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- css -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,800" rel="stylesheet">
-
+    <style type="text/css">
+        .text_center {
+          text-align: center;
+        }
+        .text_left {
+          text-align: left;
+        }
+        .text_upper {
+          text-transform: uppercase;
+          font-size: 12px;
+        }
+        .th_number {
+                padding: 10px;
+                background: #353535;
+                color: #fff;
+                font-size: 12px;
+                width: 2%;
+        }
+        .th_email {
+                padding: 10px;
+                background: #353535;
+                color: #fff;
+                font-size: 12px;
+                width: 10%;
+        }
+    </style>
   </head>
   <body id="body" style="margin:0;padding:0;color:#7C8495;font-family:'Open Sans', sans-serif;">
     <table cellpadding="0" cellspacing="0" align="center" style="width: 100%;">
@@ -26,17 +51,34 @@
 
                     <!-- CONTENT -->
                     <td class="content" align="center" style="background-color:#fff;padding:25px 10px;border:0px;outline:0;width:542px !important;">
-                      <h1 class="title" style="margin:0 0 8px;font-weight:normal;font-size:24px;color:#C4A57B;letter-spacing:2.4px;line-height:31px;">THANKS TO BOOKING PACKAGE</h1>
-                      <h3 class="subtitle" style="font-size:18px;color:#444F65;line-height:25px;font-weight:300;margin:0 0 10px;">BOOKING INFORMATION</h3>
+                      <h1 class="title" style="margin:0 0 8px;font-weight:normal;font-size:24px;color:#C4A57B;letter-spacing:2.4px;line-height:31px;">BOOKING INFORMATION</h1>
                       <br>
                       <p class="desc" style="font-size:14px;color:#7C8495;letter-spacing:0.8px;line-height:27px;">
                         Thank you for your trust in choosing our package service, here is the detail of your booking information with registration number <b>{{ $data['registrasi_id'] }}</b> for date <b>{{ $data['date'] }}</b> </p>
                       <br>
-                      <br>
-                      <br>
-                      <br>
-                      <br>
-                      <br>
+                      <h4 class="text_upper text_left">List User Booking for  {{ $data['date'] }} </h4>
+                      <table>
+                          <tr>
+                              <th class="th_number">Number</th>
+                              <th class="th_email">Fullname</th>
+                              <th class="th_email">Email</th>
+                              <th class="th_email">Booking Date</th>
+                          </tr>
+                          @php
+                            $i = 1;
+                          @endphp
+                          @foreach($data['user_avability'] as $key=> $user_avability)
+                          <tr>
+                              <td class="text_center">{{ $i++ }}</td>
+                              <td>
+                                {{ $user_avability['member']['first_name'] }}
+                                {{ $user_avability['member']['last_name'] }}
+                              </td>
+                              <td>{{ $user_avability['member']['email'] }}</td>
+                              <td>{{ $user_avability['member']['phone_number'] }}</td>
+                          </tr>
+                          @endforeach
+                      </table>
                     </td>
                     <!-- END CONTENT -->
 
@@ -50,8 +92,8 @@
                     </td>
                     <td class="content" align="center" style="background-color:#fff;padding:25px 10px;border:0px;outline:0;width:542px !important;border-top:1px solid #E0E0E0;">
                       <p class="desc" style="font-size:14px;color:#7C8495;letter-spacing:0.8px;line-height:27px;margin:0;">
-                        or Call Us <br>
-                        <b style="font-weight:800; line-height:24px; font-size:18px; color:#2C3956 !important;"><a href="tel:(+6221)%20573.7777" style="color:#2C3956 !important; text-decoration: none;">(+6221) 573.7777</a></b>
+                        Call Us <br>
+                        <b style="font-weight:800; line-height:24px; font-size:18px; color:#2C3956 !important;"><a href="tel:(+6221)%20573.7777" style="color:#2C3956 !important; text-decoration: none;">{{ $data['contact_us'] }}</a></b>
                       </p>
                     </td>
                     <td align="right" valign="bottom" class="bar" style="background-repeat-x:no-repeat !important;background-image: url(http://image.ibb.co/bAMVM5/bg_repeat_right.png);background-position: left;">
@@ -81,4 +123,5 @@
     </table>
   </body>
 </html>
+
 
