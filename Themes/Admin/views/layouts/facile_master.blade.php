@@ -37,15 +37,15 @@
 <!-- js -->
 <script type="text/javascript" src="{{ asset('vendor/vue/vue.js') }}"></script>
 <script type="text/javascript" src="{{ asset('vendor/vue/vue-resource.js') }}"></script>
-<script type="text/javascript" src="{{ '/vendor/ckeditor/ckeditor.js' }}"></script>
+<script type="text/javascript" src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
 
 <!--<script type="text/javascript" src="http://sdk.ckeditor.com/vendor/ckeditor/ckeditor.js"></script>-->
 <script src="{{ elixir('js/facile_plugins.js', 'themes/admin') }}"></script>
 {{-- <script src="{{ elixir('js/facile_main.js', 'themes/admin') }}"></script> --}}
 <script type="text/javascript" src="{{ asset('js/laroute.js') }}"></script>
 <script src="{{ elixir('js/facile_core.js', 'themes/admin')}}"></script>
-<script type="text/javascript" src="{{ Theme::url('js/app-header.js') }}"></script>
-<script type="text/javascript" src="{{ Theme::url('js/menu.js') }}"></script>
+<script type="text/javascript" src="{{ asset('themes/admin/js/app-header.js') }}"></script>
+<script type="text/javascript" src="{{ asset('themes/admin/js/menu.js') }}"></script>
 @include('partials.facile_footer')
 
 <script>
