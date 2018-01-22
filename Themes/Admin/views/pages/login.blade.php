@@ -11,9 +11,7 @@
         <div class="login__wrapper">
             
             <div class="login--header">
-                @component('slot.logo')    
-                {{ asset('themes/admin/images/logo.png') }}
-                @endcomponent
+                <img src="{{ asset('themes/admin/images/logo.png') }}" style="height: 80px">
             </div>
             
             <div class="login--content">
