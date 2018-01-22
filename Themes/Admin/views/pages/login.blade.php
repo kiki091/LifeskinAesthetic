@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="{{ elixir('css/facile_styles.css', 'themes/admin') }}">
 </head>
 <body>
-    <div class="login--background" style="background-image:url('{{Theme::url('images/bg-login.jpg')}}');" id="loginApp">
+    <div class="login--background" style="background-image:url('{{asset('themes/admin/images/bg-login.jpg')}}');" id="loginApp">
         <div class="login__wrapper">
             
             <div class="login--header">
                 @component('slot.logo')    
-                {{ Theme::url('images/logo-facile.svg') }}
+                {{ asset('themes/admin/images/logo.png') }}
                 @endcomponent
             </div>
             
