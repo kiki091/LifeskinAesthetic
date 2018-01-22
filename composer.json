@@ -9,9 +9,6 @@
         "axn/laravel-laroute": "^1.1",
         "barryvdh/laravel-debugbar": "^2.4",
         "cartalyst/sentinel": "2.0.*",
-        "facile/account": "1.0.0",
-        "facile/core": "1.0.0",
-        "faciletheme/admin": "1.0.0",
         "floatingpoint/stylist": "~0.1",
         "laracasts/utilities": "~2.0",
         "laravel/framework": "5.4.*",
@@ -68,18 +65,5 @@
     "config": {
         "preferred-install": "dist",
         "sort-packages": true
-    },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "http://qarepofacile.qeon.co.id"
-        }
-    ],
-    "extra": {
-        "installer-paths": {
-            "Modules/Core": ["facile/core"],
-            "Modules/Account": ["facile/account"],
-            "Themes/Admin" : ["faciletheme/admin"]
-        }
     }
 }
