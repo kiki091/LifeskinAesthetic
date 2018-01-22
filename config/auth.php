@@ -14,7 +14,9 @@ return [
     */
 
     'defaults' => [
+        'guard' => 'web',
         'guard' => 'users',
+        'guard' => 'facile',
         'passwords' => 'users',
     ],
 
@@ -36,19 +38,21 @@ return [
     */
 
     'guards' => [
-        'users' => [
+        'web' => [
             'driver' => 'session',
             'provider' => 'users',
         ],
-
-        'api' => [
-            'driver' => 'token',
-            'provider' => 'users',
+        'facile' =>  [
+            'driver'   => 'session',
+            'provider' => 'facileaccount',
         ],
-
         'member' => [
             'driver' => 'session',
             'provider' => 'member',
+        ],
+        'api' => [
+            'driver' => 'passport',
+            'provider' => 'users',
         ],
     ],
 
@@ -70,15 +74,20 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'facileaccount' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Auth\Users::class,
+            'model' => Modules\Account\Entities\User::class,
         ],
 
         'member' => [
             'driver' => 'eloquent',
             'model' => App\Models\Member::class,
         ],
+
+        // 'users' => [
+        //     'driver' => 'database',
+        //     'table' => 'users',
+        // ],
     ],
 
     /*
@@ -98,9 +107,10 @@ return [
 
     'passwords' => [
         'users' => [
-            'provider' => 'users',
-            'table' => 'password_resets',
-            'expire' => 60,
+            'provider' => 'facileaccount',
+            'table' => 'user_password_resets',
+            'connection' => 'facile',
+            'expire' => 15,
         ],
 
         'member' => [

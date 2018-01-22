@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Modules\Core\Exceptions\Handler as FacileHandler;
 
 class Handler extends ExceptionHandler
 {
@@ -21,6 +22,9 @@ class Handler extends ExceptionHandler
         \Illuminate\Session\TokenMismatchException::class,
         \Illuminate\Validation\ValidationException::class,
     ];
+
+
+    protected $facileHandler;
 
     /**
      * Report or log an exception.
@@ -42,9 +46,13 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $exception
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $exception)
+    public function render($request, Exception $e)
     {
-        return parent::render($request, $exception);
+	if ($e instanceof TokenMismatchException){
+            if(!$request->ajax())
+                return redirect($request->fullUrl())->with('csrf_error',"Opps! Seems you couldn't submit form for a longtime. Please try again");
+        }
+        return parent::render($request, $e);
     }
 
     /**
@@ -56,10 +64,13 @@ class Handler extends ExceptionHandler
      */
     protected function unauthenticated($request, AuthenticationException $exception)
     {
+        $url = FacileHandler::handle($request);
+        if($url)
+            return redirect($url);
+
         if ($request->expectsJson()) {
             return response()->json(['error' => 'Unauthenticated.'], 401);
         }
-
-        return redirect()->guest(route('login'));
+        return redirect()->guest('login');
     }
 }

@@ -23,6 +23,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        //
+        //
+        //
+        if ($this->app->environment() !== 'production') {
+            $this->app->register(\Way\Generators\GeneratorsServiceProvider::class);
+            $this->app->register(\Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class);
+            $this->app->register('Barryvdh\Debugbar\ServiceProvider');
+            $this->app->register(\Orangehill\Iseed\IseedServiceProvider::class);
+        }
         // FRONT
 
         $this->app->bind('App\Repositories\Contracts\Auth\Member', 'App\Repositories\Implementation\Auth\Member');
@@ -38,6 +47,14 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind('App\Repositories\Contracts\Front\Package', 'App\Repositories\Implementation\Front\Package');
         $this->app->bind('App\Repositories\Contracts\Front\News', 'App\Repositories\Implementation\Front\News');
         $this->app->bind('App\Repositories\Contracts\Front\Booking', 'App\Repositories\Implementation\Front\Booking');
+
+        // CMS
+
+        $this->app->bind('App\Repositories\Contracts\Cms\News', 'App\Repositories\Implementation\Cms\News');
+        $this->app->bind('App\Repositories\Contracts\Cms\SubCategory', 'App\Repositories\Implementation\Cms\SubCategory');
+        $this->app->bind('App\Repositories\Contracts\Cms\Category', 'App\Repositories\Implementation\Cms\Category');
+        $this->app->bind('App\Repositories\Contracts\Cms\Product', 'App\Repositories\Implementation\Cms\Product');
+        $this->app->bind('App\Repositories\Contracts\Cms\Package', 'App\Repositories\Implementation\Cms\Package');
     }
 
     /**
@@ -63,6 +80,14 @@ class AppServiceProvider extends ServiceProvider
             'App\Repositories\Contracts\Front\Package',
             'App\Repositories\Contracts\Front\Booking',
             'App\Repositories\Contracts\Front\News',
+
+            // CMS
+
+            'App\Repositories\Contracts\Cms\News',
+            'App\Repositories\Contracts\Cms\SubCategory',
+            'App\Repositories\Contracts\Cms\Category',
+            'App\Repositories\Contracts\Cms\Product',
+            'App\Repositories\Contracts\Cms\Package',
         );
     }
 }

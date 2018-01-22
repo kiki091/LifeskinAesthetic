@@ -1,0 +1,21 @@
+.ico-navbar-arrow{
+	background:url(/images/ico/ico-navbar-arrow.svg) no-repeat;
+	@include sprite(9px, 7px, 0 0 3px);
+}
+.ico-play-square{
+	background:url(/images/ico/ico-play-square.svg) no-repeat;
+	@include sprite(40px, 40px, 0 10px 0 0);
+	background-size: 40px;
+}
+.badge-captain{
+	background:url(/images/badge-captain.png) no-repeat;
+	@include sprite(50px, 50px, 0 0 10px 15px);
+	background-size: 50px;
+}
+
+@media screen and (max-width: 768px){
+	.badge-captain{
+		@include sprite(20px, 20px, 0 0 2px 9px);
+		background-size: 20px;
+	}	
+}

@@ -1,0 +1,54 @@
+.tabs-material {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	.tabs-material__list {
+		padding: 15px 50px 20px 0;
+		border-bottom: 1px solid rgba(191, 167, 123, .2);
+		display: inline-block;
+		float: left;
+		&:first-child {
+			padding-left: 0;
+		}
+		&:last-child {
+			padding-right: 0;
+		}
+		> a {
+			font-size: 16px;
+			color: #000;
+			letter-spacing: 0;
+			opacity: .3;
+			cursor: pointer;
+			text-decoration: none;
+		}
+		&.active {
+			> a {
+				color: #061C42;
+				opacity: 1;
+			}
+		}
+	}
+}
+
+.tabs-material-line {
+	position: absolute;
+	bottom: 4px;
+	left: 0;
+	right: 0;
+	display: block;
+	height: 1px;
+	background-color: #000;
+	z-index: 9;
+	width: 0;
+	will-change: transform, width; // for optimazing animat
+	transition: transform .6s cubic-bezier(0.25, 0.1, 0, 1), width .6s cubic-bezier(0.25, 0.1, 0, 1);
+}
+
+.tabs-material-content {
+	.tabs-material-item {
+    display: none;
+    &.active {
+    	display: block;
+    }
+  }
+}

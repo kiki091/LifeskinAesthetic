@@ -51,39 +51,20 @@ return [
             'prefix' => '',
             'strict' => true,
             'engine' => null,
-            'options'   => [PDO::ATTR_EMULATE_PREPARES => true, PDO::ATTR_STRINGIFY_FETCHES => true],
         ],
 
-        'auth' => [
-            'driver'    => 'mysql',
-            'host'      => env('DB_HOST_AUTH', '127.0.0.1'),
-            'database'  => env('DB_DATABASE_AUTH', 'forge'),
-            'username'  => env('DB_USERNAME_AUTH', 'forge'),
-            'password'  => env('DB_PASSWORD_AUTH', ''),
-            'port'      => env('DB_PORT_AUTH', '3306'),
-            'charset'   => 'utf8',
+        'facile' => [
+            'driver' => 'mysql',
+            'host' => env('DB_HOST_FACILE', 'localhost'),
+            'port' => env('DB_PORT_FACILE', '3306'),
+            'database' => env('DB_DATABASE_FACILE', 'forge'),
+            'username' => env('DB_USERNAME_FACILE', 'forge'),
+            'password' => env('DB_PASSWORD_FACILE', ''),
+            'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
-            'prefix'    => '',
-            'strict'    => false,
-            'engine'    => null,
-            'options'   => [PDO::ATTR_EMULATE_PREPARES => true, PDO::ATTR_STRINGIFY_FETCHES => true],
-
-        ],
-
-        'sipeda' => [
-            'driver'    => 'mysql',
-            'host'      => env('DB_HOST_SIPEDA', '127.0.0.1'),
-            'database'  => env('DB_DATABASE_SIPEDA', 'forge'),
-            'username'  => env('DB_USERNAME_SIPEDA', 'forge'),
-            'password'  => env('DB_PASSWORD_SIPEDA', ''),
-            'port'      => env('DB_PORT_SIPEDA', '3306'),
-            'charset'   => 'utf8',
-            'collation' => 'utf8_unicode_ci',
-            'prefix'    => '',
-            'strict'    => false,
-            'engine'    => null,
-            'options'   => [PDO::ATTR_EMULATE_PREPARES => true, PDO::ATTR_STRINGIFY_FETCHES => true],
-
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
         ],
 
         'pgsql' => [

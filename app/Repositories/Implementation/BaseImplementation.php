@@ -51,4 +51,14 @@ class BaseImplementation
             }
         }
     }
+
+    /**
+     * Remove Cache From Redis Key
+     * @param string $key
+     * @return string
+     */
+    protected function removeRedisKey($key = "")
+    {
+        return Cache::forget($key);
+    }
 }

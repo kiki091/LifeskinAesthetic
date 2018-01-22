@@ -10,10 +10,9 @@ return [
     | This value is the name of your application. This value is used when the
     | framework needs to place the application's name in a notification or
     | any other location as required by the application or its packages.
-    |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => 'Facile',
 
     /*
     |--------------------------------------------------------------------------
@@ -167,7 +166,13 @@ return [
         /*
          * Package Service Providers...
          */
-
+        Laravel\Tinker\TinkerServiceProvider::class,
+        Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
+        Nwidart\Modules\LaravelModulesServiceProvider::class,
+        //'Maatwebsite\Sidebar\SidebarServiceProvider',
+        'FloatingPoint\Stylist\StylistServiceProvider',
+        Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
+        Axn\Laroute\ServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -176,8 +181,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
         App\Providers\DataHelperServiceProvider::class,
+
 
     ],
 
@@ -193,7 +198,6 @@ return [
     */
 
     'aliases' => [
-
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
@@ -208,8 +212,10 @@ return [
         'Eloquent' => Illuminate\Database\Eloquent\Model::class,
         'Event' => Illuminate\Support\Facades\Event::class,
         'File' => Illuminate\Support\Facades\File::class,
+        'FacileForm' => Modules\Core\Custom\Facades\FacileForm::class,
         'Gate' => Illuminate\Support\Facades\Gate::class,
         'Hash' => Illuminate\Support\Facades\Hash::class,
+        'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
         'Lang' => Illuminate\Support\Facades\Lang::class,
         'Log' => Illuminate\Support\Facades\Log::class,
         'Mail' => Illuminate\Support\Facades\Mail::class,
@@ -228,7 +234,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'JavaScript'=> Laracasts\Utilities\JavaScript\JavaScriptFacade::class,
+        'Module' => Nwidart\Modules\Facades\Module::class,
         'DataHelper'=> App\Custom\Facades\DataHelper::class,
+
     ],
 
 ];

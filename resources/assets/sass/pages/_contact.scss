@@ -1,0 +1,14 @@
+.page--contact {
+
+}
+
+@media(max-width: 768px) {
+  
+  .page--contact {
+    .btn {
+      min-width: 150px;
+      height: 35px;
+    }
+  }
+
+}

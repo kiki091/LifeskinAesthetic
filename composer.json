@@ -6,24 +6,25 @@
     "type": "project",
     "require": {
         "php": ">=5.6.4",
-        "guzzlehttp/guzzle": "^6.3",
-        "ignasbernotas/laravel-model-generator": "^1",
-        "laracasts/utilities": "~2.0",
-        "laravel/framework": "5.4.*",
+        "axn/laravel-laroute": "^1.1",
+        "barryvdh/laravel-debugbar": "^2.4",
         "cartalyst/sentinel": "2.0.*",
         "facile/account": "1.0.0",
         "facile/core": "1.0.0",
-        "facile/seo": "1.0.0",
         "faciletheme/admin": "1.0.0",
-        "axn/laravel-laroute": "^1.1",
-        "nwidart/laravel-modules": "^1.20",
+        "floatingpoint/stylist": "~0.1",
+        "laracasts/utilities": "~2.0",
+        "laravel/framework": "5.4.*",
+        "laravel/tinker": "~1.0",
         "maatwebsite/laravel-sidebar": "~2.0",
         "mcamara/laravel-localization": "~1.0",
         "mnsami/composer-custom-directory-installer": "1.1.*",
-        "floatingpoint/stylist": "~0.1",
-        "laravel/tinker": "~1.0"
+        "nwidart/laravel-modules": "^1.20",
+        "predis/predis": "~1.1",
+        "vlucas/phpdotenv": "^2.4"
     },
     "require-dev": {
+        "orangehill/iseed": "dev-master",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~5.7",
@@ -38,7 +39,8 @@
             "Modules\\": "Modules/"
         },
         "files": [
-            "app/Services/Assets/path.php"
+            "app/Services/Assets/path.php",
+            "app/Services/Assets/dimension.php"
         ]
     },
     "autoload-dev": {
@@ -47,24 +49,20 @@
         }
     },
     "scripts": {
-        "post-root-package-install": [
-            "php -r \"file_exists('.env') || copy('.env.example', '.env');\""
-        ],
-        "post-create-project-cmd": [
-            "php artisan key:generate"
-        ],
         "post-install-cmd": [
-            "Illuminate\\Foundation\\ComposerScripts::postInstall",
-            "php artisan clear-compiled",
-            "php artisan stylist:publish",
-            "php artisan module:publish",
-            "php artisan optimize"
+          "php artisan clear-compiled",
+          "php artisan stylist:publish",
+          "php artisan module:publish",
+          "php artisan optimize"
         ],
         "post-update-cmd": [
-            "php artisan clear-compiled",
-            "php artisan stylist:publish",
-            "php artisan module:publish",
-            "php artisan optimize"
+          "php artisan clear-compiled",
+          "php artisan stylist:publish",
+          "php artisan module:publish",
+          "php artisan optimize"
+        ],
+        "post-create-project-cmd": [
+          "php artisan cache:clear"
         ]
     },
     "config": {
@@ -79,7 +77,6 @@
     ],
     "extra": {
         "installer-paths": {
-            "Modules/Seo": ["facile/seo"],
             "Modules/Core": ["facile/core"],
             "Modules/Account": ["facile/account"],
             "Themes/Admin" : ["faciletheme/admin"]

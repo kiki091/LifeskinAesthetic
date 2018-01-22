@@ -18,7 +18,7 @@
 		</div>
 		
 		@include('front.partials.pop-up-login')
-		@include('slots.vars')
+		@include('slot.vars')
 		@include('front.partials.js_footer')
 		@yield('scripts')
 	</body>

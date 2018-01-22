@@ -1,0 +1,93 @@
+.row{
+	@include clearfix;
+	.col{
+		float: left;
+		min-height: 1px;
+		&.m1{width: susy-span(1 of 12);}
+		&.m2{width: susy-span(2 of 12);}
+		&.m3{width: susy-span(3 of 12);}
+		&.m4{width: susy-span(4 of 12);}
+		&.m5{width: susy-span(5 of 12);}
+		&.m6{width: susy-span(6 of 12);}
+		&.m7{width: susy-span(7 of 12);}
+		&.m8{width: susy-span(8 of 12);}
+		&.m9{width: susy-span(9 of 12);}
+		&.m10{width: susy-span(10 of 12);}
+		&.m11{width: susy-span(11 of 12);}
+		&.m12{width: susy-span(12 of 12);}
+	}
+}
+
+@media(max-width: 1023px) {
+  .row{
+    @include clearfix;
+    .col{
+      float: left;
+      min-height: 1px;
+      &.s1{width: susy-span(1 of 12);}
+      &.s2{width: susy-span(2 of 12);}
+      &.s3{width: susy-span(3 of 12);}
+      &.s4{width: susy-span(4 of 12);}
+      &.s5{width: susy-span(5 of 12);}
+      &.s6{width: susy-span(6 of 12);}
+      &.s7{width: susy-span(7 of 12);}
+      &.s8{width: susy-span(8 of 12);}
+      &.s9{width: susy-span(9 of 12);}
+      &.s10{width: susy-span(10 of 12);}
+      &.s11{width: susy-span(11 of 12);}
+      &.s12{width: susy-span(12 of 12);}
+    }
+  }
+}
+
+@media(max-width: 768px) {
+  .row{
+    @include clearfix;
+    .col{
+      float: left;
+      min-height: 1px;
+      &.xs1{width: susy-span(1 of 12);}
+      &.xs2{width: susy-span(2 of 12);}
+      &.xs3{width: susy-span(3 of 12);}
+      &.xs4{width: susy-span(4 of 12);}
+      &.xs5{width: susy-span(5 of 12);}
+      &.xs6{width: susy-span(6 of 12);}
+      &.xs7{width: susy-span(7 of 12);}
+      &.xs8{width: susy-span(8 of 12);}
+      &.xs9{width: susy-span(9 of 12);}
+      &.xs10{width: susy-span(10 of 12);}
+      &.xs11{width: susy-span(11 of 12);}
+      &.xs12{width: susy-span(12 of 12);}
+    }
+  }
+}
+
+.row_gutter10 {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+.col_gutter10 {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.row_gutter15 {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.col_gutter15 {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.row_gutter25 {
+  margin-left: -25px;
+  margin-right: -25px;
+}
+
+.col_gutter25 {
+  padding-left: 25px;
+  padding-right: 25px;
+}

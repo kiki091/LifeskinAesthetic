@@ -1,0 +1,22 @@
+.montase-dropdown {
+  position: relative;
+  &.open {
+    .montase-dropdown__menu {
+      display: block;
+    }
+  }
+}
+
+.montase-dropdown__menu {
+  margin: 3px 0 0 0;
+  padding: 0;
+  background-color: #ffffff;
+  list-style: none;
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  left: 0;
+  top: 100%;
+  z-index: 1000;
+  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}

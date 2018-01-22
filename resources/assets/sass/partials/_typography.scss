@@ -1,0 +1,223 @@
+.text-white{color:#fff;}
+.text-black{color:#000;}
+.uppercase{text-transform: uppercase;}
+
+// PROXIMANOVA
+.light{ font-weight: 300; }
+.regular { font-weight: 400; }
+.medium{ font-weight: 500; }
+.semibold{ font-weight: 600; }
+.bold{ font-weight: 700; }
+
+// RUBICK
+.rubick{
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    &.semibold {
+      font-weight: 600;
+    }
+    &.medium {
+      font-weight: 500;
+    }
+    &.bold {
+      font-weight: 700;
+    }
+}
+
+.barlow {
+  font-family: "Barlow", sans-serif;
+  font-weight: 400;
+  &.semibold {
+    font-weight: 600;
+  }
+  &.medium {
+    font-weight: 500;
+  }
+  &.bold {
+    font-weight: 700;
+  }
+}
+
+// OPENSANS
+.opensans{
+    font-family: 'opensans-regular';
+    font-weight: normal;
+    &.light{ font-family: 'opensans-light';font-weight: normal; }
+    &.semibold{ font-family: 'opensans-semibold';font-weight: normal; }
+    &.bold{font-family: 'opensans-bold';font-weight: normal; }
+}
+
+body {
+    font-family: 'Barlow', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 14px;
+    color:#383838;
+    letter-spacing:0;
+}
+h1 {
+    font-size: 42px;
+    font-weight:normal;
+    margin:0 0 15px 0;
+    &.s38{ font-size:38px; line-height:37px; }
+    &.s36{ font-size:36px; }
+}
+h2{ 
+    font-size: 32px;
+    color:#212121;
+    font-weight:normal;
+    margin:0 0 20px 0;
+    &.s28{font-size:28px;}
+    &.s30{font-size:30px;}
+}
+h3 {
+    font-size: 24px;
+    font-weight:400;
+    margin:0 0 5px 0;
+    &.s22{ font-size:22px; }
+}
+h4 {
+    font-size: 20px;
+    font-weight:400;
+    margin:0 0 12px 0;
+    .s19{font-size: 19px;}
+}
+h5 {
+    font-size: 18px;    
+    font-weight:normal;
+    margin:0 0 10px 0;
+    &.s16{ font-size:16px; }
+    &.s15{ font-size:15px; }
+}
+h6{
+    font-size: 14px;
+    font-weight:normal;    
+    margin:0 0 10px 0;
+    line-height:17px;
+    &.s12{ font-size:12px; }
+    &.s9{ font-size:9px; }
+}
+p{
+    font-size: 14px;
+    line-height: 24px;
+}
+small {
+    font-size: 12px;
+    // line-height: 24px;
+    &.s8{ font-size: 8px; }
+    &.s9{ font-size: 9px; }
+    &.s10{ font-size: 10px; }
+    &.s11{ font-size: 11px; }    
+}
+label{
+    font-size: 14px;
+    small{ padding: 2px 0 0 0; }
+}
+a {
+    color:inherit;
+    font-size: inherit;
+    text-decoration: none;    
+    &.link{
+        &:hover{ text-decoration:underline; }      
+    }
+    &.link--purple{
+        &:hover{ color:#915AF3; }
+    }
+    &.link--green{
+        &:hover{ color:#26C6AC; }
+    }
+    small{
+        color:inherit;
+        line-height:0px; padding: 5px 0;
+    }
+}
+hr{
+    display: inline-block;
+    width: 100%;
+    border:none;
+    border-bottom:1px solid #EAEAEA;
+    &.w25{
+        margin:15px auto;
+        padding:0;
+        width:25px; height:1px;
+        background:#4E5052;
+    }
+}
+ol{
+    padding-left:15px;
+}
+ul{
+    list-style:none;
+    margin:1em 0;
+    padding:0;
+    &.disc{
+        list-style-type: disc;
+        padding: 0 0 0 18px;
+        li{
+            line-height: 180%;
+            margin: 5px 0;
+        }
+    }
+    &.dash{
+        li{
+            &:before{
+                content:'-';
+                margin-right: 5px;
+            }
+        }
+    }
+    &.alpha{
+        @extend ul.disc;
+        list-style-type: upper-alpha;
+    }
+    &.decimal{
+        @extend ul.disc;
+        list-style-type: decimal;
+        li{
+            list-style-type: inherit;
+        }
+    }
+    li{
+        a{ 
+            display: block;
+            text-decoration: none;
+            img{
+                float:left;
+            }
+        }
+    }
+}
+nav{
+    ul{
+        display: inline-block;
+        margin:0 auto;
+        padding:0;
+        li{
+            display:inline-block;
+            float:left;
+        }
+    }
+}
+blockquote{
+    position:relative;
+    margin:0;
+    padding:25px 0;
+    border-left:0;
+    // &:after{
+    //     content:'';
+    //     position:absolute;
+    //     top:0; left:0;
+    //     background:url(/images/ico/ico-doublequote-top.svg) no-repeat;
+    //     width:9px; height:8px;
+    // }
+    // &:before{
+    //     @extend blockquote:after;
+    //     top:initial; left:initial; bottom:0; right:0;
+    //     background:url(/images/ico/ico-doublequote-bottom.svg) no-repeat;
+    // }
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  padding: 0;
+  margin: 0;
+}
+

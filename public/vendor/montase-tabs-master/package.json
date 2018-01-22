@@ -1,0 +1,25 @@
+{
+  "name": "montase-tabs",
+  "version": "1.0.0",
+  "description": "tabs with elegant animation",
+  "main": "montase-tabs.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/thofik93/montase-tabs.git"
+  },
+  "author": "thofik wiranata",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thofik93/montase-tabs/issues"
+  },
+  "homepage": "https://github.com/thofik93/montase-tabs#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.1"
+  }
+}

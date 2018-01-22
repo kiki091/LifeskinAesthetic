@@ -1,0 +1,27 @@
+.alert {
+  border: 2px solid #68DC6C;
+  padding: 12px 32px 11px 32px;
+  display: inline-block;
+  border-radius: 2px;
+}
+
+.alert__body {
+  padding-left: 52px;
+}
+
+.alert__icon {
+  float: left;
+}
+
+.alert__message {
+  color: lighten(#D0D0D0, 5%);
+/*   color: rgba(#D0D0D0, .5); */
+}
+
+.alert-danger {
+  border-color: #FD8988;
+}
+
+.alert-success {
+  border-color: #68DC6C;
+}

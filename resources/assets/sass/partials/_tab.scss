@@ -1,0 +1,29 @@
+.nav-tabs {
+  display: inline-block;
+  position: relative;
+}
+
+.tabs-material {
+  .tabs-material__list {
+    padding: 0 25px 12px 0;
+    border-bottom: 1px solid #E0E0E0;
+    &:last-child {
+      padding-right: 0;
+    }
+    > a {
+      color: #383838;
+      opacity: .7;
+    }
+    &.active {
+      a {
+        color: #FF8C00; 
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.tabs-material-line {
+  background-color: #FF8C00; 
+  height: 3px;
+}

@@ -1,0 +1,99 @@
+.popup__wrapper{
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	margin: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: rgba(0,0,0,0.50);
+	z-index: 10;
+	.popup__content{
+		width: 730px;
+		background-color: rgba(255,255,255,1);
+		.popup__header{
+			background: #F7B81C;
+			box-shadow: 0 1px 5px 0 rgba(0,0,0,0.15);
+			padding: 10px 20px;
+		}
+		.popup__body{
+			max-height: 500px;
+			overflow: auto;
+			.content{padding: 10px;}
+		}
+	}
+	.btn--close{
+		width: 16px;
+		height: 16px;
+		i{
+			color: rgba(56,56,56,0.80);
+		}
+		&:hover{
+			i{
+				color: rgba(56,56,56,1);
+			}	
+		}
+	}
+	.achievement{
+		.achievement--list{
+			table{
+				border: none;
+				tr{
+					&:last-child{
+						td{
+							padding-bottom:0;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media screen and (min-width: 730px){
+	.show_popup{
+		overflow: hidden;
+		.popup__wrapper{
+			visibility: visible;
+			opacity: 1;
+			z-index: 1;
+		}
+	}
+	.popup__wrapper{
+		transition: .3s ease;
+
+		visibility: hidden;
+		opacity: 0;
+		z-index: 0;
+	}
+}
+
+@media screen and (max-width: 729px){
+	.show_popup{
+		overflow: hidden;
+		.popup__wrapper{
+			top: 0;
+			opacity: 1;
+		}
+	}
+	.popup__wrapper{
+		top: 100%;
+		opacity: 0;
+
+
+		transition: .3s ease;
+		align-items: flex-start;
+		.popup__content{
+			width: 100%;
+			.popup__header{
+				padding: 10px;
+			}
+			.popup__body{
+				height: calc(100vh - 49px) !important;
+				max-height: inherit;
+			}
+		}
+	}
+}

@@ -1,0 +1,35 @@
+/* 
+   __  ________  _______  __
+  /  |/  /  _/ |/_/  _/ |/ /
+ / /|_/ // /_>  <_/ //    / 
+/_/  /_/___/_/|_/___/_/|_/  
+                            
+ */
+
+
+@mixin retina {
+    @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+    only screen and (-moz-min-device-pixel-ratio: 1.5),
+    only screen and (-o-min-device-pixel-ratio: 3 / 2),
+    only screen and (min-device-pixel-ratio: 1.5),
+    only screen and (min-resolution: 1.5dppx) {
+        @content;
+    }
+}
+
+
+@mixin sprite($width, $height, $margin) {
+	display: inline-block;
+	vertical-align: middle;
+	width: $width;
+	height: $height;
+	margin: $margin;
+}
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}

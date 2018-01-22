@@ -1,0 +1,22 @@
+input[type='submit'],
+button{ cursor:pointer; }
+a,
+input[type='submit'],
+button{
+	position:relative;
+	display: inline-block;
+	border: none; outline: none; 
+	text-decoration:none;
+	&.btn--primary{
+		font-size: 18px;
+		color: #383838;
+		letter-spacing: 0;
+		background-image: linear-gradient(-180deg, #FCDD3C 0%, #F7B81C 100%);
+		box-shadow: 0 2px 3px 0 rgba(56,56,56,0.25);
+		border-radius: 2px;
+		padding: 9px 12px;
+		&:hover{
+			background-image: linear-gradient(-180deg, darken(#FCDD3C, 5%) 0%, darken(#F7B81C, 5%) 100%);
+		}
+	}
+}

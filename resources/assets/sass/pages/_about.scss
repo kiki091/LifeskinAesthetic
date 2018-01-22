@@ -1,0 +1,94 @@
+.page--about {
+  color: #383838;
+
+  .embeded-youtube {
+    height: 325px;
+    width: 100%;
+  }
+
+  .list-rrq-info {
+    margin: 0;
+    padding: 0;
+  }
+
+  .list-rrq-info__h {
+    color: #fff;
+  }
+
+  .list-rrq-info__li {
+    display: inline-block;
+    margin-right: 79px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .list-rrq-info__name {
+    color: #F7B81C;
+    color: rgba(#F7B81C, .7);
+  }
+
+  .primary-heading {}
+
+  .quotes {
+    width: 100%;
+    border-radius: 2px;
+    background-color: #f5f5f5;
+    padding: 52px 47px;
+    position: relative;
+    &:before, &:after {
+      content: " ";
+      position: absolute;
+      z-index: 9;
+      background-size: cover;
+      width: 23px;
+      height: 15px;
+    }
+    &:before {
+      top: 20px;
+      left: 21px;
+      background-image: url('/images/about/petik-kiri.png');
+    }
+    &:after {
+      bottom: 20px;
+      right: 21px;
+      background-image: url('/images/about/petik-kanan.png');
+    }
+  }
+}
+
+@media(max-width: 768px) {
+  .page--about {
+    .about-content {
+      padding: 0;
+    }
+
+    .embeded-youtube {
+      height: 160px;
+    }
+
+    .list-rrq-info__li {
+      display: block;
+      margin-right: 0;
+      text-align: center;
+    }
+
+    .quotes {
+      padding: 40px 15px;
+      &:before {
+        top: 15px;
+      }
+      &:after {
+        bottom: 15px;
+      }
+    }
+  }
+}
+
+@media only screen 
+and (min-width : 481px) 
+and (max-width : 768px){
+    .page--about{
+      .embeded-youtube{height: 325px;}
+    }
+}

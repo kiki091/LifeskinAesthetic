@@ -1,0 +1,18 @@
+.hidden {
+  display: none !important;
+}
+
+.form-error {
+  .form-control {
+    background-color:#FFF2F2;
+  }
+
+  p {
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0;
+    color: #FF4747;
+    font-family: 'Rubik', sans-serif;
+    margin-top: 3px;
+  }
+}

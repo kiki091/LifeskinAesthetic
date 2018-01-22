@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Montase Tabs - Thofik Wiranata</title>
+	<link rel="stylesheet" type="text/css" href="css/montase-tabs.css">
+	<style type="text/css">
+		.container {
+			background-color: #EAEAEA;
+			margin-right: auto;
+			margin-left: auto;
+			width: 960px;
+		}
+
+		.nav-tabs {
+			width: 620px;
+		    margin: 0 auto 60px auto;
+		    position: relative;
+		    text-align: center;
+		}
+	</style>
+</head>
+<body>
+	
+	<div class="container">
+		<nav class="nav-tabs">
+			<ul class="tabs-material">
+				<li class="tabs-material__list active">
+					<a href="#masterBedroom" class="regular" data-role="tabs-material">Master Bedroom</a>
+				</li>
+				<li class="tabs-material__list">
+					<a href="#livingArea" class="regular" data-role="tabs-material">Living Area</a>
+				</li>
+				<li class="tabs-material__list">
+					<a href="#kitchen" class="regular" data-role="tabs-material">Kitchen</a>
+				</li>
+			</ul>
+			<div class="tabs-material-line"></div>
+		</nav>
+
+		<div class="tabs-material-content">
+			
+			<div class="tabs-material-item active" id="masterBedroom">
+				<p>this is master bedroom.</p>
+			</div>
+
+			<div class="tabs-material-item" id="livingArea">
+				<p>this is living area.</p>
+			</div>
+
+			<div class="tabs-material-item" id="kitchen">
+				<p>this is kitchen.</p>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="js/montase-tabs.js"></script>
+</body>
+</html>
