@@ -1,0 +1,11 @@
+@function function-calc($calculation){
+  @return $calculation
+}
+
+@function calculation($expression){
+	@return -webkit-calc($expression);
+	@return expression($expression);
+	@return -moz-calc($expression);
+	@return -o-calc($expression);
+	@return calc($expression);
+}

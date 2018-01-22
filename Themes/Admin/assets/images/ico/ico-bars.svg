@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="40px" height="55px" viewBox="0 0 40 55" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>bars</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Facile-Dashboard-GRID" transform="translate(-275.000000, -1029.000000)">
+            <g id="Group-24-Copy-2" transform="translate(235.000000, 986.000000)">
+                <g id="bars" transform="translate(60.500000, 70.025140) rotate(-90.000000) translate(-60.500000, -70.025140) translate(33.000000, 49.525140)">
+                    <g id="4" transform="translate(0.000000, 32.849162)" fill="#F7F7F7">
+                        <polygon id="Rectangle-6" transform="translate(27.262570, 1.675978) rotate(-180.000000) translate(-27.262570, -1.675978) " points="-1.13686838e-13 -3.77897589e-14 54.5251397 -5.68434189e-14 54.5251397 3.35195531 -1.13686838e-13 3.35195531"></polygon>
+                        <polygon id="Rectangle-6" transform="translate(22.793296, 5.474860) rotate(-180.000000) translate(-22.793296, -5.474860) " points="-1.13686838e-13 3.79888268 45.5865922 3.79888268 45.5865922 7.15083799 -1.13686838e-13 7.15083799"></polygon>
+                    </g>
+                    <g id="3" transform="translate(0.000000, 21.899441)" fill="#E3E3E3">
+                        <polygon id="Rectangle-6" transform="translate(16.089385, 1.675978) rotate(-180.000000) translate(-16.089385, -1.675978) " points="0 6.22022607e-14 32.1787709 5.68434189e-14 32.1787709 3.35195531 0 3.35195531"></polygon>
+                        <polygon id="Rectangle-6" transform="translate(8.268156, 5.474860) rotate(-180.000000) translate(-8.268156, -5.474860) " points="0 3.79888268 16.5363128 3.79888268 16.5363128 7.15083799 0 7.15083799"></polygon>
+                    </g>
+                    <g id="2" transform="translate(0.000000, 10.949721)" fill="#F7F7F7">
+                        <polygon id="Rectangle-6" transform="translate(18.324022, 1.675978) rotate(-180.000000) translate(-18.324022, -1.675978) " points="0 2.37376847e-14 36.6480447 1.42108547e-14 36.6480447 3.35195531 0 3.35195531"></polygon>
+                        <polygon id="Rectangle-6" transform="translate(27.262570, 5.474860) rotate(-180.000000) translate(-27.262570, -5.474860) " points="0 3.79888268 54.5251397 3.79888268 54.5251397 7.15083799 0 7.15083799"></polygon>
+                    </g>
+                    <g id="1">
+                        <polygon id="Rectangle-6" fill="#E3E3E3" transform="translate(21.675978, 1.675978) rotate(-180.000000) translate(-21.675978, -1.675978) " points="0 9.48713485e-15 43.3519553 7.10542736e-15 43.3519553 3.35195531 0 3.35195531"></polygon>
+                        <polygon id="Rectangle-6" fill="#F7F7F7" transform="translate(16.089385, 5.474860) rotate(-180.000000) translate(-16.089385, -5.474860) " points="0 3.79888268 32.1787709 3.79888268 32.1787709 7.15083799 0 7.15083799"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,647 @@
+.romantic-dining{
+  .detail__transaction__status {
+    &.status__paid{
+      &:before{
+        content: "";
+        background-color: #44C7F4; 
+      }
+    }
+  }
+}
+
+.content__form {
+    font-size: 11px;
+    color: $color-text-main;
+    display: flex;
+    align-items: center;
+    .content__form__row {
+	    display: flex;
+	    flex-direction: column;
+	    margin-right: 10px;
+      label{
+        line-height: 20px;
+      }
+	    .select2-selection{
+	    	height: 28px !important;
+	    	border: 1px solid #adb2bf !important;
+	    	.select2-selection__rendered{
+	    		line-height: 28px !important;
+	    		font-size: 11px !important;
+          color: #464646;
+	    	}
+	    	.select2-selection__arrow{
+	    		height: 28px !important;
+	    		right: 1px !important;
+	    	}
+	    }
+	}
+}
+
+
+/* TRANSACTION DETAIL STYLE */
+.transaction__detail__wrapper {
+    width: 1280px;;
+    display: flex;
+    font-size: 12px;
+    .transaction__detail__left {
+    	width: 60%;
+    	display: flex;
+    	border: 1px solid rgba(159, 191, 203, .2);
+    	padding: 10px;
+      background-color: #F6F8F9;
+    	.detail__column {
+    		width: 50%;
+    	}
+    }
+    .transaction__detail__right {
+    	width: 39%;
+    	border: 1px solid rgba(159, 191, 203, .2);
+    	margin-left: 1%;
+    	padding: 10px;
+      background-color: #F6F8F9;
+    }
+    .transaction__detail__row{
+      line-height: 18px;
+    }
+    hr{
+      border-color: rgba(74, 74, 74, .2);
+      border-style: solid;
+    }
+    h5{
+    	font-size: 15px;
+    	color: $color-text-main;
+    	font-weight: normal;
+    	margin: 0 0 5px 0;
+    }
+    b{
+    	color: lighten($color-text-small, 5%);
+    	font-weight: normal;
+    }
+    i{
+      font-style: normal;
+    }
+   	ul{
+   		list-style-type: decimal;
+   		margin-left: 13px;
+   		.custom__addon{
+   			ul{
+   				list-style-type: none;
+          margin-left: 0;
+   				li{
+   					&:before{
+   						content: "-";
+   						margin-right: 5px;
+   					}
+   				}
+   			}
+   		}
+   	}
+}
+.waiting__detail__transaction{
+  padding: 0px 15px 0 15px;
+  .transaction__detail__left{
+    border: none;
+    background-color: inherit;
+  }
+  .transaction__detail__right{
+    border: none;
+    background-color: inherit;
+  }
+}
+/* END TRANSACTION DETAIL STYLE */
+
+.detail__info.romantic__waiting__link {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* input[type="text"]{
+      font-family: "Open Sans", sans-serif;
+      border: none;
+      padding: 0 3px;
+      text-overflow: ellipsis;
+      width: 300px;
+      background-color: #F6F8F9;
+    } */
+    // padding: 3px 0;
+    span{
+      background-color: #F6F8F9;
+      padding: 0 3px;
+      white-space: nowrap;
+    }
+}
+
+
+
+.romantic__package{
+  .news__list{
+    .news__list__wrapper{
+      .news__list__detail{
+        .news__list__detail__middle-right{
+          .news__list__detail__middle{
+            .news__list__desc{
+              .news__desc{
+                .news__cat{
+                  i{
+                    font-style: normal;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.tax__info__message{
+  font-size: 12px;
+  color: $color-text-small;
+}
+
+
+#room-number-hotel{
+  .form--checkbox__wrapper{
+    margin-top: 29px;
+  }
+}
+
+
+
+/* STATUS TRANSACTION */
+.detail__transaction__status {
+  padding-left: 13px;
+  position: relative;
+  &:before{
+    content:"";
+    width: 7px;
+    height: 7px;
+    border-radius: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+  }
+  &.status__waiting{
+    &:before{
+      content: "" ;
+      background-color: #FFE183;
+    }
+  }
+  &.status__paid{
+    &:before{
+      content: "";
+      background-color: rgba(159, 191, 203, 0.3); 
+    }
+  }
+  &.status__cancelled{
+    &:before{
+      content: "";
+      background-color: #F37373;  
+    }
+  }
+  &.status__expired{
+    &:before{
+      content: "";
+      background-color: #D5D5D5;  
+    }
+  }
+  &.status__draft{
+    &:before{
+      content: "";
+      background-color: #000000;  
+    }
+  }
+  &.status__waiting__checkout{
+    &:before{
+      content: "";
+      background-color: #B8E986;  
+    }
+  }
+}
+
+
+/* ADD MORE ADDON ROMANTIC DINING */
+.form__add__more__wrapper{
+  .form__add__more__group{
+    .form__add__more{
+      margin-bottom: 10px;
+      .form__add__more__btn{
+        width: 27px;
+      }
+      .custom__price{
+
+      }
+    }
+    select{
+      margin-right: 0;
+    }
+  }
+  #addonCustomHtml{
+    .form__add__more__btn{
+      width: 23px;
+    }
+  }
+}
+
+
+/* STYLE CARD ADDON ROMANTIC DINING */
+.addon__list {
+    width: 100%;
+    .addon__list__item {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px 2%;
+      font-size: 14px;
+      border-bottom: 1px solid #F6F8F9;
+    }
+    .addon__list__title{
+      margin-right: 10px;
+      color: $color-text-small2;
+    }
+    .addon__list__control {
+      display: flex;
+    }
+    .addon__price{
+      margin-right: 10px;
+      &:before{
+        content: "- IDR";
+        margin-right: 5px;
+      }
+    }
+  }
+  .addon__category{
+    font-family: $font-third-regular;
+      font-size: 18px;
+    b{
+      color: lighten($color-text-small, 5%);
+      font-weight: normal;
+    }
+    .content__edit__hover{
+        &:hover{
+          text-decoration: none;
+          b{
+            color: $color-text-hover;
+          }
+        }
+    }
+  }
+  
+
+
+  /* STYLE WIZARD PRICE LIST ADDON ROMANTIC DINING AYANA */
+  .pricelist__wizard{
+    display: flex;
+    .pricelist__wizard__item {
+      width: 32.6%;
+      height: 293px;
+      margin-right: 1%;
+      position: relative;
+      background-color: #F8FAFB;
+      /* display: flex; */
+      /* justify-content: center; */
+      /* align-items: center; */
+      &:last-child{
+        margin-right: 0;
+      }
+    }
+  }
+  .wizard__content {
+    width: 200px;
+    height: 193px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    .wizard__image {
+      position: relative;
+      height: 90px;
+      width: 90px;
+      margin: 0px auto;
+      display: flex;
+      justify-content: center;
+      .wizard__image__step1{
+        height: 88px;
+        width: 64px;
+      }
+      .wizard__image__step2{
+        height: 80px;
+        width: 80px;
+      }
+      .wizard__image__step3{
+        height: 80px;
+        width: 74px;
+      }
+      i{
+        position: absolute;
+        width: 80px;
+        height: 80px;
+      }
+
+      /* ICON */
+      .ico-pricelist-file{
+        width: 64px;
+        height: 82px;
+        top: 0;
+      }
+      .ico-pricelist-upload{
+        width: 39px;
+        height: 39px;
+        position: absolute;
+        bottom: 7px;
+        right: -10px;
+      }
+      .ico-pricelist-pencil{}
+      .ico-pricelist-ruler{}
+      .ico-pricelist-app{
+        width: 74px;
+        height: 74px;
+      }
+      .ico-pricelist-download{
+        width: 39px;
+        height: 39px;
+        bottom: 0;
+        right: -5px;
+      }
+    }
+    .wizard__desc {
+      text-align: center;
+      h5{
+        font-size: 18px;
+        font-weight: normal;
+        margin: 0;
+        color: $color-text-main;
+        position: relative;
+      }
+      p{
+        margin: 5px 0;
+        font-size: 11px;
+        color: $color-text-small;
+        position: relative;
+      }
+    }
+    .wizard__action{
+      a{
+        width: 98px;
+        position: relative;
+        margin: 10px auto;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+  .pricelist__warning__message{
+    font-size: 11px;
+    color: $color-text-small;
+    letter-spacing: 0.3px;
+  }
+
+
+  /* ADD NEW CATEGORY ADD ONS */
+  .addon__edit{
+    display: flex;
+    margin-top: 24px;
+    .btn__delete{
+      position: relative;
+      display: flex;
+      .ico-delete{
+        width: 15px;
+        height: 18px;
+        position: absolute;
+        background: url(/cms/images/ico-delete.svg) no-repeat;
+      }
+      &:hover{
+        .ico-delete{
+          background: url(/cms/images/ico-delete-hover.svg) no-repeat;
+        }
+      }
+    }
+  }
+  #htmlMoreAddon{
+    .added__html{
+      .addon__edit{
+        margin-top: 0;
+      }
+    }
+  }
+  
+
+  /* STYLE COMPARISON TABLE ADDON ROMANTIC DINING AYANA */
+  .comparison__table__header{
+    .header__content {
+      /* width: 317px; */
+      display: flex;
+      justify-content: center;
+      background-color: #F8FAFB;
+      padding: 25px 0;
+      .header__content__image {
+        width: 96px;
+        height: 122px;
+        position: relative;
+        margin-right: 25px;
+        i{
+          width: 64px;
+          height: 82px;
+          position: absolute;
+        }
+        .ico-pricelist-file-left{
+          bottom: 0;
+          right: 0;
+          z-index: 2;
+        }
+        .ico-pricelist-file-right{
+          z-index: 1;
+        }
+      }
+      .header__content__text {
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        h5{
+          font-size: 18px;
+          font-weight: normal;
+          margin: 6px 0;
+          color: $color-text-main;
+          position: relative;
+        }
+        p{
+          font-size: 11px;
+          margin: 0;
+          color: $color-text-small;
+          position: relative;
+        }
+      }
+    }
+  }
+  .comparison__table__content{
+    margin-top: 15px;
+    .content__title{
+      text-align: center;
+      padding: 15px 0;
+      background-color: #9FBFCB;
+      color: #fff;
+      h5{
+        margin: 0;
+        font-size: 20px;
+        font-weight: normal;
+      }
+      p{
+        margin: 3px 0px;
+        font-size: 12px;
+      }
+    }
+    .content__table{
+      .table__style{
+        th{
+          font-size: 18px;
+          color: darken($color-text-main, 5%);
+        }
+        td{
+          font-size: 14px;
+          color: $color-text-small2;
+        }
+      }
+    }
+  }
+
+
+
+
+/* ANIMATION ICON */
+  @keyframes ico-pricelist-download-in{
+    0%{
+      opacity: 0;
+      bottom: 15px;
+    }
+    100%{
+      opacity: 1;
+      bottom: 0;
+    }
+  }
+  @keyframes ico-pricelist-file-in{
+    0%{
+      opacity: 0;
+      top: 15px;
+    }
+    100%{
+      opacity: 1;
+      top: 0px;
+    }
+  }
+  @keyframes ico-pricelist-upload-in{
+    0%{
+      opacity: 0;
+      bottom: -10px;
+    }
+    100%{
+      opacity: 1;
+      bottom: 7px;
+    }
+  }
+  @keyframes ico-pricelist-app-in{
+    0%{
+      opacity: 0;
+      top: -15px;
+    }
+    100%{
+      opacity: 1;
+      top: 0px;
+    }
+  }
+  @keyframes ico-pricelist-file-left-in{
+    0%{
+      opacity: 0;
+      right: -15px;
+    }
+    100%{
+      opacity: 1;
+      right: 0px;
+    }
+  }
+  @keyframes ico-pricelist-file-right-in{
+    0%{
+      opacity: 0;
+      left: -15px;
+    }
+    100%{
+      opacity: 1;
+      left: 0px;
+    }
+  }
+  @keyframes ico-pricelist-pencil-in{
+    0%{
+      opacity: 0;
+      right: -15px;
+      top: -15px;
+    }
+    50%{
+      opacity: 0;
+    }
+    100%{
+      opacity: 1;
+      right: 5px;
+      top: 0;
+    }
+  }
+  @keyframes ico-pricelist-ruler-in{
+    from{
+      opacity: 0;
+    }
+    to{
+      opacity: 1;
+    }
+  }
+  
+
+  .ico-pricelist-download{
+    animation: ico-pricelist-download-in 1.3s ease-out;
+  }
+  .ico-pricelist-file{
+    animation: ico-pricelist-file-in 1.3s ease-out;
+  }
+  .ico-pricelist-file-left{
+    animation: ico-pricelist-file-left-in 1.3s ease-out;
+  }
+  .ico-pricelist-file-right{
+    animation: ico-pricelist-file-right-in 1.3s ease-out;
+  }
+  .ico-pricelist-upload{
+    animation: ico-pricelist-upload-in 1.3s ease-out;
+  }
+  .ico-pricelist-app{
+    animation: ico-pricelist-app-in 1.3s ease-out;
+  }
+  .ico-pricelist-pencil{
+    opacity: 0;
+    animation: ico-pricelist-ruler-in 1.9s ease-out .2s forwards;
+  }
+  .ico-pricelist-ruler{
+    opacity: 0;
+    animation: ico-pricelist-ruler-in 1.9s ease-out .4s forwards;
+  }
+
+
+  .wizard__desc{
+    h5{
+      animation: ico-pricelist-download-in 1.3s ease-out;
+    }
+    p{
+      animation: ico-pricelist-file-in 1.3s ease-out;
+    }
+  }
+  .header__content__text{
+    h5{
+      animation: ico-pricelist-download-in 1.3s ease-out;
+    }
+    p{
+      animation: ico-pricelist-file-in 1.3s ease-out;
+    }
+  }
+  .btn-pricelist-download{
+    animation: ico-pricelist-download-in 1.3s ease-out;
+  }
+  .btn-pricelist-upload{
+    animation: ico-pricelist-download-in 1.3s ease-out;
+  }

@@ -1,0 +1,27 @@
+{
+    "name": "facile/account",
+    "description": "Account module for Facile.",
+    "keywords": [
+        "facile",
+        "accounts"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "RW",
+            "email": "projects@qdh.co.id"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Modules\\Account\\": ""
+        }
+    },
+    "require": {
+        "php": ">=5.4",
+
+        "composer/installers": "~1.0"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true, 
+}

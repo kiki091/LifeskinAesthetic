@@ -1,0 +1,19 @@
+<?php
+
+namespace DummyNamespace;
+
+use DummyUseInterface as DummyClassInterface;
+
+class DummyClass {
+
+    /**
+     * @var DummyClassInterface
+     */
+    protected $DummyClass;
+
+    public function __construct(DummyClassInterface $DummyClass)
+    {
+        $this->DummyClass = $DummyClass;
+    }
+
+}

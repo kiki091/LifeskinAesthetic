@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="14px" height="16px" viewBox="0 0 14 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>ico-bell</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Facile-Content-Cards" transform="translate(-1196.000000, -19.000000)" fill="#000000">
+            <path d="M1203,35 C1203.90588,35 1204.64706,34.279982 1204.64706,33.39996 L1201.35294,33.39996 C1201.35294,34.279982 1202.09412,35 1203,35 L1203,35 Z M1208.35294,30.19988 L1208.35294,25.79977 C1208.35294,23.3437086 1206.59882,21.2876572 1204.23529,20.7436436 L1204.23529,20.20003 C1204.23529,19.5356134 1203.68353,19 1203,19 C1202.31647,19 1201.76471,19.5356134 1201.76471,20.20003 L1201.76471,20.7436436 C1199.40118,21.2876572 1197.64706,23.3437086 1197.64706,25.79977 L1197.64706,30.19988 L1196,31.79992 L1196,32.59994 L1210,32.59994 L1210,31.79992 L1208.35294,30.19988 L1208.35294,30.19988 Z" id="ico-bell"></path>
+        </g>
+    </g>
+</svg>

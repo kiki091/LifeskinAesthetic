@@ -1,0 +1,1 @@
+<img src="{{ $slot }}"  width="@if(isset($width)){{ $width }}@endif">

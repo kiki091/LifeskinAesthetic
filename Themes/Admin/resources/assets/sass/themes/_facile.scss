@@ -1,0 +1,235 @@
+/* 
+ |------------------------------------------------------------------+
+ ||-----------------------------------------------------------------+
+ ||	VARIBLE 														+
+ ||																	+
+*/
+
+//== Path assets
+$pathImages : "../images";
+$pathFonts : "../fonts";
+
+
+//== Colors
+//
+$color-base: #F95959 !default;
+
+
+//== Scaffolding
+//
+//** Background color for `<body>`.
+$body-bg: #000000 !default;
+//** Global text color on `<body>`.
+$text-color: #000000 !default;
+//** A Href color
+$href-link: $color-base;
+
+
+//==Typography
+//
+//** Default font
+$font-base: 'opensans-regular' !default;
+//** Font style
+$font-base-light: 'opensans-light' !default;
+$font-base-thin: 100 !default;
+$font-base-medium: 500 !default;
+$font-base-semibold: 'opensans-semibold' !default;
+$font-base-bold: 'opensans-bold' !default;
+$font-base-extrabold: 'opensans-extrabold' !default;
+
+
+
+
+/* 
+   ______   ______  ________  ________
+  / __/ /  / __/  |/  / __/ |/ /_  __/
+ / _// /__/ _// /|_/ / _//    / / /   
+/___/____/___/_/  /_/___/_/|_/ /_/    
+                                      
+ */
+
+ //== Input, Select, Textarea
+ //
+ $input-border-color: transparent;
+
+//== Button
+//
+//## Button primary on action
+//** Default
+$btn-primary-bg: linear-gradient(-180deg, $color-base 0%, #FC6739 100%) !default;
+$btn-primary-color: #fff !default;
+$btn-primary-border: transparent !default;
+//** Hover
+$btn-primary-bg-hover: linear-gradient(-180deg, #FC6739 0%, $color-base 100%) !default;
+
+//## Button primary non action
+//** Default 
+$btn-primary2-bg: #fff !default;
+$btn-primary2-color: $color-base !default;
+$btn-primary2-border: #E3E3E3 !default;
+//** Hover
+$btn-primary2-bg-hover: darken(#fff, 10%) !default;
+
+//## Button switch
+//** Default
+$btn-switch-bg: #fff !default;
+$btn-switch-bg-active: $color-base !default;
+$btn-switch-bg-disable: #fff !default;
+//## Mini version
+$btn-switch2-border: #E3E3E3 !default;
+$btn-switch2-border-active: $color-base !default;
+
+
+
+//== Check
+//
+//## Checkbox
+$check-icon: url(#{$pathImages}/ico/ico-check.svg) top center no-repeat !default;
+$check-border: #D6D6D6 !default;
+$check-bg: #fff !default; 
+
+//## Radio
+$radio-selected: $color-base !default;
+$radio-bg: #fff !default;
+$radio-border: #D6D6D6 !default;
+
+//## List selector with checkbox
+$check-hover: $color-base !default;
+$check-placeholder-color: $color-base !default;
+$check-placeholder-icon-color: $check-placeholder-color; 
+
+//== Chosen
+//
+$chosen-caret: $color-base !default;
+
+
+//== CKEditor
+//
+$ckeditor-button-bg: $color-base !default;
+$ckeditor-button-border: $color-base !default;
+
+
+//== Datepicker
+//
+$datepicker-cell-focus-bg: $color-base !default;
+$datepicker-current-color: $color-base !default;
+$datepicker-current-color-hover: #fff !default;
+$datepicker-selected: $color-base !default;
+
+//## Button datepicker
+$date-bg: $color-base !default;
+$date-bg-hover: darken($date-bg, 10%) !default;
+
+//## Error state
+$error-color: $color-base !default;
+$error-border: $color-base !default;
+$text-error: $error-color !default;
+
+
+//== Login
+//
+$login-title: $color-base !default;
+$login-button: $color-base !default;
+$login-button-hover: darken($login-button, 5%);
+$login-input-border: #E3E3E3 !default;
+$login-text: #4A4A4A !default;
+$login-placeholder: rgba(74, 74, 74, .4);
+//** Forgot password
+$forgot-password-color: rgba(255,255,255,.8) !default;
+
+
+
+
+
+/* 
+  _________  __  ______  ____  _  _______  ________
+ / ___/ __ \/  |/  / _ \/ __ \/ |/ / __/ |/ /_  __/
+/ /__/ /_/ / /|_/ / ___/ /_/ /    / _//    / / /   
+\___/\____/_/  /_/_/   \____/_/|_/___/_/|_/ /_/    
+                                                   
+ */
+
+//== Base
+//
+$main-title: $color-base !default;
+
+
+//== Header
+//
+$header-notif-count-bg: $color-base !default;
+
+
+//== Popup
+//
+$popup-btn-close-bg: $color-base !default;
+$popup-btn-close-bg-hover: darken($popup-btn-close-bg, 5%);
+
+
+//== Sidebar
+//
+$sidebar-menu-active-color: $color-base !default;
+$sidebar-menu-active-icon: $color-base !default;
+$sidebar-menu-active-chevrov: $color-base !default;
+$sidebar-menu-active-border: $color-base !default;
+$sidebar-menu-level1-color: $color-base !default;
+//** Toggle
+$sidebar-toggle-bar: $color-base !default;
+
+
+//== Card
+//
+$card-title: $color-base !default;
+//** Card minimize
+$card-minimize-bg: $color-base !default;
+$card-minimize-icon: #fff !default;
+
+
+//== Table
+//
+$table-link: $color-base !default;
+//** Nested
+$table-nested-icon-expand: url(#{$pathImages}/ico/ico-circle-plus.svg) no-repeat !default;
+$table-nested-icon-notexpand: url(#{$pathImages}/ico/ico-circle-min.svg) no-repeat !default;
+
+//== Wizard
+//
+$wizard-color: $color-base !default;
+$wizard-slide: $color-base !default;
+
+
+//== Loader
+//
+//## Pace JS
+$loader-color: $color-base !default;
+
+
+//== Dropdown
+//
+$dropdown-link: $color-base !default;
+
+
+//== Token Input
+//
+$tokeninput-dropdown-selected: $color-base !default;
+
+
+//== Toastr Notification
+//
+$toastr-bg: #000 !default;
+
+
+//== Pagination
+//
+$pagination-bg: $color-base !default;
+$pagination-border: $color-base !default;
+$pagination-text: $color-base !default;
+
+
+//== Tips
+//
+$tips-bg: #e6e6e6;
+
+
+//== Pin
+//
+$color-pin: $color-base !default;

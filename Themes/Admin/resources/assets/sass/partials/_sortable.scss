@@ -1,0 +1,22 @@
+/* STYLE ANIMASI SORTABLE JQUERY-UI */
+// .sortable{ overflow:auto; position: relative;}
+.sort-active{background: rgba(0,0,0,0.03);transition: all .3s;}
+.sort-trans{ transition: 0.5s all cubic-bezier(0.165, 0.84, 0.44, 1);opacity: 0.9;}
+.sort-el{transition: none !important; }
+.plcehldr{display: none;}
+.sortable{ position: relative; }
+.sort-item{ position: relative !important;top: 0px !important; }
+.sort-ghost{opacity: 0.3;transition: all 0.5s ease-out;}
+.handle{
+	display: flex;
+	cursor: move;
+}
+/*  END  */
+
+.sortable{
+	position: relative;
+	li{
+		position: relative !important;
+		top: 0px !important;
+	}
+}

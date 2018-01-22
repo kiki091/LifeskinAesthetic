@@ -1,0 +1,102 @@
+.wizard--tab{
+	border-bottom: 1px solid #F3F4F6;
+	position:relative;
+	.wizard--tab--ul{
+		display: flex;
+		background-color: #F7F7F7;
+		margin:0;
+		.wizard--tab--li{
+			min-width: 100px;
+			height: 40px;
+			padding: 0 5px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			.wizard--tab--link{
+				font-size: 12px;
+				position: relative;
+				color:rgba(0,0,0,0.5);
+				&:hover{
+					color: $wizard-color;
+				}
+			}
+			// .empty--lang{
+			// 	&:after{
+			// 		content: "";
+			// 		background: url(/cms/images/ico-notif-lang.svg) no-repeat;
+			// 		width: 10px;
+			// 		height: 10px;
+			// 		position: absolute;
+			// 		right: -8px;
+   //  				top: -4px;
+			// 	}
+			// }
+			&.active__tab{
+				a{
+					color: $wizard-color;
+					font-weight: bold;
+					transition: all .3s;
+				}
+			}
+		}
+	}
+}
+
+.content__tab{
+	display: none !important;
+	&.active__content{
+		display: block !important;
+		animation: fadeIn 3.5s;
+	}
+}
+.content__tab2{
+	display: none !important;
+	&.active__content2{
+		display: block !important;
+		animation: fadeIn 2.5s;
+	}
+}
+.content__tab3{
+	display: none !important;
+	&.active__content3{
+		display: block !important;
+		animation: fadeIn 2.5s;
+	}
+}
+
+
+.wizard-no-tab{
+	.wizard__content__tab{
+		display: none !important;
+		&.wizard__active__content{
+			display: block !important;
+			animation: fadeIn 2.5s;
+		}
+	}
+}
+
+#box,
+    #box2,
+    #box3{
+      position:relative;
+    }
+    // a.active{
+    //     color: $color-main;
+    //     transition: all .9s;
+    // }
+
+    #menu li.slide-line,
+    #menu2 li.slide-line,
+    #menu3 li.slide-line {
+        display: block;
+        padding:0;
+        margin:0;
+        background: none $wizard-slide;
+        position: absolute;
+        width: 15px; 
+        height: 2px; 
+        left: 10px; 
+        // top: 25px;
+        bottom: 0;
+        z-index: 0;
+    }

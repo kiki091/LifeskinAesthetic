@@ -1,0 +1,88 @@
+.tips{
+    margin: 0 10px;
+    font-size: 10px;
+    background-color: $tips-bg;
+    border: 0px solid transparent;
+    color: rgba(0,0,0,.5);
+    height: 30px;
+    padding: 10px;
+    line-height: 12px;
+    display: inline-block;
+    .chars{margin:0 3px;}
+    &.textonly{
+    	width:auto;
+    	height: auto;
+		background-color: inherit;
+		margin:5px 0 0;padding:0;
+		line-height: 14px;
+    }
+    &.big{
+    	height:auto;
+    	width:320px;
+    	box-sizing: border-box;
+    	padding: 7px;
+    	text-align: left;
+    	line-height: 14px;
+    	display: block;
+    }
+    &.link{
+    	width:auto;
+    	height: auto;
+		background-color: inherit;
+		padding:0;
+		color: $href-link;
+		line-height: 14px;
+    }
+}
+
+.status{
+	padding-left: 10px;
+	position: relative;
+	&:before{
+		content:"";
+		width: 6px;
+		height: 6px;
+		border-radius: 100%;
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		margin: auto;
+	}
+	&.waiting{
+		&:before{
+			content: ""	;
+			background-color: #FFE183;
+		}
+	}
+	&.paid{
+		&:before{
+			content: "";
+			background-color: #50E3C2;	
+		}
+	}
+	&.cancelled{
+		&:before{
+			content: "";
+			background-color: #F37373;	
+		}
+	}
+	&.expired{
+		&:before{
+			content: "";
+			background-color: #E3E3E3;	
+		}
+	}
+	&.draft{
+		&:before{
+			content: "";
+			background-color: #000000;	
+		}
+	}
+	&.waiting__checkout{
+		&:before{
+			content: "";
+			background-color: #B8E986;	
+		}
+	}
+}

@@ -1,0 +1,98 @@
+[class*="error"]{
+    .toastr{
+        .toastr--title{
+            color: #F95959;
+        }
+    }
+}
+[class*="success"]{
+    .toastr{
+        .toastr--title{
+            color: #08ADB0;
+        }
+    }
+}
+[class*="info"]{
+    .toastr{
+        .toastr--title{
+            color: #0862B0;
+        }
+    }
+}
+
+/* NOTIFICATION FORM ERROR MESSAGE */
+.toastr{
+  width: 420px;
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  .toastr--icon{
+    background-color: $toastr-bg;
+    position: relative;
+    width: 49px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    img{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        margin: auto;
+    }
+  }
+  .toastr--msg{
+    background-color: #fff;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    padding: 10px 19px 10px 18px;
+    width: calc(100% - 49px);
+  }
+  .toastr--close{
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    font-size: 28px;
+    color: rgba(66, 66, 66, 0.5);
+    width: 12px;
+    line-height: 0;
+    position: absolute;
+    height: 12px;
+    right: 22px;
+    top: 22px;
+    &:hover{
+        color: rgba(66, 66, 66, 1);
+    }
+  }
+  .toastr--title{
+    color: #0862B0;
+    margin: 5px 0;
+    display: block;
+  }
+  .toastr--content{
+    color: #424242;
+    margin: 7px 19px 7px 0;
+  }
+  .toastr--content--ul{
+    overflow-y: auto;
+    max-height: 70px;
+    overflow-x: hidden;
+    word-break: break-word;
+    margin: 0;
+    li{
+        letter-spacing: 0.3px;
+        list-style-type: disc;
+        margin-left: 18px;
+        color: #E3E3E3;
+        small{
+            color: #777;
+        }
+    }
+  }
+}
+
+
+@media only screen 
+and (max-width : 1280px) {
+    
+}

@@ -1,0 +1,21 @@
+{
+    "name": "Core",
+    "alias": "core",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\Core\\Providers\\CoreServiceProvider",
+        "Modules\\Core\\Providers\\FacileGeneralRouteServiceProvider",
+        "Modules\\Core\\Providers\\FacileServiceProvider",
+        "Modules\\Core\\Providers\\FacileRoutingServiceProvider",
+        "Modules\\Core\\Providers\\RouteServiceProvider",
+        "Modules\\Core\\Providers\\FacileSidebarServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}

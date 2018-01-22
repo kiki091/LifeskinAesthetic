@@ -1,0 +1,260 @@
+.main--sidebar{
+	background: #f7f7f7;
+	height: 100vh;
+	width: 220px;
+	z-index: 3;
+	position: fixed;
+	left:0;
+	transition: all .3s ease;
+	&.animate{
+		left:-221px;;
+	}
+	ul{margin:0;}
+}
+.main--logo{
+    height:141px;
+}
+.main--menu{
+	height: calc(100vh - 141px);
+	overflow-y: auto;
+	overflow-x: hidden;
+	li{
+		position:relative;
+		font-size: 12px;
+		color: #000000;
+		letter-spacing: 0.5px;
+		[class*="ico"]{
+			position:absolute;
+			width:16px;
+			height:16px;
+			left:20px;
+			margin: 0 5px 0 0;
+			display: flex;
+			align-items:center;
+			justify-content: center;
+			top: 0;
+			bottom: 0;
+			margin: auto; 
+			svg{
+				path{transition: all .3s ease;}
+			}
+		}
+		.submenu{
+			li{
+				font-size: 10px;
+				color: #000000;
+				letter-spacing: 0.42px;
+				padding-left:12px;
+				margin: 0 0 0 -12px;
+			}
+		}
+	}
+	a{
+		height: 33px;
+		padding-left:41px;
+		display: flex;
+		align-items: center;
+		font-weight: lighter; //light
+		transition: all .3s ease;
+		&:hover{
+			color:lighten(#000, 50%);
+		}
+	}
+	.menu--link{
+		transition: all .3s ease;
+		font-size: 12px;
+		&.active{
+			color: $sidebar-menu-active-color;
+			i{
+				svg{
+					path{fill: $sidebar-menu-active-icon;}
+				}
+			}
+		}
+	}
+	.menu--title{
+		font-weight: bold; //bold
+		font-size: 9px;
+		color: $sidebar-menu-level1-color;
+		letter-spacing: 0;
+		padding: 20px 0 6px 20px;
+	}
+	.has-child{
+		transition: all .3s ease;
+		&.active{
+			background: #ffffff;
+			.isparent{
+				box-shadow: 0 -1px 0 0 #F0F0F0;
+				&:after{
+					transform:rotate(45deg);
+					border-color: $sidebar-menu-active-chevrov;
+				}
+				i{
+					svg{
+						path{fill: $sidebar-menu-active-icon;}
+					}
+				}
+				&:before{
+					left:0;
+				}
+			}
+			.submenu{box-shadow: 0 1px 0 0 #F0F0F0;}
+		}
+		.isparent{
+			position:relative;
+			&:after{
+				content:'';
+				width:5px;
+				height:5px;
+				border-color:#000000;
+				border-style:solid;
+				border-width: 1px 0 0 1px;
+				position: absolute;
+				right: 18px;top:0;bottom:0;
+				margin:auto;
+				transform:rotate(225deg);
+				transition: all .3s ease;
+			}
+			&:before{
+				content:'';
+				width:3px;
+				height:100%;
+				position:absolute;
+				left:-3px;
+				background-color: $sidebar-menu-active-border;
+				transition: all .3s ease;
+			}
+		}
+		.submenu{
+			display: none;
+			li{
+				a{
+					font-size: 11px;
+					font-weight:400; //normal
+					position:relative;
+					&:before{
+						content: "";
+						width: 1.5px;
+						height: 100%;
+						background: #F4F2EF;
+						position: absolute;
+						left: 26px;
+						top: 0;
+					}
+					&:after{
+						content: "";
+						height: 1.5px;
+						width: 6px;
+						background: #F4F2EF;
+						position: absolute;
+						top: 0;
+						bottom: 0;
+						margin: auto;
+						left: 27px;
+					}
+				}
+				&:last-child{
+					a{
+						&:before{
+							height: 50%;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+.sidebar--toggle{
+	height: 100%;
+	width: 50px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: all .3s;
+	border-left:1px solid rgba(37,52,76,.2);
+	box-shadow: 1px 0 2px 0 rgba(33,46,77,.1);
+	.bar{
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		transition: all .3s;
+		// width: 50%;
+		.bar-1{
+			height: 2px;
+			display: block;
+			background-color: $sidebar-toggle-bar;
+			width: 14px;
+			position: relative;
+			top: -3px;
+			transition: all .3s;
+		}
+		.bar-2{
+			height: 2px;
+			display: block;
+			background-color: $sidebar-toggle-bar;
+			width: 14px;
+			position: relative;
+			transition: all .3s;
+			&:before{
+				content: "";
+				width: 0; 
+				height: 0; 
+				border-top: 2px solid transparent;
+				border-bottom: 2px solid transparent; 
+				border-right: 4px solid $sidebar-toggle-bar;
+				position: absolute;
+				left: -5px;
+				top: -1px;
+				visibility: visible;
+			}
+			&:after{
+				content: "";
+				width: 0; 
+				height: 0; 
+				border-top: 2px solid transparent;
+				border-bottom: 2px solid transparent; 
+				border-left: 4px solid $sidebar-toggle-bar;
+				position: absolute;
+				right: -5px;
+				top: -1px;
+				visibility: hidden;
+			}
+		}
+		.bar-3{
+			height: 2px;
+			display: block;
+			background-color: $sidebar-toggle-bar;
+			width: 14px;
+			position: relative;
+			bottom: -3px;
+			transition: all .3s;
+		}
+	}
+	&:hover{
+		background-color: darken(#fff, 10%);
+	}
+	&.animate{
+		.bar{
+			.bar-1{
+				// width: 20px;
+			}
+			.bar-2{
+				// width: 20px;
+				&:before{
+					visibility: hidden;
+				}
+				&:after{
+					visibility: visible;
+				}
+			}
+			.bar-3{
+				// width: 20px;
+			}
+		}
+	}
+}

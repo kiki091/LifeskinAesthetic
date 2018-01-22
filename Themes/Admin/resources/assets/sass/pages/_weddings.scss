@@ -1,0 +1,40 @@
+.ballroom__identifier{
+    .content__edit__hover{
+        &:hover{
+            &:after{
+                background: none;
+            }
+        }
+    }
+    span{
+        color: $color-text-hover;
+        margin: 0 4px;
+        font-size: 14px;
+        &:before{
+            content:"(";
+            position: relative;
+            top: -1px;
+        }
+        &:after{
+            content:")";
+            position: relative;
+            top: -1px;
+        }
+    }
+}
+
+
+@media only screen 
+and (max-width : 1280px) {
+    .wedding__venues{
+    	.content__bottom{
+    		.news__list__desc{
+    			.news__desc{
+    				&.flex{
+    					display: block !important;
+    				}
+    			}
+    		}
+    	}
+    }
+} 

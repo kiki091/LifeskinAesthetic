@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="8px" height="10px" viewBox="0 0 8 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>ico-element</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Facile-Content-Cards" transform="translate(-24.000000, -378.000000)">
+            <g id="Group-13">
+                <g id="Group-8" transform="translate(0.000000, 141.000000)">
+                    <g id="ico-element" transform="translate(20.000000, 234.000000)">
+                        <rect id="Bound" x="0" y="0" width="16" height="16"></rect>
+                        <path d="M7.99555556,11.2096079 L4.72,8.53874614 L4,9.12605605 L8,12.3888889 L12,9.12605605 L11.2755556,8.53408495 L7.99555556,11.2096079 L7.99555556,11.2096079 Z M8,10.0256657 L11.2711111,7.35480394 L12,6.76283284 L8,3.5 L4,6.76283284 L4.72444444,7.35480394 L8,10.0256657 L8,10.0256657 Z" id="Fill-259" fill="#000000"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

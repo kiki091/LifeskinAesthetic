@@ -1,0 +1,143 @@
+.main--header{
+	background-color: #F7F7F7;
+	height:50px;
+	width:100%;
+	position: relative;
+    z-index: 10;
+	.header--notification{border-right:0px;}
+	.menu--user{
+		border-left:1px solid rgba(37,52,76,.2);
+		margin-right:25px;
+		&:after{
+			content: "";
+			width: 0;
+			height: 0;
+			position: absolute;
+			top: 52%;
+			right: 0;
+			margin-top: -3px;
+			border-width: 4px 4px 0 4px;
+			border-style: solid;
+			border-color: #9B9B9B transparent;
+			transition: all .3s ease;
+		}
+	}
+}
+
+.user__img{
+	width:24px;
+	height:24px;
+	img{display:block;}
+}
+.header--selector{
+	height:100%;
+	.dropdown--wrapper{
+		.select--name{
+			font-size: 20px;
+			text-transform:uppercase;
+			letter-spacing: 0.6px;
+			&:hover{
+				color: $color-base;
+			}
+		}
+	}
+}
+.header--notification{
+	@extend .flex;
+	@extend .center;
+	@extend .flex.vcenter;
+	width:62px;
+	height:50px;
+	border-left:1px solid rgba(37,52,76,.2);
+	border-right:1px solid rgba(37,52,76,.2);
+	transition: all .3s;
+	i{
+		position:relative;
+		font-style: normal;
+		small{
+			@extend .bold;
+			width:21px;
+			height:18px;
+			border-radius:30px;
+			background-color: $header-notif-count-bg;
+			color:#f7f7f7;
+			border:2px solid #f7f7f7;
+			position:absolute;
+			top:-11px;right:-13px;
+			font-size: 8px
+		}
+	}
+
+	// DROPDOWN
+	.select--name{
+		padding:0;
+		height:100%;width:100%;
+		&:hover{
+			background-color: darken(#fff, 10%);
+		}
+	}
+	.dropdown--submenu{
+		min-width:293px !important;
+		.media {
+			margin: 0;
+		}
+	}
+	.media{
+		.media-body{width:100%}
+	}
+	
+	.message--list{
+		&.new-message{
+			top: 115% !important;
+			right: -250% !important;
+			&:before{
+				right: 47% !important;
+				border: 10px solid #fff !important;
+			}
+			.btn--primary2{
+				color: #000000;
+			}
+		}
+		ul{
+			margin:0;
+			max-height: 250px;
+			overflow: auto;
+		}
+		.message--header{
+			padding: 20px 14px 10px;
+			border-bottom: 1px solid #f6f8f9;
+			small{color: rgba(0,0,0,.5);}
+			a{
+				small{color:inherit;}
+			}
+		}
+		.message--text{
+			max-width: 221px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			display: inline-block;
+		}
+		form{
+			.field{margin-right:0;}
+			textarea{
+				width: 348px;
+				padding: 10px;
+			}
+		}
+		.message--recipient{
+			position:relative;
+			&:before{
+				content:'To:';
+				height:100%;width:30px;
+				position:absolute;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				z-index: 1;
+				font-size: 9px;
+				color: rgba(0,0,0,.5);
+			}
+		}
+	}
+}

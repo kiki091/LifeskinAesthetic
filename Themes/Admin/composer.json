@@ -1,0 +1,29 @@
+{
+  "name": "faciletheme/admin",
+  "type": "facile-theme",
+  "description": "An administration theme",
+  "keywords": [
+    "facile-cms"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "RW",
+      "email": "projects@qdh.co.id",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.4",
+    "composer/installers": "~1.0"
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "php artisan stylist:publish"
+    ],
+    "post-update-cmd": [
+      "php artisan stylist:publish"
+    ]
+  },
+  "minimum-stability": "dev"
+}

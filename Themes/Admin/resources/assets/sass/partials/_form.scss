@@ -1,0 +1,184 @@
+form{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    	color:rgba(0,0,0,.5);
+    }
+    ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    	color:rgba(0,0,0,.5);
+    }
+    p{margin:0}
+    input, textarea, select {
+        position: relative;
+        font-family: 'Open Sans', sans-serif;  
+        font-size:11px;
+        color: #000;         
+        border: 1px solid #fff;
+        padding: 5px 10px;
+        vertical-align: middle;
+        width:auto;
+        height:30px;      
+        border: 1px solid $input-border-color;  
+        &:focus,
+        &:active
+        { outline: none; }
+        &:disabled{
+        	background-color:#E6E6E6;
+        	border:1px solid #E6E6E6;
+        }
+        &.mini{
+            height:20px;
+            padding: 0 10px;
+            &.datepick{
+                &+ .icon-date{
+                    width: 20px;
+                    height: 20px;
+                    background-size: 12px;
+                }
+            }
+        }
+    }
+    select{
+        &.chosen{
+            -webkit-appearance: none;
+        }
+    }
+    textarea{height:120px;resize: none;}
+    input{
+        &.has-icon{
+            padding-left:25px;
+            background-position: 6px center;
+        }
+    }
+    input[type="file"]{
+        border:0;
+        padding:2px 0;
+    }
+    .has-error{
+    	::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    		color: $error-color;
+    	}
+    	::-moz-placeholder { /* Mozilla Firefox 19+ */
+    		color: $error-color;
+    	}
+        input, textarea, select{
+            border: 1px solid $error-border; 
+        }
+        small{color: $error-color;}
+    }
+    .button-inside{
+        position:relative;
+        display: flex;
+        align-items:center;
+        a{
+            position:absolute;
+            right:8px;margin:auto;
+            z-index: 2px;
+        }
+        &.show-password{
+            input{padding-right: 30px;}
+            a{
+                font-size: 6px;
+                font-weight: 700;
+            }
+        }
+    }
+}
+
+.form{
+	.form--top{
+		box-shadow: 0 1px 4px 0 rgba(0,0,0,0.10);
+		padding: 13px 16px;
+        h6{letter-spacing:0.5px;}
+	}
+	.form--middle{
+		background-color:#F0F0F0;
+		padding: 13px 16px;
+	}
+	.form--bottom{
+		box-shadow: 0 -1px 4px 0 rgba(0,0,0,0.10);
+		padding: 14px 16px;
+	}
+    .form--title{
+        color:rgba(0,0,0,0.2);
+        display: block;
+        margin:13px 0 15px;
+        font-weight: bold;
+    }
+    hr{
+        color:#e6e6e6;
+        margin: 7px 0;
+    }
+}
+
+.field{
+    position:relative;
+	width:250px;
+    max-width:100%;
+	margin: 0 20px 15px 0;
+	label{
+		font-size: 9px;
+		display:block;
+		margin: 0 0 4px;
+        font-weight: 600;
+	}
+	input, textarea, select{width:100%;}
+    .width-default{width:250px;}
+    .input--icon{
+        position:relative;
+        i{
+            display: inline-block;
+            position:absolute;
+            width:30px;height:30px;
+            top:0;
+            background-repeat:  no-repeat;
+            background-position:center;
+        }
+        &.icon--left{
+            input, select, .chosen-single{padding-left:33px;}
+            i{left:0;}
+
+            .mini{padding-left:23px;}
+            .mini ~ .chosen-single{padding-left:23px;}
+        }
+        &.icon--right{
+            input, select, .chosen-single{padding-right:33px;}
+            i{right:0;}
+
+            .mini{padding-right:23px;}
+            .mini ~ .chosen-single{padding-right:23px;}
+        }
+        .chosen-container-single .chosen-single div b:before{display:none;}
+        
+
+        .mini ~ i{
+            width:20px;height:20px;
+        }
+    }
+    .input--date{
+        .icon-date{
+            background-color: $date-bg;
+            background-image:url(#{$pathImages}/ico/ico-calendar.svg);
+            cursor:pointer;
+            transition: all .2s ease;
+            &:hover{
+                background-color: $date-bg-hover
+            }
+        }
+    }
+}
+.card__header{
+    .field{
+        margin: 0 6px 0 0;
+        width: 120px;
+        label{letter-spacing:0.2px;}
+        .input--icon{
+        }
+        input, textarea, select{border:1px solid #F0F0F0;}
+        .chosen-container-single .chosen-single{
+            box-shadow: none;
+            border: 1px solid #F0F0F0;
+        }
+    }
+}

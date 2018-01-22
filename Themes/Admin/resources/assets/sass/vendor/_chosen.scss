@@ -1,0 +1,116 @@
+select{
+	&.mini{
+		&~ .chosen-container{
+			a span{ font-size:11px; }
+			.chosen-search{
+				input[type="text"]{ font-size:11px; }
+			}
+			.chosen-results{
+				li{ font-size:11px; }
+			}
+		}
+		&~ .chosen-container-single{
+			.chosen-single{
+				line-height: 12px;
+			}
+		}
+	}
+}
+
+.chosen-container-single{
+	.chosen-single{
+		height: auto;
+		border: 1px solid $input-border-color;
+		border-radius: 0;
+		background-color: #fff;
+		background: #fff;
+		padding: 3px 0 3px 8px;
+		line-height: 22px;
+		div{
+			b{
+				position:relative;
+				&:before{
+					content:'';
+					width:6px;height:6px;
+					border-top: 1px solid $chosen-caret;
+					border-left: 1px solid $chosen-caret;
+					position: absolute;
+					top:-3px;bottom:0;left:0;right:5px;
+					margin:auto;
+					transform: rotate(225deg);
+				}
+			}
+		} 
+	}
+	.chosen-drop{border-radius:0;}
+	.chosen-results{
+		margin:0;
+		padding:0;
+		li{
+			&.highlighted{
+				background-image:none;
+				background-color: #f9f9f9;
+				color:#212121;
+			}
+		}
+	}
+	&.chosen-with-drop{
+		.chosen-single{
+			div{
+				b{
+					&:before{
+						transform: rotate(405deg);
+						top:3px
+					}
+				}
+			}
+		}
+	}
+}
+.chosen-container{
+	width: 100%;
+	.chosen-drop{
+		margin: 5px 0;
+		border:0px solid transparent;
+		box-shadow:0 2px 8px 0 rgba(0,0,0,0.24);
+	}
+	.chosen-results{
+		// max-height: 300px;
+		// overflow-y: auto;
+		li{
+			padding: 10px 7px;
+			font-size: 11px;
+		}
+	}
+}
+.chosen-container-active{
+	&.chosen-with-drop{
+		.chosen-single{
+			border:1px solid $input-border-color;
+			background-image:none;
+		}
+	}
+}
+
+.chosen-container-single .chosen-single abbr {
+  // background: url('chosen-sprite.png') -42px 1px no-repeat;
+  background: none;
+}
+.chosen-container-single .chosen-single div b {
+  // background: url('chosen-sprite.png') no-repeat 0px 2px;
+  background: none;
+}
+.chosen-container-single .chosen-search input[type="text"] {
+  // background: white url('chosen-sprite.png') no-repeat 100% -20px;
+  // background: url('chosen-sprite.png') no-repeat 100% -20px;
+  background: none;
+}
+.chosen-container-multi .chosen-choices li.search-choice .search-choice-close {
+  // background: url('chosen-sprite.png') -42px 1px no-repeat;
+  background: none;
+}
+.chosen-rtl .chosen-search input[type="text"] {
+  // background: white url('chosen-sprite.png') no-repeat -30px -20px;
+  // background: url('chosen-sprite.png') no-repeat -30px -20px;
+  background: none;
+}

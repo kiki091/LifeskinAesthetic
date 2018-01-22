@@ -1,0 +1,17 @@
+.spa__page{
+	@each $lang in en, id, zh, ja ,ko{
+		#html-duration-rate-#{$lang}{
+			.create__form__row{
+				opacity: 0;
+				transition: all 0.4s ease-out;
+				&.show{
+					opacity: 1;
+				}
+			}	
+		}	
+	}
+
+	.popup__mask .popup__wrapper .popup__layer{
+		width: 500px;
+	}
+}

@@ -1,0 +1,20 @@
+.chart-legend{
+	ul{
+		margin:0;
+		@extend .flex;
+	}
+    li{
+    	font-size: 11px;
+    	margin: 10px 15px 10px 0;
+    	&:last-child{
+    		margin: 10px 0;
+    	}
+    	span{
+    		display: inline-block;
+    		width: 10px;
+    		height: 10px;
+    		margin-right: 5px;
+    		border-radius: 100%;
+    	}
+    }
+}

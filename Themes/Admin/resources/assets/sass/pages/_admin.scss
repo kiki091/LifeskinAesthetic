@@ -1,0 +1,24 @@
+/* CHECKBOX PRIVILEGE ROLE MANAGER */
+.checkbox--privilege{
+	padding-left: 21px;
+	.form--checkbox__wrapper {
+		display: inline-block;
+		width: 279px;
+		padding: 0 15px 5px 0;
+		margin-right: 21px;
+		vertical-align: top;
+		.checkbox--input + .checkbox--label:before{
+			content: '';
+			transform: translateX(-21px);
+			position: absolute;
+			top: 5px;
+		}
+		.checkbox--input:checked + .checkbox--label:after{
+			content: "";
+			left: 1px;
+			top: 3px;
+			margin: 0;
+			transform: translateX(-21px);
+		}
+	}
+}

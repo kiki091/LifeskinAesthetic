@@ -1,0 +1,267 @@
+.dashboard-card{
+	.card--content{
+		padding: 16px 20px 30px;
+		&.text-white{
+			color: #fff;
+		}
+	}
+	.dashboard-card-bottom{
+		position: absolute;
+		bottom: 10px;
+		width: 100%;
+		margin-left: -20px;
+		padding: 0 20px;
+		a{display:block;}
+	}
+}
+.dashboard-icon{
+	display: inline-block;
+	position: absolute;
+	bottom: 15px;
+}
+.dashboard-linkgoto{
+	position:absolute;
+	bottom:15px;right:0;
+}
+.dashboard-weather{
+	h1{
+		margin: 0;
+		padding: 48px;
+		font-size: 88px;
+		line-height: normal;
+		position:relative;
+	}
+	.card--title{position:relative;}
+}
+.dashboardpage{
+	.grid{
+		display: flex;
+		display: -ms-flexbox;
+		margin: 20px 0;
+	}
+}
+
+
+
+.pagination{
+	ul{
+		@extend .flex;
+		li{
+			a{
+				padding: 5px 10px;
+				color: $pagination-text;
+				border: 1px solid $pagination-border;
+				margin: 0 5px;
+				position: relative;
+				transition: .3s ease;
+				&:hover{
+					color:inherit;
+					border-color:$pagination-border;
+					background-color: $pagination-bg;
+				}
+			}
+			&.active{
+				a{
+					color:inherit;
+					border-color:$pagination-border;
+					background-color: $pagination-bg;
+					pointer-events:none;
+				}
+			}
+		}
+		.first{
+			&:before{
+				content:'\276E\276E';
+				color:inherit;
+			}
+		}
+		.prev{
+			&:before{
+				content:'\276E';
+				color:inherit;
+			}
+		}
+		.next{
+			&:before{
+				content:'\276F';
+				color:inherit;
+			}
+		}
+		.last{
+			&:before{
+				content:'\276F\276F';
+				color:inherit;
+			}
+		}
+	}
+}
+
+.media{
+	padding: 15px;
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 1px solid #F6F8F9;
+	.media-body, 
+	.media-left, 
+	.media-right{
+		display: table-cell;
+		vertical-align: top;
+	}
+	.media-middle{vertical-align: middle;}
+	.media__drag{
+		display: flex;
+		align-items: center;
+		position: relative;
+		padding: 0 15px 0 0;
+		svg{
+			color: darken(#F3F4F6, 8%);
+			&:hover{
+				color: darken(#F3F4F6, 10%);
+			}
+		}
+		i{
+			&:last-child{
+				position: relative;
+				right: -3px;
+			}
+		}
+	}
+	.media__thumb{
+		width: 50px;
+		height: 50px;
+		position: relative;
+		overflow: hidden;
+		margin-right: 15px;
+		border-radius: 2px;
+		img {
+			position: absolute;
+			width: auto;
+			height: 100%;
+			top: 0;
+			bottom: 0;
+			margin: auto;
+		}
+	}
+	.media__text{
+		padding-right: 15px;
+		h6{margin:5px 0;}
+		small{
+			color: #7F7F7F;
+			i,b{
+				color: #000;
+			}
+		}
+		.media__text--item{
+			display: inline-block;
+			vertical-align: middle;
+			margin-right: 10px;
+		}
+		a.pin-item{
+			text-decoration: none;
+			position: relative;
+			display: inline-block;
+			// &:before{
+			// 	content: '';
+			// 	background: transparent;
+			// }
+			span{
+				visibility: visible;
+			}
+			&:hover{
+				span{
+					visibility: hidden;
+				}
+				text-decoration: underline;
+				// &:before{
+				// 	content: attr(data-hover-unpin);
+				// 	background: #fff;
+				// 	display: block;
+				// 	position: absolute;
+				// 	width: 100%;
+				// 	top:0;
+				// 	color: #4A4A4A;
+				// 	text-decoration: underline;
+				// 	white-space: nowrap;
+				// }
+			}
+			&.disable{
+				pointer-events:none;
+				color: #777;
+				i{
+					svg{
+						path{
+							fill: #777;
+						}
+					}
+				}
+			}
+		}
+		.pin-item{
+			color: #7F7F7F;
+			i{
+				margin-right: 3px;
+				svg{
+					path{
+						fill: #7F7F7F;
+					}
+				}
+			}
+			&.pinned{
+				color: $color-pin;
+				i{
+					svg{
+						path{
+							fill: $color-pin;
+						}
+					}
+				}
+			}
+			&.wait{
+				color: #9b9b9b;
+				pointer-events: none;
+			}
+		}
+	}
+	.media__control{
+		display: flex;
+		align-items: center;
+		min-width: 150px;
+		justify-content: flex-end;
+		transition: .3s;                                
+		label{
+			font-size: 12px;
+			color: #adb2bf;
+		}
+		.application__list__received{
+			top: 7px;
+			position: relative;
+			b{
+				label{
+					margin: 0px;
+				}
+			}
+		}
+	}
+}
+.media--accordion{
+	position: relative !important;
+	top: 0px !important;
+	.media--accordion__header{
+		position: relative;
+		z-index: 2;
+		padding: 5px 15px;
+		background-color: #FAFAFA;
+		box-shadow: 0 1px 0 0 #EAEAEA, 0 1px 3px 0 rgba(0,0,0,0.12);
+		small{color:#777777;}
+		.handle{
+			padding: 0 15px 0 0;
+		}
+		.accordion-inner-handle{
+			visibility: hidden;
+		}
+	}
+	.media--accordion__body{
+		position: relative;
+		z-index: 1;
+	}
+}

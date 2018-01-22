@@ -1,0 +1,144 @@
+@mixin sprite($width, $height, $margin) {
+	display: inline-block;
+	vertical-align: middle;
+	width: $width;
+	height: $height;
+	margin: $margin;
+}
+@mixin hover($active){
+	path{@extend .transition;}
+	&:hover{
+		path{fill:$active;}
+	}
+}
+
+.ico-message{
+	background:url(#{$pathImages}/ico/ico-message.svg) no-repeat;
+	@include sprite(16px, 12px, 0 0px 0 0);
+	background-size:16px;
+	background-position:center;	
+}
+.ico-bell{
+	background:url(#{$pathImages}/ico/ico-bell.svg) no-repeat;
+	@include sprite(14px, 16px, 0 0px 0 0);
+	background-size:14px;
+	background-position:center;	
+}
+.ico-expand{
+	background:url(#{$pathImages}/ico/ico-circle-plus.svg) no-repeat;
+	@include sprite(12px, 12px, 0);
+}
+
+.ico-arrowright{
+	background:url(#{$pathImages}/ico/ico-arrow-point-to-right.svg) no-repeat;
+	@include sprite(13px, 13px, 0);
+}
+.ico-arrowright-orange{
+	background:url(#{$pathImages}/ico/ico-arrow-point-to-right-orange.svg) no-repeat;
+	@include sprite(13px, 13px, 0);	
+}
+
+// DASHBOARD ICON
+.ico-stats{
+	background:url(#{$pathImages}/ico/ico-stats.svg) no-repeat;
+	@include sprite(50px, 50px, 0);
+	background-size: 50px 50px;
+}
+.ico-bag{
+	@extend .ico-stats;
+	background:url(#{$pathImages}/ico/ico-bag.svg) no-repeat;
+	background-size: 50px 50px;
+}
+.ico-speechbubble{
+	@extend .ico-stats;
+	background:url(#{$pathImages}/ico/ico-speech-bubble.svg) no-repeat;
+	background-size: 50px 50px;	
+}
+.ico-spedometer{
+	@extend .ico-stats;
+	background:url(#{$pathImages}/ico/ico-spedometer.svg) no-repeat;
+	background-size: 50px 50px;		
+}
+.ico-questionmark{
+	@extend .ico-stats;
+	background:url(#{$pathImages}/ico/ico-question-mark.svg) no-repeat;
+	background-size: 50px 50px;	
+}
+.ico-bars{
+	@extend .ico-stats;
+	background:url(#{$pathImages}/ico/ico-bars.svg) no-repeat;
+	background-size: 50px 50px;		
+}
+
+
+.ico-email{
+	background-image:url(#{$pathImages}/ico/ico-email.svg);
+	background-repeat: no-repeat;
+	background-size:12px;
+}
+.ico-password{
+	background-image:url(#{$pathImages}/ico/ico-password.svg);
+	background-repeat: no-repeat;
+	background-size:11px;
+}
+.ico-clock{
+	background-image:url(#{$pathImages}/ico/ico-clock.svg);
+	background-repeat: no-repeat;
+	background-size:12px;
+}
+.ico-search{
+	background-image:url(#{$pathImages}/ico/ico-search.svg);
+	@include sprite(13px, 12px, 0 0 0 0);
+	background-repeat: no-repeat;
+}
+
+
+// SVG
+.ico-delete{
+	@include hover($color-base);
+}
+.ico-circle-chevron{
+	path{fill:$color-base;}
+	transform:rotate(180deg);
+	@extend .transition;
+}
+.ico{
+	@include hover($color-base);	
+}
+
+// .ico-dashboard{
+// 	background:url(/facile/images/sidebar/ico-dashboard.svg) no-repeat;
+// 	@include sprite(16px, 16px, 0 5px 0 0);
+// 	background-size:14px;
+// 	background-position:center;
+// }
+// .ico-reports{
+// 	background:url(/facile/images/sidebar/ico-reports.svg) no-repeat;
+// 	@include sprite(16px, 16px, 0 5px 0 0);
+// 	background-size:8px;
+// 	background-position:center;	
+// }
+// .ico-reservation{
+// 	background:url(/facile/images/sidebar/ico-reservation.svg) no-repeat;
+// 	@include sprite(16px, 16px, 0 5px 0 0);	
+// 	background-size:10px;
+// 	background-position:center;
+// }
+// .ico-account{
+// 	background:url(/facile/images/sidebar/ico-account.svg) no-repeat;
+// 	@include sprite(16px, 16px, 0 5px 0 0);	
+// 	background-size:10px;
+// 	background-position:center;
+// }
+// .ico-seo{
+// 	background:url(/facile/images/sidebar/ico-seo.svg) no-repeat;
+// 	@include sprite(16px, 16px, 0 5px 0 0);	
+// 	background-size:11px;
+// 	background-position:center;
+// }
+// .ico-element{
+// 	background:url(/facile/images/sidebar/ico-element.svg) no-repeat;
+// 	@include sprite(16px, 16px, 0 5px 0 0);	
+// 	background-size:8px;
+// 	background-position:center;
+// }

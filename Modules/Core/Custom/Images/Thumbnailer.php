@@ -1,0 +1,531 @@
+<?php
+
+
+namespace Modules\Core\Custom\Images;
+use Modules\Core\Custom\Images\Resizer;
+/**
+ * Easy thumbnailing for your Eloquent models.
+ *
+ * @package Thumbnailable
+ * @version 1.7.1
+ * @author  Colin Viebrock <colin@viebrock.ca>
+ * @link    http://github.com/cviebrock/thumbnailable
+ */
+
+
+class Thumbnailer {
+
+
+	/**
+	 * Get a particular configuration value for a given model/field/key.
+	 *
+	 * In order of preference, we look in
+	 *
+	 * 1a. model_config.fields.FIELD.KEY
+	 * 1b. model_config.KEY
+	 * 2. app_config.KEY
+	 * 3. default_config.KEY
+	 *
+	 * @param  Model   &$model
+	 * @param  string  $key
+	 * @param  string  $field
+	 * @param  string  $default
+	 * @return mixed
+	 */
+	private static function config( &$model, $key, $field=null, $default=null )
+	{
+
+
+		// 1. check the model
+		if ( isset( $model::$thumbnailable ) ) {
+
+			// model_config.fields.FIELD.KEY
+			if ( $field ) {
+				$value = array_get( $model::$thumbnailable, "fields.$field.$key", null );
+				if ( !is_null( $value ) ) return $value;
+			}
+
+			// model_config.KEY
+
+			$value = array_get( $model::$thumbnailable, $key, null );
+			if ( !is_null( $value ) ) return $value;
+
+		}
+
+
+		// 2. app_config.KEY
+
+		$value = \Config::get( "thumbnailable.$key", null );
+		if ( !is_null( $value ) ) return $value;
+
+
+		// default_config.KEY
+
+		return \Config::get( "thumbnailable::thumbnailable.$key", $default );
+
+	}
+
+
+	/**
+	 * Method that gets fired when the eloquent model is saved.
+	 * Handles the image upload, and pre-generates any needed thumbnails
+	 *
+	 * @param  Model   $model
+	 * @return bool
+	 */
+	public static function saving( $model )
+	{
+
+		// skip if the model isn't thumbnailable
+		if ( !isset( $model::$thumbnailable ) ) {
+			return true;
+		}
+
+		// check that the model has fields configured for thumbnailing
+		if ( !( $fields = static::config( $model, 'fields' ) ) ) {
+			throw new \Exception("No fields configured for thumbnailing.");
+		}
+
+		$class = get_class($model);
+
+		// loop through each field to thumbnail
+		foreach( $fields as $field=>$info ) {
+
+			// find the storage directory
+			if ( !( $directory = static::config( $model, 'storage_dir', $field ) ) ) {
+				throw new \Exception("No storage directory specified for $class\->$field.");
+			}
+
+			// if the model is new or this field has changed, we thumbnail it
+			if ( !$model->exists || $model->changed($field) ) {
+
+				// get the PHP file upload info array
+				$array = $model->value($field);
+
+				// skip it if it's null, empty or not an array
+				// (maybe because the field isn't required)
+				if ( !is_array($array) || empty($array) ) {
+					continue;
+				}
+
+				// if there was an error on file upload, revert the field to the original value
+				// (so it won't be updated)
+				if ( $array['error'] != UPLOAD_ERR_OK ) {
+					$model->set_attribute($field, array_get($model->original, $field) );
+					// if the "error" was just that no file was uploaded,
+					// then continue
+					if ( $array['error'] == UPLOAD_ERR_NO_FILE ) {
+						continue;
+					}
+					// otherwise, throw the error for the app to handle
+					throw new \Exception("File upload error ({$array['error']}).", $array['error'] );
+				}
+
+				// make sure it's an uploaded file
+				if ( !is_uploaded_file( $array['tmp_name'] ) ) {
+					throw new \Exception("File upload hijack attempt!");
+				}
+
+				// make sure it's an image file, and get the "proper" file extension
+				if ( !( $ext = static::image_type( $array['tmp_name'] ) ) ) {
+					throw new \Exception("Uploaded $class\->$field is not a valid image file.");
+				}
+
+				// generate the new file name
+				// use the static method defined by the "newfile_method" in the config,
+				// or the Thumbnailer's default
+				if ( $method = static::config( $model, 'newfile_method', $field ) ) {
+					$newfile = forward_static_call( array($model,$method), $array['name'], $directory, $ext, $field );
+				} else {
+					$newfile = static::newfile( $array['name'], $directory, $ext, $field );
+				}
+
+				// make storage dir
+				// (do this now in case the newfile_method generates subdirectories)
+				$basedir = dirname($directory . "/" . $newfile);
+				if ( !\File::mkdir($basedir) ) {
+					throw new \Exception("Can not create directory $basedir.");
+				}
+
+				// move uploaded file to new location
+				if ( !move_uploaded_file( $array['tmp_name'], $directory . "/" . $newfile ) ) {
+					throw new \Exception("Could not move uploaded file to $directory" . "/" . "$newfile.");
+				}
+
+				// update the eloquent model with the new filename
+				$model->set_attribute( $field, $newfile );
+
+				// if we are to save the original file name in a model attribute,
+				// do that as well
+				if ( $original = static::config( $model, 'save_filename', $field ) ) {
+					$model->set_attribute( $original, $array['name'] );
+				}
+
+				// if the thumbs are to be generated on save, do it
+				if ( static::config( $model, 'on_save', $field ) ) {
+					static::generate_all( $model, $field );
+				}
+
+				// keep original?
+				if ( !( static::config( $model, 'keep_original', $field ) ) ) {
+					\File::delete($newfile);
+				}
+
+
+			}
+		}
+
+		return true;
+
+	}
+
+
+	/**
+	 * Method that gets fired when the eloquent model is being deleted.
+	 * Erases the original file and any generated thumbnails
+	 *
+	 * @param  Model   $model
+	 * @return bool
+	 */
+	public static function deleted( $model )
+	{
+
+		// check that the model has fields configured for thumbnailing
+		if ( !( $fields = static::config( $model, 'fields' ) ) ) {
+			return true;
+		}
+
+
+		// loop through each field to thumbnail and clear the old images
+		foreach( $fields as $field=>$info ) {
+			static::clean_field( $model, $field );
+		}
+
+		return true;
+
+	}
+
+
+	/**
+	 * Method that gets fired when the eloquent model is updated.
+	 * Erases the previous files and any generated thumbnails
+	 *
+	 * @param  Model   $model
+	 * @return bool
+	 */
+	public static function updated( $model )
+	{
+
+		// check that the model has fields configured for thumbnailing
+		if ( !( $fields = static::config( $model, 'fields' ) ) ) {
+			return true;
+		}
+
+		// loop through each field to thumbnail and clear the old images
+		foreach( $fields as $field=>$info ) {
+			static::clean_field( $model, $field, false );
+		}
+
+		return true;
+
+	}
+
+	/**
+	 * Erases the original file and any generated thumbnails for a given
+	 * model and field.
+	 *
+	 * @param  Model   $model
+	 * @param  string  $field
+	 * @param  bool    $current  Whether to erase the current files
+	 *                 (based on the filename in $model->attributes) or old files
+	 *                 (based on the filename in $model->original)
+	 * @return bool
+	 */
+	protected static function clean_field( $model, $field, $current=true )
+	{
+
+		// find the storage directory
+		if ( !( $directory = static::config( $model, 'storage_dir', $field ) ) ) {
+			return true;
+		}
+
+		// skip deletion if we are asking to clean the old files and the model hasn't changed
+		if( !$current && !$model->changed($field) ) {
+			return true;
+		}
+
+		// original file
+		$original_file = $current ? $model->value($field) : array_get($model->original, $field);
+
+		// if empty file, don't do anything
+		if( empty($original_file) ) {
+			return true;
+		}
+
+		// create the full original file
+		// (since it might include subdirectories from a custom newfile_method)
+
+		$full_original = $directory . "/" . $original_file;
+
+		// find the base directory and base filename
+		$basedir = dirname($full_original);
+		$basefile = basename($full_original);
+
+		// strip the extension
+		$ext = \File::extension($basefile);
+		$basefile = rtrim( $basefile, $ext );
+
+		// iterate through the directory, looking for files that start with
+		// the basename
+
+		$iterator = new DirectoryIterator($basedir);
+		$is_empty = true;
+		foreach( $iterator as $file ) {
+			if ($file->isFile() && strpos( $file->getFilename(), $basefile )===0 ) {
+
+				if ( !\File::delete( $file->getPathName() ) ) {
+					throw new \Exception("Could not delete ".$file->getPathName()."." );
+				}
+
+			} else {
+				// the directory contains something else; check if it's just "." or ".."
+				if ( str_replace('.', '', $file->getFilename()) != '' ) {
+					$is_empty = false;
+				}
+			}
+		}
+
+		// if there's a custom subdirectory, and it's empty, delete that too
+		if ( $basedir != $directory && $is_empty ) {
+			@rmdir($basedir);
+		}
+
+		return true;
+
+	}
+
+	/**
+	 * Get the filename of a resized image, generating it if required
+	 *
+	 * @param  Model   &$model
+	 * @param  string  $field
+	 * @param  string  $size
+	 * @return string
+	 */
+	public static function get( &$model, $field=null, $size=null )
+	{
+
+
+		// Find default field, if it's not given
+		$field = $field ?: Thumbnailer::config( $model, 'default_field' );
+		if (!$field) {
+			$fields = Thumbnailer::config( $model, 'fields' );
+			if ( count($fields)==1 ) {
+				$field = head( array_keys($fields) );
+			} else {
+				throw new \Exception("No thumbnail field given and no default defined.");
+			}
+		}
+
+		// is this a thumbnailable field?
+		if ( !Thumbnailer::config( $model, 'fields', $field ) ) {
+			throw new \Exception("Field $field is not thumbnailable.");
+		}
+
+		// get all sizes
+		$sizes = Thumbnailer::config( $model, 'sizes', $field );
+
+		// Find default size, if it's not given
+		$size = $size ?: Thumbnailer::config( $model, 'default_size', $field );
+		if ( !$size ) {
+			if ( count($sizes)==1 ) {
+				$size = head( $sizes );
+			} else {
+				throw new \Exception("No thumbnail size given for $field and no default defined.");
+			}
+		}
+
+		// are we asking for the original?
+		if ( $size==='original' ) {
+			if ( static::config( $model, 'keep_original', $field ) ) {
+				return static::generate( $model, $field, 'original' );
+			}
+			throw new \Exception("Original image for $filed not kept.");
+		}
+
+		// are we asking for a size name instead of WxH dimensions?
+		if ( array_key_exists( $size, $sizes ) ) {
+			$size = $sizes[$size];
+		}
+
+		// does the requested size exist or can we generate it on the fly?
+		if ( !in_array( $size, $sizes ) && static::config( $model, 'strict_sizes', $field ) ) {
+			throw new \Exception("Can not get $size thumbnail for $field: strict_sizes enabled.");
+		}
+		return static::generate( $model, $field, $size );
+
+	}
+
+
+	/**
+	 * Get the full path to a resized image
+	 *
+	 * @param  Model   &$model
+	 * @param  string  $field
+	 * @param  string  $size
+	 * @return string
+	 */
+	public static function get_path( &$model, $field=null, $size=null )
+	{
+		$directory = static::config( $model, 'storage_dir', $field );
+		if ( $path = static::get( $model, $field, $size ) ) {
+			return $directory . "/" . $path;
+		}
+	}
+
+
+	/**
+	 * Get the URL of a resized image
+	 *
+	 * @param  Model   &$model
+	 * @param  string  $field
+	 * @param  string  $size
+	 * @return string
+	 */
+	public static function get_url( &$model, $field=null, $size=null )
+	{
+		$base_url = static::config( $model, 'base_url', $field );
+		if ( $path = static::get( $model, $field, $size ) ) {
+			return $base_url . '/' . static::get( $model, $field, $size );
+		}
+	}
+
+
+	/**
+	 * Generate all resized images for a give model and field
+	 *
+	 * @param  Model   &$model
+	 * @param  string  $field
+	 * @return bool
+	 */
+	private static function generate_all( &$model, $field )
+	{
+		$sizes = static::config( $model, 'sizes', $field );
+
+		if ( !is_array( $sizes ) ) {
+			return true;
+		}
+
+		foreach( $sizes as $size ) {
+			static::generate( $model, $field, $size, false );
+		}
+
+		return true;
+
+	}
+
+
+	/**
+	 * Generate a resized image (or pull from cache) and return the file name
+	 *
+	 * @param  Model   &$model
+	 * @param  string  $field
+	 * @param  string  $size
+	 * @param  bool    $use_cache
+	 * @return string
+	 */
+	private static function generate( &$model, $field, $size, $use_cache = true )
+	{
+		
+		$original_file = $model->$field;
+		// no image?
+		if ( !$original_file ) return null;
+
+		// did we ask for the original?
+		if ( $size=='original' ) {
+			return $original_file;
+		}
+
+		// we could pass an array instead of a size
+		// in which case we are specifiying directory and format for that particular size
+		// cast it all to an array and proceed accordingly
+		if ( !is_array($size) ) {
+			$size = array( 'size' => $size );
+		}
+
+		// get the directory, format, method, quality and dimensions
+		$directory  = array_get($size, 'storage_dir',       static::config( $model, 'storage_dir', $field ) );
+		$format     = array_get($size, 'thumbnail_format',  static::config( $model, 'thumbnail_format', $field ) );
+		$method     = array_get($size, 'resize_method',     static::config( $model, 'resize_method', $field ) );
+		$quality    = array_get($size, 'thumbnail_quality', static::config( $model, 'thumbnail_quality', $field ) );
+		$dimensions = array_get($size, 'size',      null );
+
+		if ( !$dimensions ) {
+			throw new \Exception("Can not generate thumbnail for $field: no dimensions given.", 1);
+		}
+
+		if ( $format == 'auto' ) {
+			$format = \File::extension( $original_file );
+		}
+		$new_file = rtrim( $original_file, \File::extension( $original_file ) ) .
+			strtolower($dimensions) . '.' . $format;
+
+		// if we already have a cached copy, return it
+		if ( $use_cache && \File::exists( $directory . "/" . $new_file ) ) {
+			return $new_file;
+		}
+
+		if ( !\File::exists( $directory . "/" . $original_file ) ) {
+			throw new \Exception("Can not generate $dimensions thumbnail for $field: no original.");
+		}
+
+		list( $dst_width, $dst_height ) = explode('x', strtolower($dimensions) );
+
+		$success = Resizer::open( $directory . "/" . $original_file )
+			->resize( $dst_width, $dst_height, $method )
+			->save( $directory . "/" . $new_file, $quality );
+		if ( !$success ) {
+			throw new \Exception("Could not generate thumbnail $new_file.");
+		}
+
+		return $new_file;
+
+	}
+
+
+	/**
+	 * Generate random filename (and check it doesn't exist).
+	 *
+	 * @param  string  $original_name
+	 * @param  string  $directory
+	 * @param  string  $extension
+	 * @param  string  $field
+	 * @return string
+	 */
+	private static function newfile( $original_name, $directory, $ext, $field )
+	{
+		do {
+			$filename = str_random(24) . ( $ext ? '.' . $ext : '' );
+		} while ( \File::exists( $directory . "/" . $filename ) );
+		return $filename;
+	}
+
+
+	/**
+	 * Check if a file is one of the valid image types.
+	 * If so, return which one it is.  If not, return null.
+	 *
+	 * @param  string  $file
+	 * @return mixed
+	 */
+	private static function image_type( $file )
+	{
+		foreach( array( 'jpg', 'png', 'gif' ) as $type ) {
+			if ( \File::is( $type, $file ) ) {
+				return $type;
+			}
+		}
+		return null;
+	}
+
+}

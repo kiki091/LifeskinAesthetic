@@ -1,0 +1,26 @@
+<?php
+
+namespace DummyNamespace;
+
+use App\Repositories\Implementation\BaseImplementation;
+use DummyUseInterface as DummyClassInterface;
+use Modules\Account\Custom\DataHelper;
+
+use DB;
+use Log;
+
+class DummyClass extends BaseImplementation implements DummyClassInterface
+{
+
+    protected $exceptIndexPost = [
+        '_token'
+    ];
+
+    function __construct()
+    {
+        parent::__construct();
+
+    }
+
+
+}
