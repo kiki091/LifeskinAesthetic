@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'title' => 'Facile',
+    'title' => 'Administrator',
     'admin-prefix' => 'cms',
 
     'middleware' => [
