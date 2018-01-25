@@ -45,3 +45,19 @@ $router->group(['prefix' => 'package'], function (Router $router) {
 	$router->post('/store', ['as' => 'cms.package.store', 'uses' => 'PackageController@store']);
 	$router->post('/delete', ['as' => 'cms.package.delete', 'uses' => 'PackageController@delete']);
 });
+
+$router->group(['prefix' => 'gallery'], function (Router $router) {
+	$router->get('/', ['as' => 'cms.gallery.index', 'uses' => 'GalleryController@index']);
+	$router->get('/data', ['as' => 'cms.gallery.data', 'uses' => 'GalleryController@getData']);
+	$router->post('/edit', ['as' => 'cms.gallery.edit', 'uses' => 'GalleryController@edit']);
+	$router->post('/store', ['as' => 'cms.gallery.store', 'uses' => 'GalleryController@store']);
+	$router->post('/delete', ['as' => 'cms.gallery.delete', 'uses' => 'GalleryController@delete']);
+});
+
+$router->group(['prefix' => 'banner'], function (Router $router) {
+	$router->get('/', ['as' => 'cms.main_banner.index', 'uses' => 'MainBannerController@index']);
+	$router->get('/data', ['as' => 'cms.main_banner.data', 'uses' => 'MainBannerController@getData']);
+	$router->post('/edit', ['as' => 'cms.main_banner.edit', 'uses' => 'MainBannerController@edit']);
+	$router->post('/store', ['as' => 'cms.main_banner.store', 'uses' => 'MainBannerController@store']);
+	$router->post('/delete', ['as' => 'cms.main_banner.delete', 'uses' => 'MainBannerController@delete']);
+});

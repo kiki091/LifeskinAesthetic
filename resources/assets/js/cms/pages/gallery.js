@@ -5,27 +5,19 @@ import Fimage from '../../../../../Themes/Admin/resources/assets/js/views/compon
 import Ftexteditor from '../../../../../Themes/Admin/resources/assets/js/views/components/ckeditor.vue';
 import Fdate from '../../../../../Themes/Admin/resources/assets/js/views/components/datepicker.vue';
 
-module.exports = function product() {
+module.exports = function gallery() {
 
     var split_url = facile.href_url.split('#')
     var identifier_url = split_url[1]
     var dimension = facile.dimension
 
     var controller = new Vue({
-        el: '#template_product',
+        el: '#template_gallery',
         data: {
             models: {
                 id: '',
                 title: '',
-                introduction: '',
-                information: '',
-                description: '',
-                price: '',
-                availability: '',
-                sub_category_id: '',
-                meta_title: '',
-                meta_keyword: '',
-                meta_description: '',
+                category_id: '',
             },
             data: {},
 
@@ -37,20 +29,14 @@ module.exports = function product() {
                 image_url: '',
             },
 
-            list_sub_category: {},
-            sub_category_selector: '',
-
-            list_availability: [
-                {id: 'AVAILABILITY', name: 'AVAILABILITY'},
-                {id: 'NON AVAILABILITY', name: 'NON AVAILABILITY'}
-            ],
-            availability_selector: '',
+            list_category: {},
+            category_selector: '',
 
             supported_language: facile.supported_language,
             current_language : facile.current_language,
             last_language_key: '',
             identifier: identifier_url,
-            formTitle: 'Add News',
+            formTitle: 'Add Gallery',
             edit: false,
         },
 
@@ -65,12 +51,12 @@ module.exports = function product() {
         methods: {
 
             fetchData: function () {
-                var domain  = laroute.route('cms.product.data', []);
+                var domain  = laroute.route('cms.gallery.data', []);
                 var vm = this;
                 this.$http.get(domain).then(function (response) {
                     if(response.data.status == true) {
-                        vm.data = response.data.data.product
-                        vm.list_sub_category = response.data.data.sub_category
+                        vm.data = response.data.data.gallery
+                        vm.list_category = response.data.data.category
                     } else {
                         notify({type:'error'})
                     }
@@ -90,18 +76,15 @@ module.exports = function product() {
                 }
 
                 this.edit   = true
-                var domain  = laroute.route('cms.product.edit', []);
+                var domain  = laroute.route('cms.gallery.edit', []);
 
                 this.$http.post(domain, form).then(function (response) {
                     response = response.data
                     this.models = response.data
-                    this.sub_category_selector = response.data.sub_category_id
-                    this.availability_selector = response.data.availability
+                    this.category_selector = response.data.category_id
                     this.thumbnail.image_url = response.data.thumbnail_url
                     this.filename.image_url = response.data.filename_url
-                    
-                    $("#select-sub-category").val(response.data.sub_category_id).trigger("change");
-                    $("#select-availability").val(response.data.availability).trigger("change");
+                    $("#select-category").val(response.data.category_id).trigger("change");
                 });
 
                 this.prepareImage()
@@ -121,7 +104,7 @@ module.exports = function product() {
                     form.append(key, payload[key])
                 }
 
-                var domain  = laroute.route('cms.product.delete', []);
+                var domain  = laroute.route('cms.gallery.delete', []);
                 this.$http.post(domain, form).then(function(response) {
                     response = response.data
                     if (response.status == false) {
@@ -172,24 +155,15 @@ module.exports = function product() {
                     }
 
                 };
-                $("#form-product").ajaxForm(optForm);
-                $("#form-product").submit();
+                $("#form-gallery").ajaxForm(optForm);
+                $("#form-gallery").submit();
             },
 
             resetForm: function() {
 
                 this.models.id = ''
                 this.models.title = ''
-                this.models.slug = ''
-                this.models.introduction = ''
-                this.models.information = ''
-                this.models.description = ''
-                this.models.price = ''
-                this.models.availability = ''
-                this.models.sub_category_id = ''
-                this.models.meta_title = ''
-                this.models.meta_keyword = ''
-                this.models.meta_description = ''
+                this.models.category_id = ''
                 
                 this.models.thumbnail_url = ''
                 this.models.filename_url = ''  
@@ -201,23 +175,21 @@ module.exports = function product() {
                 this.$refs.filename[0].clearImage();
 
                 this.edit = false
-                this.sub_category_selector = ''
-                this.availability_selector = ''
+                this.category_selector = ''
 
-                $("#select-availability").val('').trigger("change");
-                $("#select-sub-category").val('').trigger("change");
+                $("#select-category").val('').trigger("change");
                 this.prepareImage()
             },
 
             prepareImage: function() {
                 this.thumbnail.options = {
-                    "width": dimension.THUMBNAIL_PRODUCT_IMAGES_WIDTH,
-                    "height": dimension.THUMBNAIL_PRODUCT_IMAGES_HEIGHT,
+                    "width": dimension.THUMBNAIL_GALLERY_IMAGES_WIDTH,
+                    "height": dimension.THUMBNAIL_GALLERY_IMAGES_HEIGHT,
                     "size": dimension.MAX_IMAGES_SIZE,
                 }
                 this.filename.options = {
-                    "width": dimension.PRODUCT_IMAGES_WIDTH,
-                    "height": dimension.PRODUCT_IMAGES_HEIGHT,
+                    "width": dimension.GALLERY_IMAGES_WIDTH,
+                    "height": dimension.GALLERY_IMAGES_HEIGHT,
                     "size": dimension.MAX_IMAGES_SIZE,
                 }
             },

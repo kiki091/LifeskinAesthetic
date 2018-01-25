@@ -7,7 +7,7 @@
                         <a href="{{ route('HomePage') }}"><img src="{{ $web_information['logo'] or '' }}" alt="{{ $web_information['web_title'] or '' }}"></a>
                     </div>
                 </div>
-                <div class="col-md-8 hidden-sm hidden-xs">
+                <div class="col-md-10 hidden-sm hidden-xs">
                     <div class="menu">
                         <nav class="nav-menu">
                             <ul>
@@ -18,7 +18,13 @@
                                     <a href="{{ route('PackagePage') }}">Package</a>
                                 </li>
                                 <li>
+                                    <a href="{{ route('ProductPage') }}">Product List</a>
+                                </li>
+                                <li>
                                     <a href="{{ route('NewsPage') }}">News</a>
+                                </li>
+                                <li>
+                                    <a href="#">Gallery</a>
                                 </li>
                                 @if (!Auth::guard('member')->check())
                                 <li>
@@ -49,15 +55,21 @@
                             <a href="{{ route('PackagePage') }}">Package</a>
                         </li>
                         <li>
+                            <a href="{{ route('ProductPage') }}">Product List</a>
+                        </li>
+                        <li>
                             <a href="{{ route('NewsPage') }}">News</a>
                         </li>
+                        <li>
+                            <a href="#">Gallery</a>
+                        </li>
 
-                            @if (!Auth::guard('member')->check())
-                            <li>
-                                <a class="cd-signin" href="javascript::void();">Login</a>
-                                
-                            </li>
-                            @endif
+                        @if (!Auth::guard('member')->check())
+                        <li>
+                            <a class="cd-signin" href="javascript::void();">Login</a>
+                            
+                        </li>
+                        @endif
                         <li>
                             <a href="{{ route('AboutPage') }}">About</a>
                         </li>

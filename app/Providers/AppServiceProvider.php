@@ -55,6 +55,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind('App\Repositories\Contracts\Cms\Category', 'App\Repositories\Implementation\Cms\Category');
         $this->app->bind('App\Repositories\Contracts\Cms\Product', 'App\Repositories\Implementation\Cms\Product');
         $this->app->bind('App\Repositories\Contracts\Cms\Package', 'App\Repositories\Implementation\Cms\Package');
+        $this->app->bind('App\Repositories\Contracts\Cms\Gallery', 'App\Repositories\Implementation\Cms\Gallery');
+        $this->app->bind('App\Repositories\Contracts\Cms\MainBanner', 'App\Repositories\Implementation\Cms\MainBanner');
     }
 
     /**
@@ -88,6 +90,8 @@ class AppServiceProvider extends ServiceProvider
             'App\Repositories\Contracts\Cms\Category',
             'App\Repositories\Contracts\Cms\Product',
             'App\Repositories\Contracts\Cms\Package',
+            'App\Repositories\Contracts\Cms\Gallery',
+            'App\Repositories\Contracts\Cms\MainBanner',
         );
     }
 }

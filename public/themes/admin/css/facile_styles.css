@@ -435,8 +435,8 @@ table {
 /* 
  |------------------------------------------------------------------+
  ||-----------------------------------------------------------------+
- ||	VARIBLE 														+
- ||																	+
+ || VARIBLE                             +
+ ||                                 +
 */
 /* 
    ______   ______  ________  ________
@@ -769,7 +769,7 @@ html, body {
   min-height: 100%;
   margin: 0;
   padding: 0;
-  background-color: #000000;
+  background-color: #75716e;
   overflow-x: hidden;
   overflow-y: hidden;
 }
@@ -1120,7 +1120,7 @@ button.btn--primary2 {
 }
 
 .main--content__title {
-  color: #2C3957;
+  color: #f7f7f7;
   line-height: 33px;
   margin: 0 0 3px;
 }
@@ -2567,7 +2567,7 @@ input[type='submit'].btn--primary2,
 button.btn--primary,
 button.btn--primary2 {
   padding: 7px 15px;
-  background: linear-gradient(-180deg, #2C3957 0%, #FC6739 100%);
+  background: linear-gradient(-180deg, #75716e 0%, #75716e 100%);
   color: #fff;
   border: 1px solid transparent;
 }
@@ -3782,7 +3782,7 @@ table .nested td:nth-child(2):before {
   width: 492px;
   height: auto;
   padding: 50px 0;
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.89);
   display: -webkit-box;
   display: flex;
   -webkit-box-orient: vertical;
@@ -3885,7 +3885,7 @@ table .nested td:nth-child(2):before {
 }
 
 .login--content .login--content__form .login--btn--submit:hover {
-  background: #232e46;
+  background: #165f06;
 }
 
 .login--content .error--state {

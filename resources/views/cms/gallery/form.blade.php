@@ -1,5 +1,5 @@
 <div class="card form" id="toggle-open-content" style="display: none;">
-    <form action="{{ route('cms.product.store') }}" method="POST" id="form-product" enctype="multipart/form-data" @submit.prevent>
+    <form action="{{ route('cms.gallery.store') }}" method="POST" id="form-gallery" enctype="multipart/form-data" @submit.prevent>
         <div class="form--top flex vcenter between">
             <h6 class="bold margin0">Edit Data</h6>
             <a href="javascript:void(0);" class="btn--primary2 close-toggle" id="toggle-menu-manager" data-cancel="Cancel" data-name="Add Data" @click="changeButton">Close</a>
@@ -18,19 +18,11 @@
             <div class="create__form content__tab" v-for="(supportedLang, supportedLangKey, index) in supported_language" :class="!index ? 'active__content' : ''" :id="'lang-'+supportedLangKey">
 
                 <div class="field widthauto flex" v-if="showElementByDefaultLang(supportedLangKey)">
-                    <fchosen :options="list_sub_category" id="select-sub-category" v-model="sub_category_selector" name="sub_category_id" label="Sub Category"></fchosen>
+                    <fchosen :options="list_category" id="select-category" v-model="category_selector" name="category_id" label="Category Name"></fchosen>
                 </div>
 
                 <div class="field" v-if="showElementByDefaultLang(supportedLangKey)">
                     <ftext type='text' class="new__form__input__field" id="title" placeholder="Enter the title title here" name="title" v-model="models.title" label="Title News"></ftext>
-                </div>
-
-                <div class="field" v-if="showElementByDefaultLang(supportedLangKey)">
-                    <ftext type='text' class="new__form__input__field" id="price" placeholder="Enter the price here" name="price" v-model="models.price" label="Price"></ftext>
-                </div>
-
-                <div class="field widthauto flex" v-if="showElementByDefaultLang(supportedLangKey)">
-                    <fchosen :options="list_availability" id="select-availability" v-model="availability_selector" name="availability" label="Availability"></fchosen>
                 </div>
 
                 <div class="field" v-if="showElementByDefaultLang(supportedLangKey)">
@@ -39,30 +31,6 @@
 
                 <div class="field" v-if="showElementByDefaultLang(supportedLangKey)">
                     <fimage id="filename" name="filename" v-model="filename.image_url" label="Detail Images" :ref="'filename'" :options="filename.options"></fimage>
-                </div>
-
-                <div class="field">
-                    <ftexteditor name="introduction" v-model="models.introduction" label="Introduction" id="introduction"></ftexteditor>
-                </div>
-
-                <div class="field">
-                    <ftexteditor name="information" v-model="models.information" label="Information" id="information"></ftexteditor>
-                </div>
-
-                <div class="field">
-                    <ftexteditor name="description" v-model="models.description" label="Description" id="description"></ftexteditor>
-                </div>
-
-                <div class="field" v-if="showElementByDefaultLang(supportedLangKey)">
-                    <ftext type='text' class="new__form__input__field" id="meta_title" placeholder="Enter the meta title here" name="meta_title" v-model="models.meta_title" label="Meta Title"></ftext>
-                </div>
-
-                <div class="field" v-if="showElementByDefaultLang(supportedLangKey)">
-                    <ftext type='text' class="new__form__input__field" id="meta_keyword" placeholder="Enter the meta keyword here" name="meta_keyword" v-model="models.meta_keyword" label="Meta Keyword"></ftext>
-                </div>
-
-                <div class="field">
-                    <ftexteditor name="meta_description" v-model="models.meta_description" label="Meta Description" id="meta_description"></ftexteditor>
                 </div>
             </div>
         </div>

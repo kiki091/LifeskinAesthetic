@@ -23,4 +23,14 @@ class Product
     {
         return $this->product->getData($params);
     }
+
+    /**
+     * Get Detail Data 
+     * @param $params
+     * @return mixed
+     */
+    public function getDetailData($params = [])
+    {
+        return $this->product->getDetailData($params);
+    }
 }

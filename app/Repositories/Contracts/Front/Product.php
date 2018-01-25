@@ -13,4 +13,11 @@ interface Product
      */
     public function getData($params);
 
+    /**
+     * Get Detail Data
+     * @param $params
+     * @return mixed
+     */
+    public function getDetailData($params);
+
 }

@@ -1120,7 +1120,7 @@ button.btn--primary2 {
 }
 
 .main--content__title {
-  color: #2C3957;
+  color: #f7f7f7;
   line-height: 33px;
   margin: 0 0 3px;
 }
@@ -2567,7 +2567,7 @@ input[type='submit'].btn--primary2,
 button.btn--primary,
 button.btn--primary2 {
   padding: 7px 15px;
-  background: linear-gradient(-180deg, #2C3957 0%, #FC6739 100%);
+  background: linear-gradient(-180deg, #75716e 0%, #75716e 100%);
   color: #fff;
   border: 1px solid transparent;
 }

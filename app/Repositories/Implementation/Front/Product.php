@@ -21,16 +21,29 @@ class Product extends BaseImplementation implements ProductInterface
         $this->productTransformation = $productTransformation;
     }
 
-    public function getData($params)
+    public function getData($data)
     {
         
         $params = [
             "order_by" => 'updated_at',
+            "with_category" => isset($data['with_category']) ? $data['with_category'] : '',
         ];
 
         $productData = $this->product($params, 'desc', 'array', false);
 
         return $this->productTransformation->getDataTransform($productData);
+    }
+
+    public function getDetailData($slug)
+    {
+        
+        $params = [
+            "slug" => $slug,
+        ];
+
+        $productData = $this->product($params, 'desc', 'array', true);
+
+        return $this->productTransformation->getDetailDataTransform($productData);
     }
 
     /**
@@ -43,6 +56,14 @@ class Product extends BaseImplementation implements ProductInterface
     protected function product($params = array(), $orderType = 'asc', $returnType = 'array', $returnSingle = false)
     {
         $product = $this->product->with('sub_category');
+
+        if(isset($params['with_category']) && !empty($params['with_category'])) {
+
+            $product->whereHas('sub_category', function($q) use ($params) {
+                $q->where('slug', $params['with_category']);
+            });
+
+        }
 
         if(isset($params['slug'])) {
             $product->slug($params['slug']);

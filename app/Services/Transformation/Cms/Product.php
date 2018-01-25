@@ -72,6 +72,8 @@ class Product
         $objData['title']            = isset($data['title']) ? $data['title'] : '';
         $objData['slug']             = isset($data['slug']) ? $data['slug'] : '';
         $objData['introduction']     = isset($data['introduction']) ? $data['introduction'] : '';
+        $objData['information']      = isset($data['information']) ? $data['information'] : '';
+        $objData['description']      = isset($data['description']) ? $data['description'] : '';
         $objData['price']            = isset($data['price']) ? $data['price'] : '';
         $objData['availability']     = isset($data['availability']) ? $data['availability'] : '';
         $objData['sub_category_id']  = isset($data['sub_category_id']) ? $data['sub_category_id'] : '';

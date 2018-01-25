@@ -3,36 +3,36 @@
 namespace App\Repositories\Implementation\Cms;
 
 use App\Repositories\Implementation\BaseImplementation;
-use App\Repositories\Contracts\Cms\Product as ProductInterface;
-use App\Models\Product as ProductModels;
-use App\Services\Transformation\Cms\Product as ProductTransformation;
+use App\Repositories\Contracts\Cms\Gallery as GalleryInterface;
+use App\Models\Gallery as GalleryModels;
+use App\Services\Transformation\Cms\Gallery as GalleryTransformation;
 use Cache;
 use Auth;
 use Session;
 use DB;
 use Carbon\Carbon;
 
-class Product extends BaseImplementation implements ProductInterface
+class Gallery extends BaseImplementation implements GalleryInterface
 {
-    protected $product;
-    protected $productTransformation;
+    protected $gallery;
+    protected $galleryTransformation;
 
     protected $message;
     protected $lastInsertId;
     protected $uniqueIdImagePrefix = '';
 
-    const PREFIX_IMAGE_NAME = 'product_images';
+    const PREFIX_IMAGE_NAME = 'gallery_images';
 
 
-    function __construct(ProductModels $product, ProductTransformation $productTransformation)
+    function __construct(GalleryModels $gallery, GalleryTransformation $galleryTransformation)
     {
-        $this->product = $product;
-        $this->productTransformation = $productTransformation;
+        $this->gallery = $gallery;
+        $this->galleryTransformation = $galleryTransformation;
         $this->uniqueIdImagePrefix = uniqid(self::PREFIX_IMAGE_NAME);
     }
 
     /**
-     * Get Data Product
+     * Get Data Gallery
      * @param $data
      * @return array
      */
@@ -45,13 +45,13 @@ class Product extends BaseImplementation implements ProductInterface
             "order_by" => 'created_at',
         ];
 
-        $productData = $this->product($params, 'desc', 'array', false);
+        $galleryData = $this->gallery($params, 'desc', 'array', false);
 
-        return $this->productTransformation->getDataCmsTransform($productData);
+        return $this->galleryTransformation->getDataCmsTransform($galleryData);
     }
 
     /**
-     * Get Data For Edit Product
+     * Get Data For Edit Gallery
      * @param $data
      */
     public function edit($data)
@@ -60,13 +60,13 @@ class Product extends BaseImplementation implements ProductInterface
             "id" => isset($data['id']) ? $data['id'] : ''
         ];
 
-        $productData = $this->product($params, 'asc', 'array', true);
+        $galleryData = $this->gallery($params, 'asc', 'array', true);
 
-        return $this->setResponse(trans('message.cms_success_get_data'), true, $this->productTransformation->getSingleDataCmsTransform($productData));
+        return $this->setResponse(trans('message.cms_success_get_data'), true, $this->galleryTransformation->getSingleDataCmsTransform($galleryData));
     }
 
     /**
-     * Store Product
+     * Store Gallery
      * @param $data
      * @return array
      */
@@ -102,7 +102,7 @@ class Product extends BaseImplementation implements ProductInterface
     }
 
     /**
-     * Store Data Products
+     * Store Data Gallery
      * @param $data
      * @return array
      */
@@ -111,25 +111,16 @@ class Product extends BaseImplementation implements ProductInterface
     {
         try {
 
-            $storeObj                       = $this->product;
+            $storeObj                       = $this->gallery;
 
             if ($this->isEditMode($data)) 
             {
-                $storeObj                   = $this->product->find($data['id']);
+                $storeObj                   = $this->gallery->find($data['id']);
                 $storeObj->updated_at       = Carbon::now();
             }
 
             $storeObj->title                = isset($data['title']) ? $data['title'] : '';
-            $storeObj->slug                 = isset($data['title']) ? strtolower(str_slug($data['title'])) : '';
-            $storeObj->introduction         = isset($data['introduction']) ? $data['introduction'] : '';
-            $storeObj->information          = isset($data['information']) ? $data['information'] : '';
-            $storeObj->description          = isset($data['description']) ? $data['description'] : '';
-            $storeObj->price                = isset($data['price']) ? $data['price'] : '';
-            $storeObj->availability         = isset($data['availability']) ? $data['availability'] : '';
-            $storeObj->sub_category_id      = isset($data['sub_category_id']) ? $data['sub_category_id'] : '';
-            $storeObj->meta_title           = isset($data['meta_title']) ? $data['meta_title'] : '';
-            $storeObj->meta_keyword         = isset($data['meta_keyword']) ? $data['meta_keyword'] : '';
-            $storeObj->meta_description     = isset($data['meta_description']) ? $data['meta_description'] : '';
+            $storeObj->category_id          = isset($data['category_id']) ? $data['category_id'] : '';
             
             if (!empty($data['thumbnail'])) {
                 $storeObj->thumbnail        = $this->uniqueIdImagePrefix . '_' .$data['thumbnail']->getClientOriginalName();
@@ -157,7 +148,7 @@ class Product extends BaseImplementation implements ProductInterface
     }
 
     /**
-     * Delete Data Product
+     * Delete Data Gallery
      * @param $params
      * @return mixed
      */
@@ -190,7 +181,7 @@ class Product extends BaseImplementation implements ProductInterface
     }
 
     /**
-     * Remove Data Product From Database
+     * Remove Data Gallery From Database
      * @param $data
      * @return bool
      */
@@ -199,7 +190,7 @@ class Product extends BaseImplementation implements ProductInterface
     {
         try {
 
-            $delete = $this->product
+            $delete = $this->gallery
                 ->where('id', $data['id'])
                 ->forceDelete();
 
@@ -230,7 +221,7 @@ class Product extends BaseImplementation implements ProductInterface
 
                     $filename = $this->uniqueIdImagePrefix . '_' .$data['thumbnail']->getClientOriginalName();
 
-                    if (! $data['thumbnail']->move('./' . PRODUCT_IMAGES_DIRECTORY, $filename)) {
+                    if (! $data['thumbnail']->move('./' . GALLERY_IMAGES_DIRECTORY, $filename)) {
                         $this->message = 'Failed upload images';
                         return false;
                     }
@@ -267,7 +258,7 @@ class Product extends BaseImplementation implements ProductInterface
 
                     $filename = $this->uniqueIdImagePrefix . '_' .$data['filename']->getClientOriginalName();
 
-                    if (! $data['filename']->move('./' . PRODUCT_IMAGES_DIRECTORY, $filename)) {
+                    if (! $data['filename']->move('./' . GALLERY_IMAGES_DIRECTORY, $filename)) {
                         $this->message = 'Failed upload images';
                         return false;
                     }
@@ -289,35 +280,35 @@ class Product extends BaseImplementation implements ProductInterface
     }
 
     /**
-     * Get All Data Product
+     * Get All Data Gallery
      * Warning: this function doesn't redis cache
      * @param array $params
      * @return array
      */
-    protected function product($params = array(), $orderType = 'asc', $returnType = 'array', $returnSingle = false)
+    protected function gallery($params = array(), $orderType = 'asc', $returnType = 'array', $returnSingle = false)
     {
-        $product = $this->product->with(['sub_category']);
+        $gallery = $this->gallery->with(['category']);
 
         if(isset($params['id'])) {
-            $product->where('id', $params['id']);
+            $gallery->where('id', $params['id']);
         }
 
         if(isset($params['order_by'])) {
-            $product->orderBy($params['order_by'], $orderType);
+            $gallery->orderBy($params['order_by'], $orderType);
         }
 
-        if(!$product->count())
+        if(!$gallery->count())
             return array();
 
         switch ($returnType) {
             case 'array':
                 if(!$returnSingle) 
                 {
-                    return $product->get()->toArray();
+                    return $gallery->get()->toArray();
                 } 
                 else 
                 {
-                    return $product->first()->toArray();
+                    return $gallery->first()->toArray();
                 }
 
             break;

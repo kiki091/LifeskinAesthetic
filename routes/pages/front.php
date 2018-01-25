@@ -44,6 +44,15 @@ Route::group(['middleware' => ['web']], function ()
 			Route::get('/{slug}', 'Front\PackageController@detail')->name('PackagePageDetail');
 		});
 
+		Route::group(array('prefix' => 'product'), function () {
+			Route::get('/', 'Front\ProductController@index')->name('ProductPage');
+			Route::get('/{slug}', 'Front\ProductController@detail')->name('ProductPageDetail');
+
+			Route::group(array('prefix' => 'category'), function () {
+				Route::get('/{slug}', 'Front\ProductController@category')->name('ProductPageCategory');
+			});
+		});
+
 		Route::group(array('prefix' => 'about'), function () {
 			Route::get('/', 'Front\AboutController@index')->name('AboutPage');
 			Route::post('/subscribe', 'Front\AboutController@subscribe')->name('SubscribeMail');

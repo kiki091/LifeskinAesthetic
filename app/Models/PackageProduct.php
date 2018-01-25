@@ -21,7 +21,7 @@ class PackageProduct extends BaseModel
      */
     public function product()
     {
-        return $this->belongsTo('App\Models\Product', 'product_id', 'id');
+        return $this->belongsTo('App\Models\Product', 'product_id', 'id')->with('sub_category');
     }
 
     /**

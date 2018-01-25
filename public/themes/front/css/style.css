@@ -845,7 +845,6 @@ img{max-width: 100%}
     width: 100%;
 }
 .pricing-table:before {
-  background: rgba(0, 0, 0, 0) url("../../themes/front/images/common/pricing-1.png") no-repeat scroll right bottom;
   bottom: 0;
   content: "";
   height: 100%;
@@ -857,7 +856,7 @@ img{max-width: 100%}
   z-index: -9;
 }
 .pricing-table:hover {
-  background: rgba(0, 0, 0, 0) url("../../themes/front/images/common/pricing-2.png") no-repeat scroll -150px 0;
+  background-color: #f7f7f7;
   -webkit-transition-duration: 0.3s;
           transition-duration: 0.3s;
 }
@@ -869,9 +868,9 @@ img{max-width: 100%}
   color: #6bc513
 }
 .pricing-table:hover .book-now > a {
-  background: #6bc513;
+  background: #363636;
   color: #fff;
-  border-color: #6bc513;
+  border-color: #f1f1f1;
 }
 /*-------------------
     11. Testimonial css here
@@ -922,7 +921,7 @@ img{max-width: 100%}
   border-width: 1px;
   float: left;
   margin-top: 2px;
-  padding: 36px 0 36px 30px;
+  padding: 36px 0 10px 30px;
   width: 64%;
 }
 .blog-img > a {

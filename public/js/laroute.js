@@ -436,6 +436,46 @@
         "name": "cms.package.delete"
     },
     {
+        "uri": "cms\/gallery",
+        "name": "cms.gallery.index"
+    },
+    {
+        "uri": "cms\/gallery\/data",
+        "name": "cms.gallery.data"
+    },
+    {
+        "uri": "cms\/gallery\/edit",
+        "name": "cms.gallery.edit"
+    },
+    {
+        "uri": "cms\/gallery\/store",
+        "name": "cms.gallery.store"
+    },
+    {
+        "uri": "cms\/gallery\/delete",
+        "name": "cms.gallery.delete"
+    },
+    {
+        "uri": "cms\/banner",
+        "name": "cms.main_banner.index"
+    },
+    {
+        "uri": "cms\/banner\/data",
+        "name": "cms.main_banner.data"
+    },
+    {
+        "uri": "cms\/banner\/edit",
+        "name": "cms.main_banner.edit"
+    },
+    {
+        "uri": "cms\/banner\/store",
+        "name": "cms.main_banner.store"
+    },
+    {
+        "uri": "cms\/banner\/delete",
+        "name": "cms.main_banner.delete"
+    },
+    {
         "uri": "cms\/core",
         "name": "facile.core.index"
     },
