@@ -72,6 +72,18 @@
         "name": "PackagePageDetail"
     },
     {
+        "uri": "product",
+        "name": "ProductPage"
+    },
+    {
+        "uri": "product\/{slug}",
+        "name": "ProductPageDetail"
+    },
+    {
+        "uri": "product\/category\/{slug}",
+        "name": "ProductPageCategory"
+    },
+    {
         "uri": "about",
         "name": "AboutPage"
     },
@@ -86,6 +98,10 @@
     {
         "uri": "booking\/store",
         "name": "PackageBooking"
+    },
+    {
+        "uri": "gallery",
+        "name": "GalleryPage"
     },
     {
         "uri": "cms\/account\/change-password",
@@ -334,6 +350,58 @@
     {
         "uri": "cms\/mod",
         "name": "mod.index"
+    },
+    {
+        "uri": "cms\/general",
+        "name": "cms.general.index"
+    },
+    {
+        "uri": "cms\/general\/data",
+        "name": "cms.general.data"
+    },
+    {
+        "uri": "cms\/general\/edit",
+        "name": "cms.general.edit"
+    },
+    {
+        "uri": "cms\/general\/store",
+        "name": "cms.general.store"
+    },
+    {
+        "uri": "cms\/about",
+        "name": "cms.about.index"
+    },
+    {
+        "uri": "cms\/about\/data",
+        "name": "cms.about.data"
+    },
+    {
+        "uri": "cms\/about\/edit",
+        "name": "cms.about.edit"
+    },
+    {
+        "uri": "cms\/about\/store",
+        "name": "cms.about.store"
+    },
+    {
+        "uri": "cms\/transaction",
+        "name": "cms.transaction.index"
+    },
+    {
+        "uri": "cms\/transaction\/data",
+        "name": "cms.transaction.data"
+    },
+    {
+        "uri": "cms\/transaction\/search",
+        "name": "cms.transaction.search"
+    },
+    {
+        "uri": "cms\/transaction\/edit",
+        "name": "cms.transaction.edit"
+    },
+    {
+        "uri": "cms\/transaction\/store",
+        "name": "cms.transaction.store"
     },
     {
         "uri": "cms\/news",

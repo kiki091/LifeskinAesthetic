@@ -6,6 +6,28 @@ $router->group(['prefix' => '/mod'], function (Router $router) {
 	$router->get('/', ['as' => 'mod.index', 'uses' => 'TestController@index']);
 });
 
+$router->group(['prefix' => 'general'], function (Router $router) {
+	$router->get('/', ['as' => 'cms.general.index', 'uses' => 'GeneralController@index']);
+	$router->get('/data', ['as' => 'cms.general.data', 'uses' => 'GeneralController@getData']);
+	$router->post('/edit', ['as' => 'cms.general.edit', 'uses' => 'GeneralController@edit']);
+	$router->post('/store', ['as' => 'cms.general.store', 'uses' => 'GeneralController@store']);
+});
+
+$router->group(['prefix' => 'about'], function (Router $router) {
+	$router->get('/', ['as' => 'cms.about.index', 'uses' => 'AboutController@index']);
+	$router->get('/data', ['as' => 'cms.about.data', 'uses' => 'AboutController@getData']);
+	$router->post('/edit', ['as' => 'cms.about.edit', 'uses' => 'AboutController@edit']);
+	$router->post('/store', ['as' => 'cms.about.store', 'uses' => 'AboutController@store']);
+});
+
+$router->group(['prefix' => 'transaction'], function (Router $router) {
+	$router->get('/', ['as' => 'cms.transaction.index', 'uses' => 'TransactionController@index']);
+	$router->get('/data', ['as' => 'cms.transaction.data', 'uses' => 'TransactionController@getData']);
+	$router->post('/search', ['as' => 'cms.transaction.search', 'uses' => 'TransactionController@searchData']);
+	$router->post('/edit', ['as' => 'cms.transaction.edit', 'uses' => 'TransactionController@edit']);
+	$router->post('/store', ['as' => 'cms.transaction.store', 'uses' => 'TransactionController@store']);
+});
+
 $router->group(['prefix' => 'news'], function (Router $router) {
 	$router->get('/', ['as' => 'cms.news.index', 'uses' => 'NewsController@index']);
 	$router->get('/data', ['as' => 'cms.news.data', 'uses' => 'NewsController@getData']);

@@ -11932,6 +11932,7 @@ you can use the generic selector below, but it's slower:
 	content: "\e15d";
 }
 
+
 /*
 
 Template:  The Chondo Hotel - Responsive Multi-purpose HTML5 Template
@@ -12885,7 +12886,7 @@ input, select, textarea {
     font-family: 'proximanova.regular';
     font-size: 14px;
     letter-spacing: 0.3px;
-    width: 320px;
+    width: 280px;
     height: 40px;
     max-width: 100%;
     color: #363636;

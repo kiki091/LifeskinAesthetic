@@ -33,6 +33,7 @@ class Gallery
                 'id'            => isset($data['id']) ? $data['id'] : '',
                 'title'         => isset($data['title']) ? $data['title'] : '',
                 'category'      => isset($data['category']['title']) ? $data['category']['title'] : '',
+                'category_slug' => isset($data['category']['slug']) ? $data['category']['slug'] : '',
                 'thumbnail_url' => isset($data['thumbnail']) ? asset(GALLERY_IMAGES_DIRECTORY.rawurlencode($data['thumbnail'])) : '',
                 'filename_url'  => isset($data['filename']) ? asset(GALLERY_IMAGES_DIRECTORY.rawurlencode($data['filename'])) : '',
             ];

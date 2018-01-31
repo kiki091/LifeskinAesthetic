@@ -2274,7 +2274,7 @@ form .button-inside.show-password a {
 .card .minimize {
   width: 14px;
   height: 14px;
-  background-color: #2C3957;
+  background-color: #75716e;
   position: absolute;
   left: 15px;
   top: 0;
@@ -2577,7 +2577,7 @@ input[type='submit'].btn--primary:hover,
 input[type='submit'].btn--primary2:hover,
 button.btn--primary:hover,
 button.btn--primary2:hover {
-  background: linear-gradient(-180deg, #FC6739 0%, #2C3957 100%);
+  background: linear-gradient(-180deg, #4a261a 0%, #2C3957 100%);
 }
 
 a.btn--primary2, .upload--button,
@@ -3978,15 +3978,15 @@ table .nested td:nth-child(2):before {
 }
 
 .pagination ul li a:hover {
-  color: inherit;
+  color: #FFFFFF;
   border-color: #2C3957;
-  background-color: #2C3957;
+  background-color: #363636;
 }
 
 .pagination ul li.active a {
   color: inherit;
   border-color: #2C3957;
-  background-color: #2C3957;
+  background-color: #ffffff;
   pointer-events: none;
 }
 

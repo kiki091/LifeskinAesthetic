@@ -43,7 +43,7 @@ class Gallery extends BaseImplementation implements GalleryInterface
 
     protected function gallery($params = array(), $orderType = 'asc', $returnType = 'array', $returnSingle = false)
     {
-        $gallery = $this->gallery->with('category');
+        $gallery = $this->gallery->with(['category', 'categorys']);
 
         if(!empty($params['order_by']) && isset($params['order_by'])) {
             $gallery->orderBy($params['order_by'], $orderType);

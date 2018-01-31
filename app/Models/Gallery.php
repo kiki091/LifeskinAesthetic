@@ -28,6 +28,14 @@ class Gallery extends BaseModel
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function categorys()
+    {
+        return $this->hasMany('App\Models\Category', 'id', 'category_id');
+    }
+
+    /**
      * @param $query
      */
     public function scopeId($query, $params)

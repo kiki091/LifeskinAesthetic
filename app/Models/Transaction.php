@@ -4,9 +4,9 @@ namespace App\Models;
 
 use App\Models\BaseModel;
 
-class Cart extends BaseModel
+class Transaction extends BaseModel
 {
-	protected $table = 'cart';
+	protected $table = 'transaction';
     public $timestamps = false;
 
     protected $fillable = [
@@ -23,7 +23,7 @@ class Cart extends BaseModel
      */
     public function detail()
     {
-        return $this->belongsTo('App\Models\CartDetail', 'id', 'cart_id');
+        return $this->belongsTo('App\Models\TransactionDetail', 'id', 'transaction_id')->with('package');
     }
 
     /**

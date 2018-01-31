@@ -26,4 +26,11 @@ interface Transaction
      */
     public function edit($params);
 
+    
+    /**
+     * @param $params
+     * @return mixed
+     */
+    public function search($params);
+
 }

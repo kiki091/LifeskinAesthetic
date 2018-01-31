@@ -6,8 +6,8 @@ use App\Repositories\Implementation\BaseImplementation;
 use App\Repositories\Contracts\Front\Booking as BookingInterface;
 use App\Models\Package as PackageModels;
 use App\Models\Product as ProductModels;
-use App\Models\Cart as CartModels;
-use App\Models\CartDetail as CartDetailModels;
+use App\Models\Transaction as TransactionModels;
+use App\Models\TransactionDetail as TransactionDetailModels;
 use App\Services\Mail\MailSender as MailService;
 use App\Services\Transformation\Front\Booking as BookingTransformation;
 use App\Custom\DataHelper;
@@ -21,7 +21,7 @@ class Booking extends BaseImplementation implements BookingInterface
 {
     protected $package;
     protected $product;
-    protected $booking;
+    protected $transaction;
     protected $adminEmail;
     protected $mailService;
     protected $lastInsertId;
@@ -29,10 +29,10 @@ class Booking extends BaseImplementation implements BookingInterface
     protected $bookingTransformation;
     const ADMIN_EMAIL = 'no-reply@thelifskynclinic.com';
 
-    function __construct(CartModels $booking, PackageModels $package, BookingTransformation $bookingTransformation, MailService $mailService)
+    function __construct(TransactionModels $transaction, PackageModels $package, BookingTransformation $bookingTransformation, MailService $mailService)
     {
     	$this->package = $package;
-        $this->booking = $booking;
+        $this->transaction = $transaction;
         $this->mailService  = $mailService;
         $this->bookingTransformation = $bookingTransformation;
         $this->adminEmail = (null !== config('mail.admin')) ? config('mail.admin') : self::ADMIN_EMAIL;
@@ -55,7 +55,7 @@ class Booking extends BaseImplementation implements BookingInterface
 
         $objData = $this->bookingTransformation->getDataBookingTransform($packageData, $userData);
 
-        $finalData = $this->booking->orderBy('created_at', 'asc')->with('member')->whereHas('detail', function($obj) use($data)
+        $finalData = $this->transaction->where('status', 0)->orderBy('created_at', 'asc')->with('member')->whereHas('detail', function($obj) use($data)
     	{
     		$obj->where('package_id', $data['data']['package_id']);
     		$obj->where('book_date', $data['data']['book_date']);
@@ -70,14 +70,14 @@ class Booking extends BaseImplementation implements BookingInterface
 
             DB::beginTransaction();
 
-            if(!$this->storeCart($objData))
+            if(!$this->storeTransaction($objData))
             {
 
                 DB::rollBack();
                 return $this->setResponse($this->message, false);
             }
 
-            if(!$this->storeCartDetail($data, $packageData))
+            if(!$this->storeTransactionDetail($data, $packageData))
             {
 
                 DB::rollBack();
@@ -97,14 +97,14 @@ class Booking extends BaseImplementation implements BookingInterface
 
     }
 
-    protected function storeCart($objData)
+    protected function storeTransaction($objData)
     {
         try {
 
-            $storeObj 					= new CartModels;
-            $storeObj->registrasi_id   	= str_shuffle(date('YY-mm-dd'));
+            $storeObj 					= new TransactionModels;
+            $storeObj->registrasi_id   	= str_shuffle(date('YYmmdd'));
             $storeObj->member_id       	= DataHelper::memberId();
-            $storeObj->status          	= true;
+            $storeObj->status          	= false;
             $storeObj->created_at     	= Carbon::now();
             $storeObj->updated_at     	= Carbon::now();
 
@@ -122,13 +122,13 @@ class Booking extends BaseImplementation implements BookingInterface
         }
     }
 
-    protected function storeCartDetail($data, $packageData)
+    protected function storeTransactionDetail($data, $packageData)
     {
         try {
 
-            $storeObj = new CartDetailModels;
+            $storeObj = new TransactionDetailModels;
 
-            $storeObj->cart_id        = $this->lastInsertId;
+            $storeObj->transaction_id        = $this->lastInsertId;
             $storeObj->package_id     = $data['data']['package_id'];
             $storeObj->book_date      = $data['data']['book_date'];
             $storeObj->price          = $packageData['price'];
@@ -177,36 +177,36 @@ class Booking extends BaseImplementation implements BookingInterface
      * @return array
      */
 
-    protected function booking($params = array(), $orderType = 'asc', $returnType = 'array', $returnSingle = false)
+    protected function transaction($params = array(), $orderType = 'asc', $returnType = 'array', $returnSingle = false)
     {
-        $booking = $this->booking->with('detail');
+        $transaction = $this->transaction->with('detail');
 
         if(isset($params['package_id'])) {
-            $booking->with('detail', function($q) use($params) 
+            $transaction->with('detail', function($q) use($params) 
             	{
             		$q->where('package_id', $params['package_id']);
             	});
         }
 
         if(isset($params['check_date'])) {
-            $booking->with('detail', function($q) use($params) 
+            $transaction->with('detail', function($q) use($params) 
             	{
             		$q->where('book_date', $params['check_date']);
             	});
         }
 
-        if(!$booking->count())
+        if(!$transaction->count())
             return array();
 
         switch ($returnType) {
             case 'array':
                 if(!$returnSingle) 
                 {
-                    return $booking->get()->toArray();
+                    return $transaction->get()->toArray();
                 } 
                 else 
                 {
-                    return $booking->first()->toArray();
+                    return $transaction->first()->toArray();
                 }
 
             break;

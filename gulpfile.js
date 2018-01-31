@@ -54,6 +54,7 @@ elixir(function(mix) {
         'pnotify/dist/pnotify.js',
         'sortable/sortable.js',
         'sweetalert/dist/sweetalert-dev.js',
+        'underscore/underscore-min.js',
         'toastr/toastr.js'
     ], 'public/js/plugins.js', bowerDir);
 

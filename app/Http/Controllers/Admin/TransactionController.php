@@ -53,7 +53,14 @@ class TransactionController extends CmsController
     
     public function getData(Request $request)
     {
-        $data['main_banner'] = $this->mainBanner->getData();
+        $data['transaction'] = $this->transaction->getData();
+        
+        return $this->response->setResponse(trans('success_get_data'), true, $data);
+    }
+
+    public function searchData(Request $request)
+    {
+        $data['transaction'] = $this->transaction->getData(['registrasi_id' => $request['registrasi_id'], 'member_id' => $request['member_id'], 'transaction_date' => $request['transaction_date'], 'status' => $request['status']]);
         
         return $this->response->setResponse(trans('success_get_data'), true, $data);
     }
@@ -65,17 +72,7 @@ class TransactionController extends CmsController
     
     public function edit(Request $request)
     {
-        return $this->mainBanner->edit($request->except(['_token']));
-    }
-
-    /**
-     * Delete Transaction
-     * @param $request
-     */
-    
-    public function delete(Request $request)
-    {
-        return $this->mainBanner->delete($request->except(['_token']));
+        return $this->transaction->edit($request->except(['_token']));
     }
 
     /**

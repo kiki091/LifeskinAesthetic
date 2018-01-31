@@ -5,3 +5,6 @@ window.product = require('./pages/product');
 window.package_product = require('./pages/package_product');
 window.gallery = require('./pages/gallery');
 window.main_banner = require('./pages/main_banner');
+window.general = require('./pages/general');
+window.about = require('./pages/about');
+window.transaction = require('./pages/transaction');

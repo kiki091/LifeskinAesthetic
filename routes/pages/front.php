@@ -62,6 +62,10 @@ Route::group(['middleware' => ['web']], function ()
 		Route::group(array('prefix' => 'booking'), function () {
 			Route::post('/store', 'Front\BookingController@store')->name('PackageBooking');
 		});
+
+		Route::group(array('prefix' => 'gallery'), function () {
+			Route::get('/', 'Front\GalleryController@index')->name('GalleryPage');
+		});
 	});
 
 });

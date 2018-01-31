@@ -137,6 +137,20 @@ class GalleryController extends CmsController
             'thumbnail'         => 'required|dimensions:width='.THUMBNAIL_GALLERY_IMAGES_WIDTH.',height='.THUMBNAIL_GALLERY_IMAGES_HEIGHT.'|max:'. MAX_IMAGES_SIZE .'|mimes:jpeg,jpg,png',
             'filename'          => 'required|dimensions:width='.GALLERY_IMAGES_WIDTH.',height='.GALLERY_IMAGES_HEIGHT.'|max:'. MAX_IMAGES_SIZE .'|mimes:jpeg,jpg,png',
         ];
+
+        if ($this->isEditMode($request->input())) {
+
+            if (is_null($request->file('thumbnail'))) {
+                unset($rules['thumbnail']);
+            }
+        }
+
+        if ($this->isEditMode($request->input())) {
+
+            if (is_null($request->file('filename'))) {
+                unset($rules['filename']);
+            }
+        }
         
         return $rules;
     }

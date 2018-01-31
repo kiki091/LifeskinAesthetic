@@ -91,18 +91,17 @@
                                             {!! $package_data['description'] !!}
                                         </div>
                                         <ul class="product-action">
-
-                                            <li>
-                                                <input id="dp-5-{{$key_package+1}}" data-idx="{{$key_package+1}}" id="book_date_{{$key_package+1}}" name="book_date" class="datepicker-here dp-5" />
-                                                {{ csrf_field() }}
-                                            </li>
                                             @if (Auth::guard('member')->check())
                                                 <li>
-                                                    <a href="javascript:void();" onclick="bookData('{{$package_data['id']}}')" class="add-to-cart" id="add-to-cart-{{$key_package+1}}" data-idx="{{$key_package+1}}">Book now</a>
+                                                    <input id="dp-5-{{$key_package+1}}" data-idx="{{$key_package+1}}" id="book_date_{{$key_package+1}}" name="book_date" class="datepicker-here dp-5" />
+                                                    {{ csrf_field() }}
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void();" onclick="bookData('{{ $package_data['id'] }}')" class="add-to-cart" id="add-to-cart-{{ $package_data['id'] }}" data-idx="{{ $package_data['id'] }}">Book now</a>
                                                 </li>
                                             @else
                                                 <li class="nav-menu"><a href="#top" class="cd-signin add-to-cart">Book now</a></li>
-                                            @endif
+                                                @endif
 
                                         </ul>
                                     </div>
@@ -141,7 +140,8 @@
 
     function bookData(param)
     {
-        var button_index = $('.add-to-cart').attr('data-idx')
+        var button_index = param
+        console.log(button_index)
         $('#add-to-cart-'+button_index).prop('disabled', true)
         $('#add-to-cart-'+button_index).text('Please wait ...')
 

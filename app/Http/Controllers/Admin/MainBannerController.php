@@ -129,6 +129,13 @@ class MainBannerController extends CmsController
             'introduction'      => 'required',
             'filename'          => 'required|dimensions:width='.MAIN_BANNER_IMAGES_WIDTH.',height='.MAIN_BANNER_IMAGES_HEIGHT.'|max:'. MAX_IMAGES_SIZE .'|mimes:jpeg,jpg,png',
         ];
+
+        if ($this->isEditMode($request->input())) {
+
+            if (is_null($request->file('filename'))) {
+                unset($rules['filename']);
+            }
+        }
         
         return $rules;
     }

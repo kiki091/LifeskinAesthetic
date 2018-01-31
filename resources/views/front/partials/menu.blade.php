@@ -24,7 +24,7 @@
                                     <a href="{{ route('NewsPage') }}">News</a>
                                 </li>
                                 <li>
-                                    <a href="#">Gallery</a>
+                                    <a href="{{ route('GalleryPage') }}">Gallery</a>
                                 </li>
                                 @if (!Auth::guard('member')->check())
                                 <li>
@@ -61,7 +61,7 @@
                             <a href="{{ route('NewsPage') }}">News</a>
                         </li>
                         <li>
-                            <a href="#">Gallery</a>
+                            <a href="{{ route('GalleryPage') }}">Gallery</a>
                         </li>
 
                         @if (!Auth::guard('member')->check())

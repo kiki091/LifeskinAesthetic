@@ -4,9 +4,9 @@ namespace App\Models;
 
 use App\Models\BaseModel;
 
-class CartDetail extends BaseModel
+class TransactionDetail extends BaseModel
 {
-	protected $table = 'cart_detail';
+	protected $table = 'transaction_detail';
     public $timestamps = false;
 
     protected $fillable = [
@@ -19,6 +19,15 @@ class CartDetail extends BaseModel
     ];
 
     protected $guarded = [];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
+     */
+    public function package()
+    {
+        return $this->belongsTo('App\Models\Package', 'package_id', 'id');
+    }
+
 
     /**
      * @param $query

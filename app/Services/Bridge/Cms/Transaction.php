@@ -40,5 +40,14 @@ class Transaction
         return $this->transaction->edit($params);
     }
 
+    /**
+     * @param $params
+     * @return mixed
+     */
+    public function search($params = [])
+    {
+        return $this->transaction->search($params);
+    }
+
 
 }
