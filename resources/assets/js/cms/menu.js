@@ -8,3 +8,4 @@ window.main_banner = require('./pages/main_banner');
 window.general = require('./pages/general');
 window.about = require('./pages/about');
 window.transaction = require('./pages/transaction');
+window.treatment = require('./pages/treatment');

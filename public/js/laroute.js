@@ -104,6 +104,14 @@
         "name": "GalleryPage"
     },
     {
+        "uri": "treatment",
+        "name": "TreatmentPage"
+    },
+    {
+        "uri": "treatment\/{slug}",
+        "name": "TreatmentPageDetail"
+    },
+    {
         "uri": "cms\/account\/change-password",
         "name": "facile.changepassword"
     },
@@ -542,6 +550,26 @@
     {
         "uri": "cms\/banner\/delete",
         "name": "cms.main_banner.delete"
+    },
+    {
+        "uri": "cms\/treatment",
+        "name": "cms.treatment.index"
+    },
+    {
+        "uri": "cms\/treatment\/data",
+        "name": "cms.treatment.data"
+    },
+    {
+        "uri": "cms\/treatment\/edit",
+        "name": "cms.treatment.edit"
+    },
+    {
+        "uri": "cms\/treatment\/store",
+        "name": "cms.treatment.store"
+    },
+    {
+        "uri": "cms\/treatment\/delete",
+        "name": "cms.treatment.delete"
     },
     {
         "uri": "cms\/core",

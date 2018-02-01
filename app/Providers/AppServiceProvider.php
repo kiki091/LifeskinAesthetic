@@ -61,6 +61,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind('App\Repositories\Contracts\Cms\General', 'App\Repositories\Implementation\Cms\General');
         $this->app->bind('App\Repositories\Contracts\Cms\About', 'App\Repositories\Implementation\Cms\About');
         $this->app->bind('App\Repositories\Contracts\Cms\Transaction', 'App\Repositories\Implementation\Cms\Transaction');
+        $this->app->bind('App\Repositories\Contracts\Cms\Treatment', 'App\Repositories\Implementation\Cms\Treatment');
     }
 
     /**
@@ -100,6 +101,7 @@ class AppServiceProvider extends ServiceProvider
             'App\Repositories\Contracts\Cms\General',
             'App\Repositories\Contracts\Cms\About',
             'App\Repositories\Contracts\Cms\Transaction',
+            'App\Repositories\Contracts\Cms\Treatment',
         );
     }
 }

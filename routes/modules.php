@@ -83,3 +83,11 @@ $router->group(['prefix' => 'banner'], function (Router $router) {
 	$router->post('/store', ['as' => 'cms.main_banner.store', 'uses' => 'MainBannerController@store']);
 	$router->post('/delete', ['as' => 'cms.main_banner.delete', 'uses' => 'MainBannerController@delete']);
 });
+
+$router->group(['prefix' => 'treatment'], function (Router $router) {
+	$router->get('/', ['as' => 'cms.treatment.index', 'uses' => 'TreatmentController@index']);
+	$router->get('/data', ['as' => 'cms.treatment.data', 'uses' => 'TreatmentController@getData']);
+	$router->post('/edit', ['as' => 'cms.treatment.edit', 'uses' => 'TreatmentController@edit']);
+	$router->post('/store', ['as' => 'cms.treatment.store', 'uses' => 'TreatmentController@store']);
+	$router->post('/delete', ['as' => 'cms.treatment.delete', 'uses' => 'TreatmentController@delete']);
+});

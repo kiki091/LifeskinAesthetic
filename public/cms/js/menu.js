@@ -10061,8 +10061,9 @@ window.main_banner = require('./pages/main_banner');
 window.general = require('./pages/general');
 window.about = require('./pages/about');
 window.transaction = require('./pages/transaction');
+window.treatment = require('./pages/treatment');
 
-},{"./pages/about":79,"./pages/category":80,"./pages/gallery":81,"./pages/general":82,"./pages/main_banner":83,"./pages/news":84,"./pages/package_product":85,"./pages/product":86,"./pages/sub_category":87,"./pages/transaction":88}],79:[function(require,module,exports){
+},{"./pages/about":79,"./pages/category":80,"./pages/gallery":81,"./pages/general":82,"./pages/main_banner":83,"./pages/news":84,"./pages/package_product":85,"./pages/product":86,"./pages/sub_category":87,"./pages/transaction":88,"./pages/treatment":89}],79:[function(require,module,exports){
 'use strict';
 
 var _text = require('../../../../../Themes/Admin/resources/assets/js/views/components/text.vue');
@@ -12431,6 +12432,257 @@ module.exports = function transaction() {
         }
     });
 };
+
+},{"../../../../../Themes/Admin/resources/assets/js/views/components/chosen.vue":2,"../../../../../Themes/Admin/resources/assets/js/views/components/ckeditor.vue":3,"../../../../../Themes/Admin/resources/assets/js/views/components/datepicker.vue":4,"../../../../../Themes/Admin/resources/assets/js/views/components/singleimage.vue":5,"../../../../../Themes/Admin/resources/assets/js/views/components/text.vue":6}],89:[function(require,module,exports){
+'use strict';
+
+var _text = require('../../../../../Themes/Admin/resources/assets/js/views/components/text.vue');
+
+var _text2 = _interopRequireDefault(_text);
+
+var _chosen = require('../../../../../Themes/Admin/resources/assets/js/views/components/chosen.vue');
+
+var _chosen2 = _interopRequireDefault(_chosen);
+
+var _singleimage = require('../../../../../Themes/Admin/resources/assets/js/views/components/singleimage.vue');
+
+var _singleimage2 = _interopRequireDefault(_singleimage);
+
+var _ckeditor = require('../../../../../Themes/Admin/resources/assets/js/views/components/ckeditor.vue');
+
+var _ckeditor2 = _interopRequireDefault(_ckeditor);
+
+var _datepicker = require('../../../../../Themes/Admin/resources/assets/js/views/components/datepicker.vue');
+
+var _datepicker2 = _interopRequireDefault(_datepicker);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = function treatment() {
+
+    var split_url = facile.href_url.split('#');
+    var identifier_url = split_url[1];
+    var dimension = facile.dimension;
+
+    var controller = new Vue({
+        el: '#template_treatment',
+        data: {
+            models: {
+                id: '',
+                title: '',
+                category_id: '',
+                description: '',
+                price: '',
+                meta_title: '',
+                meta_keyword: '',
+                meta_description: ''
+            },
+            data: {},
+
+            thumbnail: {
+                image_url: ''
+            },
+
+            filename: {
+                image_url: ''
+            },
+
+            list_category: {},
+            category_selector: '',
+
+            supported_language: facile.supported_language,
+            current_language: facile.current_language,
+            last_language_key: '',
+            identifier: identifier_url,
+            formTitle: 'Add Treatment',
+            edit: false
+        },
+
+        components: {
+            Ftext: _text2.default, Fchosen: _chosen2.default, Fimage: _singleimage2.default, Ftexteditor: _ckeditor2.default, Fdate: _datepicker2.default
+        },
+
+        watch: {},
+
+        methods: {
+
+            fetchData: function fetchData() {
+                var domain = laroute.route('cms.treatment.data', []);
+                var vm = this;
+                this.$http.get(domain).then(function (response) {
+                    if (response.data.status == true) {
+                        vm.data = response.data.data.treatment;
+                        vm.list_category = response.data.data.category;
+                    } else {
+                        notify({ type: 'error' });
+                    }
+                });
+            },
+
+            editData: function editData(id) {
+
+                var vm = this;
+                var form = new FormData();
+                var payload = [];
+                payload['id'] = id;
+
+                form.append('_token', facile.token);
+                for (var key in payload) {
+                    form.append(key, payload[key]);
+                }
+
+                this.edit = true;
+                var domain = laroute.route('cms.treatment.edit', []);
+
+                this.$http.post(domain, form).then(function (response) {
+                    response = response.data;
+                    this.models = response.data;
+                    this.category_selector = response.data.category_id;
+                    this.thumbnail.image_url = response.data.thumbnail_url;
+                    this.filename.image_url = response.data.filename_url;
+                    $("#select-category").val(response.data.category_id).trigger("change");
+                });
+
+                this.prepareImage();
+                $('#toggle-open-content').slideDown('swing');
+            },
+
+            deleteData: function deleteData(id) {
+
+                var payload = [];
+                payload['id'] = id;
+                payload['_token'] = facile.token;
+
+                var form = new FormData();
+
+                for (var key in payload) {
+                    form.append(key, payload[key]);
+                }
+
+                var domain = laroute.route('cms.treatment.delete', []);
+                this.$http.post(domain, form).then(function (response) {
+                    response = response.data;
+                    if (response.status == false) {
+                        this.fetchData();
+                        notify({ type: 'error', message: response.message });
+                    } else {
+                        this.fetchData();
+                        notify({ type: 'success' });
+                    }
+                });
+            },
+
+            saveData: function saveData() {
+                var vm = this;
+                //var progressbar = $('.progress-label')
+                var optForm = {
+                    dataType: "json",
+                    beforeSend: function beforeSend() {
+                        vm.clearErrorMessage();
+                    },
+                    success: function success(response) {
+                        if (response.status == false) {
+                            if (response.is_error_form_validation) {
+
+                                var message_validation = '';
+                                $.each(response.message, function (key, value) {
+                                    $('input[name="' + key.replace(".", "_") + '"]').focus();
+                                    $('.field-' + key).addClass('has-error');
+                                    $(".label-" + key.replace(".", "_")).text(value);
+                                });
+                                notify({ type: 'error', message: response.message });
+                            } else {
+                                notify({ type: 'error', message: response.message });
+                            }
+                        } else {
+                            vm.fetchData();
+                            notify({ type: 'success' });
+                            $('.close-toggle').click();
+                            vm.resetForm();
+                            vm.clearErrorMessage();
+                        }
+                    },
+                    complete: function complete(response) {
+                        //hideLoading()
+                    }
+
+                };
+                $("#form-treatment").ajaxForm(optForm);
+                $("#form-treatment").submit();
+            },
+
+            resetForm: function resetForm() {
+
+                this.models.id = '';
+                this.models.title = '';
+                this.models.category_id = '';
+                this.models.description = '';
+                this.models.price = '';
+                this.models.meta_title = '';
+                this.models.meta_keyword = '';
+                this.models.meta_description = '';
+
+                this.models.thumbnail_url = '';
+                this.models.filename_url = '';
+
+                this.thumbnail.image_url = '';
+                this.filename.image_url = '';
+
+                this.$refs.thumbnail[0].clearImage();
+                this.$refs.filename[0].clearImage();
+
+                this.edit = false;
+                this.category_selector = '';
+
+                $("#select-category").val('').trigger("change");
+                this.prepareImage();
+            },
+
+            prepareImage: function prepareImage() {
+                this.thumbnail.options = {
+                    "width": dimension.TREATMENT_THUMBNAIL_IMAGES_WIDTH,
+                    "height": dimension.TREATMENT_THUMBNAIL_IMAGES_HEIGHT,
+                    "size": dimension.MAX_IMAGES_SIZE
+                };
+                this.filename.options = {
+                    "width": dimension.TREATMENT_DETAIL_IMAGES_WIDTH,
+                    "height": dimension.TREATMENT_DETAIL_IMAGES_HEIGHT,
+                    "size": dimension.MAX_IMAGES_SIZE
+                };
+            },
+
+            showElementByDefaultLang: function showElementByDefaultLang(langEn) {
+                return this.current_language == langEn;
+            },
+
+            changeButton: function changeButton() {
+                this.edit = false;
+                this.resetForm();
+                this.clearErrorMessage();
+            },
+
+            clearErrorMessage: function clearErrorMessage() {
+                $(".field").removeClass('has-error');
+                $(".s9").text('');
+            },
+
+            showDeleteForm: function showDeleteForm(id) {
+                facileApp.showConfirmBox('delete', { 'id': id });
+            }
+
+        },
+        mounted: function mounted() {
+            var _this = this;
+
+            wizardSlide();
+            this.fetchData();
+            this.prepareImage();
+            Events.$on('deleteData', function (id) {
+                _this.deleteData(id);
+            });
+        }
+    });
+}; /* http://vuejs.org/guide/ */
 
 },{"../../../../../Themes/Admin/resources/assets/js/views/components/chosen.vue":2,"../../../../../Themes/Admin/resources/assets/js/views/components/ckeditor.vue":3,"../../../../../Themes/Admin/resources/assets/js/views/components/datepicker.vue":4,"../../../../../Themes/Admin/resources/assets/js/views/components/singleimage.vue":5,"../../../../../Themes/Admin/resources/assets/js/views/components/text.vue":6}]},{},[78]);
 
