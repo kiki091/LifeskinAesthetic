@@ -21,6 +21,9 @@
                                     <a href="{{ route('ProductPage') }}">Product List</a>
                                 </li>
                                 <li>
+                                    <a href="{{ route('TreatmentPage') }}">Treatment</a>
+                                </li>
+                                <li>
                                     <a href="{{ route('NewsPage') }}">News</a>
                                 </li>
                                 <li>
@@ -56,6 +59,9 @@
                         </li>
                         <li>
                             <a href="{{ route('ProductPage') }}">Product List</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('TreatmentPage') }}">Treatment</a>
                         </li>
                         <li>
                             <a href="{{ route('NewsPage') }}">News</a>

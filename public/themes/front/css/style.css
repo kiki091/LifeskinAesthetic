@@ -2078,7 +2078,7 @@ ul.product-action li:hover i {
   width: 65%;
 }
 .shop-product-list .single-product-info {
-  border-left: 1px solid #dddddd;
+  /*border-left: 1px solid #dddddd;*/
   padding-top: 30px;
   padding-bottom: 30px;
 }

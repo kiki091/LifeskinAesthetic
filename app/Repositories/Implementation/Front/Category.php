@@ -21,11 +21,12 @@ class Category extends BaseImplementation implements CategoryInterface
         $this->categoryTransformation = $categoryTransformation;
     }
 
-    public function getData($params)
+    public function getData($data)
     {
         
         $params = [
-            "order_by" => 'updated_at',
+            "order_by"      => 'updated_at',
+            "category_type" => isset($data['category_type']) ? $data['category_type'] : '',
         ];
 
         $categoryData = $this->category($params, 'desc', 'array', false);
@@ -50,6 +51,12 @@ class Category extends BaseImplementation implements CategoryInterface
 
         if(isset($params['order_by'])) {
             $category->orderBy($params['order_by'], $orderType);
+        }
+
+        if(isset($params['category_type']) && !empty($params['category_type'])) {
+            $category->where('type', $params['category_type']);
+        } else {
+            $category->where('type', 'product');
         }
 
         if(!$category->count())

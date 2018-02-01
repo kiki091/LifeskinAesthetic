@@ -47,6 +47,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind('App\Repositories\Contracts\Front\Package', 'App\Repositories\Implementation\Front\Package');
         $this->app->bind('App\Repositories\Contracts\Front\News', 'App\Repositories\Implementation\Front\News');
         $this->app->bind('App\Repositories\Contracts\Front\Booking', 'App\Repositories\Implementation\Front\Booking');
+        $this->app->bind('App\Repositories\Contracts\Front\Treatment', 'App\Repositories\Implementation\Front\Treatment');
 
         // CMS
 
@@ -85,6 +86,7 @@ class AppServiceProvider extends ServiceProvider
             'App\Repositories\Contracts\Front\Package',
             'App\Repositories\Contracts\Front\Booking',
             'App\Repositories\Contracts\Front\News',
+            'App\Repositories\Contracts\Front\Treatment',
 
             // CMS
 

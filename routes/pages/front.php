@@ -66,6 +66,11 @@ Route::group(['middleware' => ['web']], function ()
 		Route::group(array('prefix' => 'gallery'), function () {
 			Route::get('/', 'Front\GalleryController@index')->name('GalleryPage');
 		});
+
+		Route::group(array('prefix' => 'treatment'), function () {
+			Route::get('/', 'Front\TreatmentController@index')->name('TreatmentPage');
+			Route::get('/{slug}', 'Front\TreatmentController@detail')->name('TreatmentPageDetail');
+		});
 	});
 
 });

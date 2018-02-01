@@ -18,7 +18,7 @@
 <meta Http-Equiv="Pragma" Content="no-cache">
 <meta Http-Equiv="Expires" Content="0">
 <!-- OG CONTENT -->
-<meta property="og:url" content="http://www.lifeskin.com/" />
+<meta property="og:url" content="http://thelifskynclinic.com/" />
 <meta property="og:title" content="{{ $web_information['og_title'] or '' }}" />
 <meta property="og:description" content="{{ $web_information['og_description'] or '' }}" />
 <meta property="og:image" content="{{ $web_information['og_images'] or '' }}" />

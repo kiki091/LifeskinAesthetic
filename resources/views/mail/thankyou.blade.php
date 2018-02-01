@@ -62,7 +62,6 @@
                               <th class="th_number">Number</th>
                               <th class="th_email">Fullname</th>
                               <th class="th_email">Email</th>
-                              <th class="th_email">Booking Date</th>
                           </tr>
                           @php
                             $i = 1;
@@ -75,7 +74,6 @@
                                 {{ $user_avability['member']['last_name'] }}
                               </td>
                               <td>{{ $user_avability['member']['email'] }}</td>
-                              <td>{{ $user_avability['member']['phone_number'] }}</td>
                           </tr>
                           @endforeach
                       </table>
