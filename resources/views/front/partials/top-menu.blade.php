@@ -22,12 +22,6 @@
                         </div>
                         <!-- Mini Cart -->
                         <div class="mini-cart-box right">
-                            <div class="mini-cart-product fix">
-                                <a href="#" class="image"></a>
-                                <div class="content fix">
-                                    <a href="#" class="title">Change Password</a>
-                                </div>
-                            </div>
                             <div class="mini-cart-checkout text-center">
                                 <a href="{{ route('LogoutMember') }}">Logout</a>
                             </div>
