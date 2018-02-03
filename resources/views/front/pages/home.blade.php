@@ -62,7 +62,7 @@
                             <h1 class="col__title spacing0">
                                 {{ $about_data['section_one_title'] or '' }}
                             </h1>
-                            <a href="#" class="btn--box__small">MORE</a>
+                            <a href="{{ route('AboutPage') }}" class="btn--box__small">MORE</a>
                         </div>                      
                     </div>
                 </div>
