@@ -93,6 +93,44 @@ class Transaction extends BaseImplementation implements TransactionInterface
 
 
     /**
+     * Change Status Transaction
+     * @param $data
+     * @return array
+     */
+
+    public function changeStatus($data)
+    {
+        try {
+            if (!isset($data['id']) && empty($data['id'])) {
+                return $this->setResponse('Id required', false);
+            }
+
+            DB::beginTransaction();
+
+            $oldData = $this->transaction->firstOrNew(['id' => $data['id']]);
+
+            $updatedData = [
+                'status' => isset($data['status']) ? $data['status'] : false,
+            ];
+
+            $changeStatus = $this->transaction
+                ->where('id', $data['id'])
+                ->update($updatedData);
+
+            if($changeStatus) {
+                DB::commit();
+                return $this->setResponse('Success change status', true);
+            }
+
+            DB::rollBack();
+            return $this->setResponse('Failed change status', false);
+
+        } catch (\Exception $e) {
+            return $this->setResponse($e->getMessage(), false);
+        }
+    }
+
+    /**
      * Get All Data Transaction
      * Warning: this function doesn't redis cache
      * @param array $params

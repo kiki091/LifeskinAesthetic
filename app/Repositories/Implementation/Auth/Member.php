@@ -54,12 +54,7 @@ class Member extends BaseImplementation implements MemberInterface
 
         $userId = !empty($userInfo) && isset($userInfo['id']) ?  $userInfo['id'] : '';
 
-        $params = [
-            'id' => $userId,
-            'is_active' => true,
-        ];
-
-        $userData = $this->member($params, 'asc', 'array', true);
+        $userData = MemberModels::where('id', $userId)->where('is_active', true)->first()->toArray();
 
         if(empty($userData))
             return false;

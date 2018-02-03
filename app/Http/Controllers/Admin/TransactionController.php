@@ -76,6 +76,16 @@ class TransactionController extends CmsController
     }
 
     /**
+     * Edit Transaction
+     * @param $request
+     */
+    
+    public function changeStatus(Request $request)
+    {
+        return $this->transaction->changeStatus($request->except(['_token']));
+    }
+
+    /**
      * Store Data Transaction
      * @param $request
      */

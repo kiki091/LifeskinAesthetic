@@ -149,7 +149,7 @@
 
             type: 'POST',
             url: url,
-            data: {package_id: param, book_date: book_date, _token: token},
+            data: {package_id: param, book_date: book_date, type:'package', _token: token},
         })
         .done(function(response) {
             

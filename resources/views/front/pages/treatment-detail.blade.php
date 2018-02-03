@@ -16,16 +16,33 @@
         <div class="row">
             <div class="col-md-9 col-sm-12 col-xs-12">
                 <div class="blog-left-sidebar">
-                    <article class="articles-details">
+                    <article class="articles-details" style="margin-bottom: 10px">
                         <div class="article-thumbnail">
                             <img src="{{ $treatment_data['filename_url'] }} " alt="{{ $treatment_data['title'] }} ">
-                        </div>
+                        </div> 
                         <div class="article-desc">
                             <div class="article-title">
                                 <h3>{{ $treatment_data['title'] }}</h3>
+                                <hr/>
+                                <h6>ONLY : IDR {{$treatment_data['price']}}</h6>
                             </div>
                             <div class="article-text">
                                 {!! $treatment_data['description'] !!}
+                                
+                                <ul class="product-action">
+                                    @if (Auth::guard('member')->check())
+                                        <li style="float: right;">
+                                            <a href="javascript:void();" onclick="bookData('{{ $treatment_data['id'] }}')" class="add-to-cart" id="add-to-cart-{{ $treatment_data['id'] }}" data-idx="{{ $treatment_data['id'] }}">Book now</a>
+                                        </li>
+                                        <li style="float: right;">
+                                            <input id="dp-5-{{$treatment_data['id']}}" data-idx="{{$treatment_data['id']}}" id="book_date_{{$treatment_data['id']}}" name="book_date" class="datepicker-here dp-5 form-control" />
+                                            {{ csrf_field() }}
+                                        </li>
+                                    @else
+                                        <li style="float: right;" class="nav-menu"><a href="#top" class="cd-signin add-to-cart">Book now</a></li>
+                                    @endif
+
+                                </ul>
                             </div>
                         </div>
                         @if(isset($gallery_data) && !empty($gallery_data))
@@ -57,7 +74,7 @@
             <div class="col-md-3 col-sm-12 col-xs-12">
                 
                 @if(isset($treatment_recent) && !empty($treatment_recent))
-                <aside class="widget mb-30 grey-bg">
+                <aside class="widget mb-30 grey-bg hidden-sm hidden-xs">
                     <div class="widget-title">
                         <h3>recent treatment</h3>
                     </div>
@@ -84,7 +101,7 @@
                 </aside>
                 @endif
 
-                <aside class="widget offer mb-30 hidden-sm">
+                <aside class="widget offer mb-30 hidden-sm hidden-xs">
                     <div class="widget-offer-discount">
                         <div class="widget-img">
                             <img src="{{ asset('themes/front/images/blog/wiget-discount.jpg') }}" alt="">
@@ -102,4 +119,68 @@
     </div>
 </div>
 <!--Our blog detalis end-->
+@endsection
+
+@section('scripts')
+<script type="text/javascript">
+
+    var book_date = "";
+    var token = $('input[name="_token"]').val();
+    var url = "{{ route('PackageBooking') }}"
+
+    $('.dp-5').datepicker({
+        language: 'en',
+        minDate: new Date(),
+        dateFormat: 'yyyy-mm-dd',
+        autoClose: true,
+        onSelect: function (fd) {
+            book_date = fd
+
+        }
+    })
+
+    function bookData(param)
+    {
+        var button_index = param
+        console.log(button_index)
+        $('#add-to-cart-'+button_index).prop('disabled', true)
+        $('#add-to-cart-'+button_index).text('Please wait ...')
+
+        $.ajax({
+
+            type: 'POST',
+            url: url,
+            data: {package_id: param, book_date: book_date, type:'treatment', _token: token},
+        })
+        .done(function(response) {
+            
+            $('#add-to-cart-'+button_index).prop('disabled', false)
+            $('#add-to-cart-'+button_index).text('Book now')
+
+            if(response.status == false)
+            {
+                $.each(response.message, function(v, k){
+                    toastr.error(k[0], {timeOut: 5000})
+                })
+                
+            } else {
+                $('#dp-5-'+button_index).val('')
+                $('#dp-5-'+button_index).text('')
+                book_date = ''
+                toastr.success(response.message, {timeOut: 5000})
+            }
+            
+        })
+        .fail(function(response) {
+            
+            $('#add-to-cart-'+button_index).prop('disabled', false)
+            $('#add-to-cart-'+button_index).text('Book now')
+
+            $('#dp-5-'+button_index).val('')
+            $('#dp-5-'+button_index).text('')
+            book_date = ''
+            toastr.error('server not responding...', {timeOut: 5000})
+        })
+    }
+</script>
 @endsection

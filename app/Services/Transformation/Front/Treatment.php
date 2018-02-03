@@ -67,6 +67,7 @@ class Treatment
 
     protected function setDetailDataTransform($data)
     {
+        $objData['id']              = isset($data['id']) ? $data['id'] : '';
         $objData['title']           = isset($data['title']) ? $data['title'] : '';
         $objData['slug']            = isset($data['slug']) ? $data['slug'] : '';
         $objData['price']           = isset($data['price']) ? $data['price'] : '';

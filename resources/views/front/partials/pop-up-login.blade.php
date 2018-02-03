@@ -14,17 +14,14 @@
             @endif
             <form id="form-login" action="{{ route('LoginAuthenticate') }}" method="post" class="cd-form">
                 <p class="fieldset">
-                    <label class="image-replace cd-email" for="signin-email">E-mail</label>
                     <input name="email" type="email" id="signin-email" class="full-width has-padding has-border" placeholder="Email" value="{{ old('email') }}">
-                    <span class="cd-error-message"></span>
+                    <span class="error-message" id="error-message-login-email"></span>
                     
                 </p>
 
                 <p class="fieldset">
-                    <label class="image-replace cd-password" for="signin-password">Password</label>
-                    <input class="full-width has-padding has-border" name="password" id="signin-password" type="text"  placeholder="Password">
-                    <span class="cd-error-message"></span>
-                    <a href="#0" class="hide-password">Hide</a>
+                    <input class="full-width has-padding has-border" name="password" id="signin-password" type="password"  placeholder="Password">
+                    <span class="error-message" id="error-message-login-password"></span>
                 </p>
 
                 <p class="fieldset">
@@ -37,41 +34,33 @@
         <div id="cd-signup"> <!-- sign up form -->
             <form id="form-registration" action="{{ route('RegisterAuthenticate') }}" method="POST" class="cd-form">
                 <p class="fieldset">
-                    <label class="image-replace cd-first_name" for="signup-first_name">First Name</label>
                     <input name="first_name" class="full-width has-padding has-border" id="signup-first_name" type="text" placeholder="First Name">
-                    <span class="cd-error-message" id="cd-error-message-first_name"></span>
+                    <span class="error-message" id="error-message-registrstion-first_name"></span>
                 </p>
 
                 <p class="fieldset">
-                    <label class="image-replace cd-last_name" for="signup-last_name">Last Name</label>
                     <input name="last_name" class="full-width has-padding has-border" id="signup-last_name" type="text" placeholder="Last Name">
-                    <span class="cd-error-message" id="cd-error-message-last_name"></span>
+                    <span class="error-message" id="error-message-registrstion-last_name"></span>
                 </p>
 
                 <p class="fieldset">
-                    <label class="image-replace cd-email" for="signup-email">E-mail</label>
                     <input class="full-width has-padding has-border" id="signup-email" name="email" type="email" placeholder="E-mail">
-                    <span class="cd-error-message" id="cd-error-message-email"></span>
+                    <span class="error-message" id="error-message-registrstion-email"></span>
                 </p>
 
                 <p class="fieldset">
-                    <label class="image-replace cd-phone_number" for="signup-phone_number">Phone Number</label>
                     <input name="phone_number" class="full-width has-padding has-border" id="signup-phone_number" type="text" placeholder="Phone number">
-                    <span class="cd-error-message" id="cd-error-message-phone_number"></span>
+                    <span class="error-message" id="error-message-registrstion-phone_number"></span>
                 </p>
 
                 <p class="fieldset">
-                    <label class="image-replace cd-password" for="signup-password">Password</label>
-                    <input name="password" class="full-width has-padding has-border" id="signup-password" type="text"  placeholder="Password">
-                    <a href="#0" class="hide-password">Hide</a>
-                    <span class="cd-error-message" id="cd-error-message-password"></span>
+                    <input name="password" class="full-width has-padding has-border" id="signup-password" type="password"  placeholder="Password">
+                    <span class="error-message" id="error-message-registrstion-password"></span>
                 </p>
 
                 <p class="fieldset">
-                    <label class="image-replace cd-confirm_password" for="signup-confirm_password">Confirm Password</label>
-                    <input name="confirm_password" class="full-width has-padding has-border" id="signup-confirm_password" type="text"  placeholder="Confirm Password">
-                    <a href="#0" class="hide-password">Hide</a>
-                    <span class="cd-error-message" id="cd-error-message-confirm_password"></span>
+                    <input name="confirm_password" class="full-width has-padding has-border" id="signup-confirm_password" type="password"  placeholder="Confirm Password">
+                    <span class="error-message" id="error-message-registrstion-confirm_password"></span>
                 </p>
 
                 <p class="fieldset">

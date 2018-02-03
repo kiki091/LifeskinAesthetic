@@ -412,6 +412,10 @@
         "name": "cms.transaction.store"
     },
     {
+        "uri": "cms\/transaction\/status",
+        "name": "cms.transaction.status"
+    },
+    {
         "uri": "cms\/news",
         "name": "cms.news.index"
     },

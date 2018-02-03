@@ -26,6 +26,7 @@ $router->group(['prefix' => 'transaction'], function (Router $router) {
 	$router->post('/search', ['as' => 'cms.transaction.search', 'uses' => 'TransactionController@searchData']);
 	$router->post('/edit', ['as' => 'cms.transaction.edit', 'uses' => 'TransactionController@edit']);
 	$router->post('/store', ['as' => 'cms.transaction.store', 'uses' => 'TransactionController@store']);
+	$router->post('/status', ['as' => 'cms.transaction.status', 'uses' => 'TransactionController@changeStatus']);
 });
 
 $router->group(['prefix' => 'news'], function (Router $router) {

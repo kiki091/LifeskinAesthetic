@@ -44,6 +44,15 @@ class Transaction
      * @param $params
      * @return mixed
      */
+    public function changeStatus($params = [])
+    {
+        return $this->transaction->changeStatus($params);
+    }
+
+    /**
+     * @param $params
+     * @return mixed
+     */
     public function search($params = [])
     {
         return $this->transaction->search($params);

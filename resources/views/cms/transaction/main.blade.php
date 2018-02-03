@@ -25,6 +25,7 @@
                         <th>Email</th>
                         <th>Mobile Number</th>
                         <th>Registration Id</th>
+                        <th>Type</th>
                         <th>Booking Date</th>
                         <th>Status</th>
                     </tr>
@@ -38,8 +39,15 @@
                         </td>
                         <td>@{{ value.member_phone_number }}</td>
                         <td>@{{ value.registrasi_id }}</td>
+                        <td>@{{ value.type }}</td>
                         <td>@{{ value.book_date | formatDate }}</td>
-                        <td>@{{ value.status }}</td>
+                        <td>
+                            <select class="selector_status" name="status" v-on:change="changeStatus(value.id)" :id="'status-'+value.id">
+                                <option :selected="value.status == list_status.text" v-for="list_status in list_status" :value="list_status.id">
+                                    @{{ list_status.text }}
+                                </option>
+                            </select>
+                        </td>
                     </tr>
                 </tbody>
             </table>

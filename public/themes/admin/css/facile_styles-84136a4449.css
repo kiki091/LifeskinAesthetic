@@ -5017,3 +5017,9 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 }
 
 /*# sourceMappingURL=facile_styles.css.map */
+.selector_status {
+    color: #363636;
+    background: #eee;
+    border: 1px solid #eee;
+    padding: 2px;
+}

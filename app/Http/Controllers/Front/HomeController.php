@@ -13,6 +13,7 @@ use App\Services\Bridge\Front\General as GeneralServices;
 use App\Services\Bridge\Front\MainBanner as MainBannerServices;
 use App\Services\Bridge\Front\Information as InformationServices;
 use Carbon;
+use DataHelper;
 
 class HomeController extends FrontController
 {

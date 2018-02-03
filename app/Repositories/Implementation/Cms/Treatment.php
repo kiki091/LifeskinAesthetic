@@ -137,7 +137,6 @@ class Treatment extends BaseImplementation implements TreatmentInterface
             }
             
             $storeObj->created_at           = Carbon::now();
-            $storeObj->updated_at           = Carbon::now();
 
             if($save = $storeObj->save())
             {

@@ -69,6 +69,7 @@ class Transaction
                 'member_id'                 => isset($setData['member_id']) ? $setData['member_id'] : '',
                 'status'                    => isset($setData['status']) ? $this->setStatusTransaction($setData['status']) : '',
                 'book_date'                 => isset($setData['detail']['book_date']) ? $setData['detail']['book_date'] : '',
+                'type'                      => isset($setData['detail']['type']) ? strtoupper($setData['detail']['type']) : '',
                 'price'                     => isset($setData['detail']['price']) ? $setData['detail']['price'] : '',
                 'package_title'             => isset($setData['detail']['package']['title']) ? $setData['detail']['package']['title'] : '',
                 'member_name'               => isset($setData['member']['first_name']) ? $setData['member']['first_name'].' '. $setData['member']['last_name'] : '',

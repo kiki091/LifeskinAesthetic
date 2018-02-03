@@ -10,25 +10,30 @@ class Booking
      * @return array
      */
 
-    public function getDataBookingTransform($data, $userData)
+    public function getDataBookingTransform($data, $userData, $type)
     {
         if(empty($data) || empty($userData))
             return array();
 
-        return $this->setDataBookingTransform($data, $userData);
+        return $this->setDataBookingTransform($data, $userData, $type);
     }
 
-    protected function setDataBookingTransform($data, $userData)
+    protected function setDataBookingTransform($data, $userData, $type)
     {
 
-        $objData['package_title']     = isset($data['title']) ? $data['title'] : '';
-        $objData['package_price']     = isset($data['price']) ? number_format($data['price']) : '';
-        $objData['package_product']   = isset($data['package_product']) ? $this->getProductList($data['package_product']) : '';
-        $objData['member_id']         = isset($userData['member_id']) ? $userData['member_id'] : '';
-        $objData['member_email']      = isset($userData['email']) ? $userData['email'] : '';
-        $objData['member_name']       = isset($userData['first_name']) ? $userData['first_name'] : '';
-        $objData['book_date']         = isset($userData['book_date']) ? $userData['book_date'] : '';
-        $objData['contact_us']        = isset($userData['contact_us']) ? $userData['contact_us'] : '';
+        $objData['package_title']         = isset($data['title']) ? $data['title'] : '';
+        $objData['package_price']         = isset($data['price']) ? number_format($data['price']) : '';
+        if($type == 'package') {
+            $objData['package_product']   = isset($data['package_product']) ? $this->getProductList($data['package_product']) : '';
+        } else {
+            $objData['package_product']   = [];
+        }
+        
+        $objData['member_id']             = isset($userData['member_id']) ? $userData['member_id'] : '';
+        $objData['member_email']          = isset($userData['email']) ? $userData['email'] : '';
+        $objData['member_name']           = isset($userData['first_name']) ? $userData['first_name'] : '';
+        $objData['book_date']             = isset($userData['book_date']) ? $userData['book_date'] : '';
+        $objData['contact_us']            = isset($userData['contact_us']) ? $userData['contact_us'] : '';
 
         return $objData;
     }

@@ -51,16 +51,17 @@
 
                     <!-- CONTENT -->
                     <td class="content" align="center" style="background-color:#fff;padding:25px 10px;border:0px;outline:0;width:542px !important;">
-                      <h1 class="title" style="margin:0 0 8px;font-weight:normal;font-size:24px;color:#C4A57B;letter-spacing:2.4px;line-height:31px;">BOOKING INFORMATION</h1>
+                      <h1 class="title" style="margin:0 0 8px;font-weight:normal;font-size:24px;color:#C4A57B;letter-spacing:2.4px;line-height:31px;">INFORMASI PEMESANAN</h1>
                       <br>
                       <p class="desc" style="font-size:14px;color:#7C8495;letter-spacing:0.8px;line-height:27px;">
-                        Thank you for your trust in choosing our package service, here is the detail of your booking information with registration number <b>{{ $data['registrasi_id'] }}</b> for date <b>{{ $data['date'] }}</b> </p>
+                        Terimakasih atas kepercayaan anda dalam memilih layanan paket kami, berikut detail informasi pemesanan anda dengan nomor registrasi <b>{{ $data['registrasi_id'] }}</b> untuk tanggal <b>{{ $data['date'] }}</b> </p>
                       <br>
-                      <h4 class="text_upper text_left">List User Booking for  {{ $data['date'] }} </h4>
+                      @if(!empty($data['user_avability']) && isset($data['user_avability']))
+                      <h4 class="text_upper text_center">Daftar pengunjung</h4>
                       <table>
                           <tr>
-                              <th class="th_number">Number</th>
-                              <th class="th_email">Fullname</th>
+                              <th class="th_number">Nomer Urut</th>
+                              <th class="th_email">Nama Lengkap</th>
                               <th class="th_email">Email</th>
                           </tr>
                           @php
@@ -77,6 +78,10 @@
                           </tr>
                           @endforeach
                       </table>
+                      @endif
+                      <p class="desc" style="font-size:14px;color:#7C8495;letter-spacing:0.8px;line-height:27px;">
+                      <blockquote><b>Email ini adalah bukti yang benar</b> untuk proses pemesanan, untuk pembatalan silahkan confirmasi terlebih dahulu, dan <b>jika pelanggan tidak datang maka pemesanan di anggap batal</b></blockquote>
+                      </p>
                     </td>
                     <!-- END CONTENT -->
 
@@ -90,7 +95,7 @@
                     </td>
                     <td class="content" align="center" style="background-color:#fff;padding:25px 10px;border:0px;outline:0;width:542px !important;border-top:1px solid #E0E0E0;">
                       <p class="desc" style="font-size:14px;color:#7C8495;letter-spacing:0.8px;line-height:27px;margin:0;">
-                        Call Us <br>
+                        Untuk Info Selengkapnya Silahkan Hubungi <br>
                         <b style="font-weight:800; line-height:24px; font-size:18px; color:#2C3956 !important;"><a href="tel:(+6221)%20573.7777" style="color:#2C3956 !important; text-decoration: none;">{{ $data['contact_us'] }}</a></b>
                       </p>
                     </td>

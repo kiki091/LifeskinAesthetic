@@ -76,7 +76,7 @@ class TreatmentController extends FrontController
         $data['treatment_data'] = $this->treatment->getDetail($slug);
 		$data['treatment_recent'] = $this->treatment->getData(['exclude_treatment_slug' => $slug]);
 		$data['gallery_data'] = $this->gallery->getData(['related_by_category' => $data['treatment_data']['category_id'], 'limit_data' => 5]);
-		
+
 		$blade = self::URL_BLADE_FRONT_SITE. '.treatment-detail';
         
         if(view()->exists($blade)) {

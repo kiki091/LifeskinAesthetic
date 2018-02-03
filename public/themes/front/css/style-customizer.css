@@ -1341,7 +1341,7 @@ xsigin/signup popup
     padding: 2em;
   }
   .cd-form .fieldset {
-    margin: 2em 0;
+    margin: 1em 0;
   }
   .cd-form .fieldset:first-child {
     margin-top: 0;
@@ -1392,7 +1392,7 @@ xsigin/signup popup
   height: 40px;
   right: 0;
   top: -40px;
-  background: url("../img/cd-icon-close.svg") no-repeat center center;
+  background: url("../../themes/front/images/cd-icon-close.svg") no-repeat center center;
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;

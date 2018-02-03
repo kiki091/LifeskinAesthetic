@@ -147,6 +147,33 @@ module.exports = function transaction() {
 
         methods: {
 
+            changeStatus: function(params) {
+                var vm      = this
+                var valId = params;
+                var form = new FormData();
+                var valData = $('#status-'+params).val();
+
+                var payload = []
+                payload['id'] = valId
+                payload['status'] = valData
+                
+                form.append('_token', facile.token)
+                for (var key in payload) {
+                    form.append(key, payload[key])
+                }
+
+                this.edit   = true
+                var domain  = laroute.route('cms.transaction.status', []);
+
+                this.$http.post(domain, form).then(function (response) {
+                    if(response.data.status == true) {
+                        notify({message: 'Success',type:'success'})
+                    } else {
+                        notify({type:'error'})
+                    }
+                });
+            },
+
             changePage: function(page) {
               this.pagination.current_page = page;
               this.fetchData(page)
