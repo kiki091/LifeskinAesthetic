@@ -1,7 +1,7 @@
 /node_modules
 /public/hot
 /public/storage
-/public/build/rev-manifest.json
+/public/bin/images/*
 /storage/*.key
 /vendor
 /.idea

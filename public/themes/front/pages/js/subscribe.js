@@ -10,13 +10,13 @@ $(function() {
 		e.preventDefault();
 
 		// Serialize the form data.
-		var formData = $(form).serialize();
+		var email = $('#email_mid').val()
 
 		// Submit the form using AJAX.
 		$.ajax({
 			type: 'POST',
 			url: $(form).attr('action'),
-			data: formData
+			data: { email: email, _token: token }
 		})
 		.done(function(response) {
 
@@ -52,13 +52,12 @@ $(function() {
 		event.preventDefault();
 
 		// Serialize the form data.
-		var formDataFooter = $(formFooter).serialize();
-
+		var email = $('#footer-subscribe').val()
 		// Submit the form using AJAX.
 		$.ajax({
 			type: 'POST',
 			url: $(formFooter).attr('action'),
-			data: formDataFooter
+			data: { email: email, _token: token }
 		})
 		.done(function(response) {
 
@@ -69,7 +68,7 @@ $(function() {
 				if(response.is_error_form_validation == true)
 				{
 					$.each(response.message, function(key, value) {
-						$('#error-message-'+key).text(value)
+						$('#error-message-footer-'+key).text(value)
 					})
 					toastr.error('Failed store contact us', {timeOut: 5000})
 				} else {
@@ -77,9 +76,11 @@ $(function() {
 				}
 			} else {
 				$('.error-message').text('')
-				$('#desktop-footer-mailing-list-form input,#desktop-footer-mailing-list-form textarea').val('');
+				$('#desktop-footer-mailing-list-form,#footer-subscribe').val('');
 				toastr.success(response.message, {timeOut: 5000})
 			}
+
+			$('#form-submit-footer-subscribe').val('>')
 
 			
 		})

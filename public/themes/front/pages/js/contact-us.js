@@ -9,13 +9,15 @@ $(function() {
 		e.preventDefault();
 
 		// Serialize the form data.
-		var formData = $(form).serialize();
+		var fullname 	= $('#fullname').val()
+		var email 		= $('#email').val()
+		var messages 	= $('#messages').val()
 
 		// Submit the form using AJAX.
 		$.ajax({
 			type: 'POST',
 			url: $(form).attr('action'),
-			data: formData
+			data: { fullname: fullname, email: email, messages: messages, _token: token }
 		})
 		.done(function(response) {
 

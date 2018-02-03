@@ -59,7 +59,7 @@
                         <textarea id="messages" name="messages" placeholder="Enter your messages here"></textarea>
                         <br/>
                         <span class="error-message" id="error-message-messages"></span>
-                        {{ csrf_field() }}
+
                         <button type="submit">Send</button>
                     </form>
                 </div>
@@ -76,13 +76,11 @@
 @endsection
 
 @section('scripts')
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdWLY_Y6FL7QGW5vcO3zajUEsrKfQPNzI"></script>
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<script src="{{ asset('themes/front/js/map.js') }}"></script>
-<script src="{{ asset('themes/front/pages/js/contact-us.js') }}"></script>
 <script type="text/javascript">
-	window.latitude = "{{ $web_information['latitude'] }}"
-	window.longitude = "{{ $web_information['longitude'] }}"
+    window.latitude = "{{ $web_information['latitude'] }}"
+    window.longitude = "{{ $web_information['longitude'] }}"
 </script>
+
+
+
 @endsection

@@ -38,10 +38,10 @@
                                     <div class="form-group">
                                         <input name="email" id="footer-subscribe" type="text" class="required only-email" placeholder="Enter your email address">
                                         <br/>
-                                        <span class="error-message" id="error-message-email"></span>
+                                        <span class="error-message" id="error-message-footer-email"></span>
                                     </div>
                                     {{ csrf_field() }}
-                                    <input type="submit" value=">">
+                                    <input type="submit" id="form-submit-footer-subscribe" value=">">
                                 </form>
                             </div>
                             <div id="desktop-footer-social-links">

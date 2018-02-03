@@ -168,8 +168,3 @@
 </div>
 <!--Offer section end-->
 @endsection
-
-
-@section('scripts')
-<script src="{{ asset('themes/front/pages/js/subscribe.js') }}"></script>
-@endsection
