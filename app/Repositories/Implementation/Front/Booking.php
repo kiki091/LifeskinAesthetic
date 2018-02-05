@@ -57,8 +57,6 @@ class Booking extends BaseImplementation implements BookingInterface
     {
         $params = [
             "package_id" => $data['data']['package_id'],
-        ];
-        $params = [
             "type" => $data['data']['type'],
         ];
         
@@ -67,7 +65,9 @@ class Booking extends BaseImplementation implements BookingInterface
             'email' => DataHelper::memberEmail(),
             'first_name' => DataHelper::userName(),
             'book_date' => $data['data']['book_date'],
-            'contact_us'=> $data['information']
+            'contact_us'=> $data['information']['phone_number'],
+            'logo'=> $data['information']['logo'],
+            'web_title'=> $data['information']['web_title'],
         ];
 
         if($params['type'] == 'package') {
@@ -176,6 +176,7 @@ class Booking extends BaseImplementation implements BookingInterface
     protected function sendMail($data, $userData)
     {
         $registrasi_id      = $this->registrasiId;
+        $logo               = $data['logo'];
         $package_title      = $data['package_title'];
         $package_price      = $data['package_price'];
         $package_product    = $data['package_product'];
@@ -183,9 +184,10 @@ class Booking extends BaseImplementation implements BookingInterface
         $member_name        = $data['member_name'];
         $contact_us         = $data['contact_us'];
         $dateNow            = $data['book_date'];
+        $web_title          = $data['web_title'];
         $user_avability     = $userData;
         
-        $dataObj            = ['registrasi_id' => $registrasi_id,'package_title' => $package_title, 'package_price' => $package_price, 'member_email' => $member_email, 'member_name' => $member_name, 'package_product' => $package_product, 'contact_us' =>$contact_us, 'user_avability' => $user_avability, 'date' => $dateNow];
+        $dataObj            = ['registrasi_id' => $registrasi_id,'package_title' => $package_title, 'package_price' => $package_price, 'member_email' => $member_email, 'member_name' => $member_name, 'package_product' => $package_product, 'contact_us' =>$contact_us, 'user_avability' => $user_avability, 'date' => $dateNow, 'logo' => $logo, 'web_title' => $web_title];
 
         if($orderSuccess = $this->mailService->sendQueueMailWithLog($member_email, 'default', 'Booking Information', 'thankyou', $dataObj))
         {

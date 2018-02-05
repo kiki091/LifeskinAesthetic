@@ -34,6 +34,8 @@ class Booking
         $objData['member_name']           = isset($userData['first_name']) ? $userData['first_name'] : '';
         $objData['book_date']             = isset($userData['book_date']) ? $userData['book_date'] : '';
         $objData['contact_us']            = isset($userData['contact_us']) ? $userData['contact_us'] : '';
+        $objData['web_title']             = isset($userData['web_title']) ? $userData['web_title'] : '';
+        $objData['logo']                  = isset($userData['logo']) ? $userData['logo'] : '';
 
         return $objData;
     }

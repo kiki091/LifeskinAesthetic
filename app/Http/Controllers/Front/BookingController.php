@@ -40,7 +40,7 @@ class BookingController extends FrontController
 
         } else {
             $data['web_information'] = $this->general->getData();
-            return $this->booking->store(['data'=>$request->except(['_token']),'information' => $data['web_information']['phone_number']]);
+            return $this->booking->store(['data'=>$request->except(['_token']),'information' => $data['web_information']]);
             
         }
 	}

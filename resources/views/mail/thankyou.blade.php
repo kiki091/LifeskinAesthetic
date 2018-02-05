@@ -51,6 +51,7 @@
 
                     <!-- CONTENT -->
                     <td class="content" align="center" style="background-color:#fff;padding:25px 10px;border:0px;outline:0;width:542px !important;">
+                      <img src="{{ $data['logo'] }}" alt="{{ $data['web_title'] }}" style="height: 100px">
                       <h1 class="title" style="margin:0 0 8px;font-weight:normal;font-size:24px;color:#C4A57B;letter-spacing:2.4px;line-height:31px;">INFORMASI PEMESANAN</h1>
                       <br>
                       <p class="desc" style="font-size:14px;color:#7C8495;letter-spacing:0.8px;line-height:27px;">
