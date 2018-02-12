@@ -1,5 +1,17 @@
 jQuery(document).ready(function($){
 
+	var birth_day = "";
+
+    $('#signup-birth_day').datepicker({
+        language: 'en',
+        dateFormat: 'yyyy-mm-dd',
+        autoClose: true,
+        onSelect: function (params) {
+            birth_day = params
+
+        }
+    })
+
 	var formModal = $('.cd-user-modal'),
 		formLogin = formModal.find('#cd-login'),
 		formSignup = formModal.find('#cd-signup'),

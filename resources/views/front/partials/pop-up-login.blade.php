@@ -49,6 +49,16 @@
                 </p>
 
                 <p class="fieldset">
+                    <input class="full-width has-padding has-border" id="signup-place_of_birth" name="place_of_birth" type="text" placeholder="Place of birth">
+                    <span class="error-message" id="error-message-registrstion-place_of_birth"></span>
+                </p>
+
+                <p class="fieldset">
+                    <input class="birth_day full-width has-padding has-border" id="signup-birth_day" name="birth_day" type="text" placeholder="Birth day (1980-11-21)">
+                    <span class="error-message" id="error-message-registrstion-birth_day"></span>
+                </p>
+
+                <p class="fieldset">
                     <input name="phone_number" class="full-width has-padding has-border" id="signup-phone_number" type="text" placeholder="Phone number">
                     <span class="error-message" id="error-message-registrstion-phone_number"></span>
                 </p>

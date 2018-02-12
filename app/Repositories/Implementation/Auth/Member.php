@@ -98,17 +98,19 @@ class Member extends BaseImplementation implements MemberInterface
     {
         try {
 
-            $storeObj               = $this->member;
-            $storeObj->first_name   = isset($data['first_name']) ? $data['first_name'] : '';
-            $storeObj->last_name    = isset($data['last_name']) ? $data['last_name'] : '';
-            $storeObj->phone_number = isset($data['phone_number']) ? $data['phone_number'] : '';
-            $storeObj->email        = isset($data['email']) ? $data['email'] : '';
-            $storeObj->is_active    = true;
-            $storeObj->password     = Hash::make($data['confirm_password']);
-            $storeObj->created_at   = Carbon::now();
-            $storeObj->updated_at   = Carbon::now();
+            $storeObj                   = $this->member;
+            $storeObj->first_name       = isset($data['first_name']) ? $data['first_name'] : '';
+            $storeObj->last_name        = isset($data['last_name']) ? $data['last_name'] : '';
+            $storeObj->phone_number     = isset($data['phone_number']) ? $data['phone_number'] : '';
+            $storeObj->place_of_birth   = isset($data['place_of_birth']) ? $data['place_of_birth'] : '';
+            $storeObj->birth_day        = isset($data['birth_day']) ? $data['birth_day'] : '';
+            $storeObj->email            = isset($data['email']) ? $data['email'] : '';
+            $storeObj->is_active        = true;
+            $storeObj->password         = Hash::make($data['confirm_password']);
+            $storeObj->created_at       = Carbon::now();
+            $storeObj->updated_at       = Carbon::now();
 
-            $save                   = $storeObj->save();
+            $save                       = $storeObj->save();
         
             return $save;
 

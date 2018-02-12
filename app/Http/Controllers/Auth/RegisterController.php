@@ -62,6 +62,8 @@ class RegisterController extends FrontController
         $rules = [
             'first_name'        => 'required|string|max:25',
             'last_name'         => 'required|string|max:25',
+            'place_of_birth'    => 'required|string|max:50',
+            'birth_day'         => 'required|date',
             'phone_number'      => 'required|numeric|unique:members',
             'email'             => 'required|string|email|max:35|unique:members',
             'password'          => 'required|string|min:8|max:20',
