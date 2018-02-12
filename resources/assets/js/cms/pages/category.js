@@ -17,8 +17,14 @@ module.exports = function category() {
             models: {
                 id: '',
                 title: '',
+                type: '',
             },
             data: {},
+            list_type_category: [
+                {id:'product', name: 'Product'},
+                {id:'treatment', name: 'Treatment'},
+            ],
+            type_category_selector: '',
 
             supported_language: facile.supported_language,
             current_language : facile.current_language,
@@ -68,6 +74,8 @@ module.exports = function category() {
                 this.$http.post(domain, form).then(function (response) {
                     response = response.data
                     this.models = response.data
+                    this.type_category_selector = response.data.type
+                    $("#select").val(response.data.type).trigger("change");
                 });
 
                 $('#toggle-open-content').slideDown('swing');
@@ -145,7 +153,9 @@ module.exports = function category() {
 
                 this.models.id = ''
                 this.models.title = ''
+                this.type_category_selector = ''
                 this.edit = false
+                $("#select").val('').trigger("change");
 
             },
 

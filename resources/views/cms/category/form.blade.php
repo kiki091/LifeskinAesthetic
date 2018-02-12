@@ -19,6 +19,10 @@
                 <div class="field" v-if="showElementByDefaultLang(supportedLangKey)">
                     <ftext type='text' class="new__form__input__field" id="title" placeholder="Enter the title here" name="title" v-model="models.title" label="Title Category"></ftext>
                 </div>
+
+                <div class="field widthauto flex" v-if="showElementByDefaultLang(supportedLangKey)">
+                    <fchosen :options="list_type_category" id="select" v-model="type_category_selector" name="type" label="Category Type"></fchosen>
+                </div>
             </div>
         </div>
         <!-- END FORM WIZARD -->

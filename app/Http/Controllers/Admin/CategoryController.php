@@ -107,6 +107,7 @@ class CategoryController extends CmsController
     {
         $rules = [
             'title'             => 'required',
+            'type'              => 'required',
         ];
         
         return $rules;

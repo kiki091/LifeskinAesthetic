@@ -62,6 +62,7 @@ class Category
         $objData['id']               = isset($data['id']) ? $data['id'] : '';
         $objData['title']            = isset($data['title']) ? $data['title'] : '';
         $objData['slug']             = isset($data['slug']) ? $data['slug'] : '';
+        $objData['type']             = isset($data['type']) ? $data['type'] : '';
 
         return $objData;
     }

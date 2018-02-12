@@ -106,6 +106,7 @@ class Category extends BaseImplementation implements CategoryInterface
             }
 
             $storeObj->title                = isset($data['title']) ? $data['title'] : '';
+            $storeObj->type                 = isset($data['type']) ? $data['type'] : '';
             $storeObj->slug                 = isset($data['title']) ? strtolower(str_slug($data['title'])) : '';
             
             $storeObj->created_at           = Carbon::now();
