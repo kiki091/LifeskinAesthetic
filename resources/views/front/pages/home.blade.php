@@ -130,7 +130,7 @@
                                                     <div class="pricing-desc">
                                                         <h2><span class="currency">IDR</span>{{ $val_package['price'] }}</h2>
                                                         <ul>
-                                                            @if(isset($val_package['product']))
+                                                            @if(isset($val_package['product']) && !empty($val_package['product']))
                                                                 @foreach($val_package['product'] as $key_product=> $val_product)
                                                                     <li>{{ $val_product['title'] }}</li>
                                                                 @endforeach
